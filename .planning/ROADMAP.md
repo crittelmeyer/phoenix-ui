@@ -54,9 +54,17 @@ Plans:
 
 **Goal:** Components can reference semantic design tokens that work in light and dark modes.
 
-**Status:** Pending
+**Status:** Planned (3 plans)
 
 **Dependencies:** Phase 1 (requires monorepo build pipeline)
+
+**Plans:** 3 plans
+
+Plans:
+
+- [ ] 02-01-PLAN.md — DTCG seed tokens + Style Dictionary build pipeline
+- [ ] 02-02-PLAN.md — Tailwind v4 integration + dark mode toggle in apps/web
+- [ ] 02-03-PLAN.md — Token migration guide (Tokens Studio / Figma Variables)
 
 **Requirements:** TOKN-01, TOKN-02, TOKN-03, TOKN-04, TOKN-05, TOKN-06, TOKN-07
 
@@ -210,7 +218,7 @@ Plans:
 | Phase                            | Status   | Requirements | Completion    |
 | -------------------------------- | -------- | ------------ | ------------- |
 | 1 - Foundation                   | Complete | 10           | 100% (10 req) |
-| 2 - Token System                 | Pending  | 7            | 0%            |
+| 2 - Token System                 | Planned  | 7            | 0%            |
 | 3 - Core Components (Foundation) | Pending  | 8            | 0%            |
 | 4 - Documentation Infrastructure | Pending  | 5            | 0%            |
 | 5 - Core Components (Advanced)   | Pending  | 7            | 0%            |
@@ -268,4 +276,4 @@ Phase 6 (AI Integration) ← Requires complete component library
 
 ---
 
-_Last updated: 2026-02-01 after plan 01-03 execution_
+_Last updated: 2026-02-01 after phase 02 planning_
