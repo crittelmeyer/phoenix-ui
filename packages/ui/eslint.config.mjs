@@ -1,3 +1,8 @@
 import reactConfig from '@phoenix/eslint-config/react.mjs'
 
-export default reactConfig
+export default [
+  ...reactConfig,
+  {
+    ignores: ['**/*.figma.tsx'],
+  },
+]
