@@ -106,55 +106,63 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FNDN-01 | — | Pending |
-| FNDN-02 | — | Pending |
-| FNDN-03 | — | Pending |
-| FNDN-04 | — | Pending |
-| FNDN-05 | — | Pending |
-| FNDN-06 | — | Pending |
-| FNDN-07 | — | Pending |
-| FNDN-08 | — | Pending |
-| FNDN-09 | — | Pending |
-| FNDN-10 | — | Pending |
-| TOKN-01 | — | Pending |
-| TOKN-02 | — | Pending |
-| TOKN-03 | — | Pending |
-| TOKN-04 | — | Pending |
-| TOKN-05 | — | Pending |
-| TOKN-06 | — | Pending |
-| TOKN-07 | — | Pending |
-| COMP-01 | — | Pending |
-| COMP-02 | — | Pending |
-| COMP-03 | — | Pending |
-| COMP-04 | — | Pending |
-| COMP-05 | — | Pending |
-| COMP-06 | — | Pending |
-| COMP-07 | — | Pending |
-| COMP-08 | — | Pending |
-| COMP-09 | — | Pending |
-| COMP-10 | — | Pending |
-| COMP-11 | — | Pending |
-| COMP-12 | — | Pending |
-| COMP-13 | — | Pending |
-| COMP-14 | — | Pending |
-| COMP-15 | — | Pending |
-| DOCS-01 | — | Pending |
-| DOCS-02 | — | Pending |
-| DOCS-03 | — | Pending |
-| DOCS-04 | — | Pending |
-| DOCS-05 | — | Pending |
-| AIML-01 | — | Pending |
-| AIML-02 | — | Pending |
-| AIML-03 | — | Pending |
-| AIML-04 | — | Pending |
-| AIML-05 | — | Pending |
-| AIML-06 | — | Pending |
+| FNDN-01 | Phase 1 | Pending |
+| FNDN-02 | Phase 1 | Pending |
+| FNDN-03 | Phase 1 | Pending |
+| FNDN-04 | Phase 1 | Pending |
+| FNDN-05 | Phase 1 | Pending |
+| FNDN-06 | Phase 1 | Pending |
+| FNDN-07 | Phase 1 | Pending |
+| FNDN-08 | Phase 1 | Pending |
+| FNDN-09 | Phase 1 | Pending |
+| FNDN-10 | Phase 1 | Pending |
+| TOKN-01 | Phase 2 | Pending |
+| TOKN-02 | Phase 2 | Pending |
+| TOKN-03 | Phase 2 | Pending |
+| TOKN-04 | Phase 2 | Pending |
+| TOKN-05 | Phase 2 | Pending |
+| TOKN-06 | Phase 2 | Pending |
+| TOKN-07 | Phase 2 | Pending |
+| COMP-01 | Phase 3 | Pending |
+| COMP-02 | Phase 3 | Pending |
+| COMP-03 | Phase 3 | Pending |
+| COMP-04 | Phase 3 | Pending |
+| COMP-05 | Phase 3 | Pending |
+| COMP-06 | Phase 3 | Pending |
+| COMP-07 | Phase 3 | Pending |
+| COMP-08 | Phase 3 | Pending |
+| COMP-09 | Phase 5 | Pending |
+| COMP-10 | Phase 5 | Pending |
+| COMP-11 | Phase 5 | Pending |
+| COMP-12 | Phase 5 | Pending |
+| COMP-13 | Phase 5 | Pending |
+| COMP-14 | Phase 5 | Pending |
+| COMP-15 | Phase 5 | Pending |
+| DOCS-01 | Phase 4 | Pending |
+| DOCS-02 | Phase 4 | Pending |
+| DOCS-03 | Phase 4 | Pending |
+| DOCS-04 | Phase 4 | Pending |
+| DOCS-05 | Phase 4 | Pending |
+| AIML-01 | Phase 6 | Pending |
+| AIML-02 | Phase 6 | Pending |
+| AIML-03 | Phase 6 | Pending |
+| AIML-04 | Phase 6 | Pending |
+| AIML-05 | Phase 6 | Pending |
+| AIML-06 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 38 total
-- Mapped to phases: 0
-- Unmapped: 38 (pending roadmap creation)
+- Mapped to phases: 38
+- Unmapped: 0
+
+**Phase distribution:**
+- Phase 1 (Foundation): 10 requirements
+- Phase 2 (Token System): 7 requirements
+- Phase 3 (Core Components Foundation): 8 requirements
+- Phase 4 (Documentation Infrastructure): 5 requirements
+- Phase 5 (Core Components Advanced): 7 requirements
+- Phase 6 (AI Integration): 6 requirements
 
 ---
 *Requirements defined: 2026-02-01*
-*Last updated: 2026-02-01 after initial definition*
+*Last updated: 2026-02-01 after roadmap creation*
