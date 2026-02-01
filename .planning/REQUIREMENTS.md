@@ -1,0 +1,160 @@
+# Requirements: Phoenix
+
+**Defined:** 2026-02-01
+**Core Value:** AI agents can add, modify, and extend components without human hand-holding
+
+## v1 Requirements
+
+### Foundation
+
+- [ ] **FNDN-01**: Developer can clone repo and run `pnpm install && pnpm dev` with zero additional setup
+- [ ] **FNDN-02**: pnpm workspaces with Turborepo orchestrating builds across apps/web, apps/storybook, packages/ui, packages/tokens
+- [ ] **FNDN-03**: TypeScript strict mode with shared tsconfig base across all packages
+- [ ] **FNDN-04**: Vite + React Router app in apps/web consuming @phoenix/ui components
+- [ ] **FNDN-05**: ESLint + Prettier enforcing consistent code style across all packages
+- [ ] **FNDN-06**: Prettier Tailwind plugin sorting class names deterministically
+- [ ] **FNDN-07**: ESLint rule banning arbitrary Tailwind values (mt-[13px]) in packages/ui
+- [ ] **FNDN-08**: ESLint rule banning inline styles in packages/ui
+- [ ] **FNDN-09**: Pre-commit hooks running lint, typecheck, and format:check — all must pass
+- [ ] **FNDN-10**: Turborepo build pipeline with correct dependency ordering (tokens → ui → apps)
+
+### Tokens
+
+- [ ] **TOKN-01**: Seed token set covering colors (neutral, primary, destructive), spacing scale, typography scale, and border radii
+- [ ] **TOKN-02**: Light and dark color schemes defined as separate token sets
+- [ ] **TOKN-03**: Style Dictionary pipeline transforming JSON tokens → CSS custom properties
+- [ ] **TOKN-04**: Style Dictionary pipeline generating Tailwind preset from tokens
+- [ ] **TOKN-05**: Tailwind config in apps/web consuming generated preset
+- [ ] **TOKN-06**: Dark mode toggle working via CSS class strategy (class="dark")
+- [ ] **TOKN-07**: Documented migration path from seed tokens to Tokens Studio / Figma Variables sync
+
+### Components
+
+- [ ] **COMP-01**: cn() utility combining clsx + tailwind-merge for class composition
+- [ ] **COMP-02**: Button component with variant (default, outline, ghost) and size (sm, md, lg) via CVA
+- [ ] **COMP-03**: Input component with Radix-compatible forwarded ref and semantic tokens
+- [ ] **COMP-04**: Textarea component with auto-resize option and semantic tokens
+- [ ] **COMP-05**: Select component built on Radix Select primitive
+- [ ] **COMP-06**: Checkbox component built on Radix Checkbox primitive
+- [ ] **COMP-07**: Radio component built on Radix RadioGroup primitive
+- [ ] **COMP-08**: Dialog component built on Radix Dialog primitive
+- [ ] **COMP-09**: DropdownMenu component built on Radix DropdownMenu primitive
+- [ ] **COMP-10**: Tabs component built on Radix Tabs primitive
+- [ ] **COMP-11**: Tooltip component built on Radix Tooltip primitive
+- [ ] **COMP-12**: Toast component using Sonner
+- [ ] **COMP-13**: Form wrapper integrating react-hook-form with component library
+- [ ] **COMP-14**: All components export from packages/ui/src/index.ts barrel file
+- [ ] **COMP-15**: Every component uses semantic token classes only (bg-surface, text-foreground, etc.)
+
+### Documentation
+
+- [ ] **DOCS-01**: Storybook app in apps/storybook rendering all components
+- [ ] **DOCS-02**: One story per component showing all variants and sizes
+- [ ] **DOCS-03**: Tokens overview page in Storybook visualizing colors, spacing, typography, radii
+- [ ] **DOCS-04**: Figma Code Connect mappings for all 12 component types
+- [ ] **DOCS-05**: README.md with clone instructions, scope rename guide, and development workflow
+
+### AI Integration
+
+- [ ] **AIML-01**: CLAUDE.md at repo root with project overview and high-level conventions
+- [ ] **AIML-02**: .claude/rules/ with path-scoped rules for packages/ui (component authoring pattern)
+- [ ] **AIML-03**: .claude/rules/ with path-scoped rules for packages/tokens (token authoring constraints)
+- [ ] **AIML-04**: .claude/rules/ with path-scoped rules for apps/storybook (story authoring pattern)
+- [ ] **AIML-05**: AGENTS.md at repo root for cross-tool AI compatibility (references CLAUDE.md)
+- [ ] **AIML-06**: Claude can add a new component by following documented patterns without human guidance
+
+## v2 Requirements
+
+### Enhanced Components
+
+- **COMP-V2-01**: Accordion component built on Radix Accordion
+- **COMP-V2-02**: Avatar component with image fallback
+- **COMP-V2-03**: Badge component with variants
+- **COMP-V2-04**: Card component with header/content/footer slots
+- **COMP-V2-05**: Sheet/Drawer component built on Radix Dialog
+- **COMP-V2-06**: Popover component built on Radix Popover
+- **COMP-V2-07**: Command palette component (cmdk)
+
+### Enhanced Tooling
+
+- **TOOL-V2-01**: Visual regression testing via Chromatic or Playwright
+- **TOOL-V2-02**: Changeset-based versioning for packages
+- **TOOL-V2-03**: CI/CD pipeline template (GitHub Actions)
+- **TOOL-V2-04**: Figma MCP server integration guide
+
+### Enhanced Tokens
+
+- **TOKN-V2-01**: Animation/motion tokens
+- **TOKN-V2-02**: Responsive breakpoint tokens
+- **TOKN-V2-03**: Multiple theme support beyond light/dark
+
+## Out of Scope
+
+| Feature | Reason |
+|---------|--------|
+| React 19 support | Radix UI infinite loop bug — upgrade path documented, revisit when fixed |
+| Biome (replacing ESLint + Prettier) | Tailwind class sorting not mature enough in Biome |
+| Server-side rendering | Vite + React Router chosen deliberately for simplicity; no SSR opinions |
+| Authentication / API layer | UI starter, not app template |
+| Mobile / React Native | Web-first, separate concern |
+| CI/CD configuration | Too environment-specific for a starter template |
+| Figma file / design assets | Users bring their own designs or start from seed tokens |
+| npm publishing pipeline | Starter is cloned and owned, not consumed as dependency |
+| Internationalization (i18n) | Orthogonal concern, add per-product |
+
+## Traceability
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| FNDN-01 | — | Pending |
+| FNDN-02 | — | Pending |
+| FNDN-03 | — | Pending |
+| FNDN-04 | — | Pending |
+| FNDN-05 | — | Pending |
+| FNDN-06 | — | Pending |
+| FNDN-07 | — | Pending |
+| FNDN-08 | — | Pending |
+| FNDN-09 | — | Pending |
+| FNDN-10 | — | Pending |
+| TOKN-01 | — | Pending |
+| TOKN-02 | — | Pending |
+| TOKN-03 | — | Pending |
+| TOKN-04 | — | Pending |
+| TOKN-05 | — | Pending |
+| TOKN-06 | — | Pending |
+| TOKN-07 | — | Pending |
+| COMP-01 | — | Pending |
+| COMP-02 | — | Pending |
+| COMP-03 | — | Pending |
+| COMP-04 | — | Pending |
+| COMP-05 | — | Pending |
+| COMP-06 | — | Pending |
+| COMP-07 | — | Pending |
+| COMP-08 | — | Pending |
+| COMP-09 | — | Pending |
+| COMP-10 | — | Pending |
+| COMP-11 | — | Pending |
+| COMP-12 | — | Pending |
+| COMP-13 | — | Pending |
+| COMP-14 | — | Pending |
+| COMP-15 | — | Pending |
+| DOCS-01 | — | Pending |
+| DOCS-02 | — | Pending |
+| DOCS-03 | — | Pending |
+| DOCS-04 | — | Pending |
+| DOCS-05 | — | Pending |
+| AIML-01 | — | Pending |
+| AIML-02 | — | Pending |
+| AIML-03 | — | Pending |
+| AIML-04 | — | Pending |
+| AIML-05 | — | Pending |
+| AIML-06 | — | Pending |
+
+**Coverage:**
+- v1 requirements: 38 total
+- Mapped to phases: 0
+- Unmapped: 38 (pending roadmap creation)
+
+---
+*Requirements defined: 2026-02-01*
+*Last updated: 2026-02-01 after initial definition*
