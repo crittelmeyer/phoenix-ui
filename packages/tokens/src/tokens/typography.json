@@ -1,0 +1,177 @@
+{
+  "font": {
+    "size": {
+      "xs": {
+        "$value": "0.75rem",
+        "$type": "dimension",
+        "$description": "Extra small text (12px)"
+      },
+      "sm": {
+        "$value": "0.875rem",
+        "$type": "dimension",
+        "$description": "Small text (14px)"
+      },
+      "base": {
+        "$value": "1rem",
+        "$type": "dimension",
+        "$description": "Base text size (16px)"
+      },
+      "lg": {
+        "$value": "1.125rem",
+        "$type": "dimension",
+        "$description": "Large text (18px)"
+      },
+      "xl": {
+        "$value": "1.25rem",
+        "$type": "dimension",
+        "$description": "Extra large text (20px)"
+      },
+      "2xl": {
+        "$value": "1.5rem",
+        "$type": "dimension",
+        "$description": "2xl text (24px)"
+      },
+      "3xl": {
+        "$value": "1.875rem",
+        "$type": "dimension",
+        "$description": "3xl text (30px)"
+      },
+      "4xl": {
+        "$value": "2.25rem",
+        "$type": "dimension",
+        "$description": "4xl text (36px)"
+      },
+      "5xl": {
+        "$value": "3rem",
+        "$type": "dimension",
+        "$description": "5xl text (48px)"
+      },
+      "6xl": {
+        "$value": "3.75rem",
+        "$type": "dimension",
+        "$description": "6xl text (60px)"
+      },
+      "7xl": {
+        "$value": "4.5rem",
+        "$type": "dimension",
+        "$description": "7xl text (72px)"
+      },
+      "8xl": {
+        "$value": "6rem",
+        "$type": "dimension",
+        "$description": "8xl text (96px)"
+      },
+      "9xl": {
+        "$value": "8rem",
+        "$type": "dimension",
+        "$description": "9xl text (128px)"
+      }
+    },
+    "lineHeight": {
+      "xs": {
+        "$value": "1rem",
+        "$type": "dimension",
+        "$description": "Line height for xs text"
+      },
+      "sm": {
+        "$value": "1.25rem",
+        "$type": "dimension",
+        "$description": "Line height for sm text"
+      },
+      "base": {
+        "$value": "1.5rem",
+        "$type": "dimension",
+        "$description": "Line height for base text"
+      },
+      "lg": {
+        "$value": "1.75rem",
+        "$type": "dimension",
+        "$description": "Line height for lg text"
+      },
+      "xl": {
+        "$value": "1.75rem",
+        "$type": "dimension",
+        "$description": "Line height for xl text"
+      },
+      "2xl": {
+        "$value": "2rem",
+        "$type": "dimension",
+        "$description": "Line height for 2xl text"
+      },
+      "3xl": {
+        "$value": "2.25rem",
+        "$type": "dimension",
+        "$description": "Line height for 3xl text"
+      },
+      "4xl": {
+        "$value": "2.5rem",
+        "$type": "dimension",
+        "$description": "Line height for 4xl text"
+      },
+      "5xl": {
+        "$value": "1",
+        "$type": "dimension",
+        "$description": "Line height for 5xl text (relative)"
+      },
+      "6xl": {
+        "$value": "1",
+        "$type": "dimension",
+        "$description": "Line height for 6xl text (relative)"
+      },
+      "7xl": {
+        "$value": "1",
+        "$type": "dimension",
+        "$description": "Line height for 7xl text (relative)"
+      },
+      "8xl": {
+        "$value": "1",
+        "$type": "dimension",
+        "$description": "Line height for 8xl text (relative)"
+      },
+      "9xl": {
+        "$value": "1",
+        "$type": "dimension",
+        "$description": "Line height for 9xl text (relative)"
+      }
+    },
+    "family": {
+      "sans": {
+        "$value": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "$type": "fontFamily",
+        "$description": "System font stack for sans-serif"
+      },
+      "serif": {
+        "$value": "Georgia, Cambria, 'Times New Roman', Times, serif",
+        "$type": "fontFamily",
+        "$description": "System font stack for serif"
+      },
+      "mono": {
+        "$value": "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+        "$type": "fontFamily",
+        "$description": "System font stack for monospace"
+      }
+    },
+    "weight": {
+      "normal": {
+        "$value": "400",
+        "$type": "fontWeight",
+        "$description": "Normal font weight"
+      },
+      "medium": {
+        "$value": "500",
+        "$type": "fontWeight",
+        "$description": "Medium font weight"
+      },
+      "semibold": {
+        "$value": "600",
+        "$type": "fontWeight",
+        "$description": "Semibold font weight"
+      },
+      "bold": {
+        "$value": "700",
+        "$type": "fontWeight",
+        "$description": "Bold font weight"
+      }
+    }
+  }
+}

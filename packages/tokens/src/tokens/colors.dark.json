@@ -1,0 +1,91 @@
+{
+  "color": {
+    "semantic": {
+      "background": {
+        "$value": "oklch(0.172 0.005 264.54)",
+        "$type": "color",
+        "$description": "Dark mode page background"
+      },
+      "foreground": {
+        "$value": "oklch(0.985 0.002 264.54)",
+        "$type": "color",
+        "$description": "Dark mode text color"
+      },
+      "card": {
+        "$value": "oklch(0.172 0.005 264.54)",
+        "$type": "color",
+        "$description": "Dark mode card background"
+      },
+      "card-foreground": {
+        "$value": "oklch(0.985 0.002 264.54)",
+        "$type": "color",
+        "$description": "Dark mode card text"
+      },
+      "primary": {
+        "$value": "oklch(0.745 0.154 264.54)",
+        "$type": "color",
+        "$description": "Dark mode primary color"
+      },
+      "primary-foreground": {
+        "$value": "oklch(0.172 0.005 264.54)",
+        "$type": "color",
+        "$description": "Dark mode text on primary"
+      },
+      "secondary": {
+        "$value": "oklch(0.245 0.008 264.54)",
+        "$type": "color",
+        "$description": "Dark mode secondary background"
+      },
+      "secondary-foreground": {
+        "$value": "oklch(0.985 0.002 264.54)",
+        "$type": "color",
+        "$description": "Dark mode text on secondary"
+      },
+      "muted": {
+        "$value": "oklch(0.245 0.008 264.54)",
+        "$type": "color",
+        "$description": "Dark mode muted backgrounds"
+      },
+      "muted-foreground": {
+        "$value": "oklch(0.596 0.026 264.54)",
+        "$type": "color",
+        "$description": "Dark mode muted text"
+      },
+      "accent": {
+        "$value": "oklch(0.245 0.008 264.54)",
+        "$type": "color",
+        "$description": "Dark mode accent background"
+      },
+      "accent-foreground": {
+        "$value": "oklch(0.985 0.002 264.54)",
+        "$type": "color",
+        "$description": "Dark mode text on accent"
+      },
+      "destructive": {
+        "$value": "oklch(0.551 0.236 17.38)",
+        "$type": "color",
+        "$description": "Dark mode destructive color"
+      },
+      "destructive-foreground": {
+        "$value": "oklch(0.985 0.002 264.54)",
+        "$type": "color",
+        "$description": "Dark mode text on destructive"
+      },
+      "border": {
+        "$value": "oklch(0.322 0.012 264.54)",
+        "$type": "color",
+        "$description": "Dark mode border color"
+      },
+      "input": {
+        "$value": "oklch(0.322 0.012 264.54)",
+        "$type": "color",
+        "$description": "Dark mode input border"
+      },
+      "ring": {
+        "$value": "oklch(0.745 0.154 264.54)",
+        "$type": "color",
+        "$description": "Dark mode focus ring"
+      }
+    }
+  }
+}
