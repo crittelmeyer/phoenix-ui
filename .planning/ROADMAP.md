@@ -63,17 +63,17 @@ Plans:
 Plans:
 
 - [ ] 02-01-PLAN.md — DTCG seed tokens + Style Dictionary build pipeline
-- [ ] 02-02-PLAN.md — Tailwind v4 integration + dark mode toggle in apps/web
+- [ ] 02-02-PLAN.md — Tailwind v4 @theme integration + dark mode toggle in apps/web
 - [ ] 02-03-PLAN.md — Token migration guide (Tokens Studio / Figma Variables)
 
 **Requirements:** TOKN-01, TOKN-02, TOKN-03, TOKN-04, TOKN-05, TOKN-06, TOKN-07
 
 **Success Criteria:**
 
-1. Developer changes primary color in seed tokens, runs `pnpm build`, and sees updated color in CSS variables and Tailwind preset
+1. Developer changes primary color in seed tokens, runs `pnpm build`, and sees updated color in CSS variables and Tailwind utilities
 2. Toggling dark mode class on html element switches all semantic tokens (bg-surface, text-foreground) to dark values
 3. apps/web can reference token-based Tailwind classes (bg-primary, text-foreground) in components
-4. Style Dictionary build completes in under 2 seconds and outputs CSS variables + Tailwind preset
+4. Style Dictionary build completes in under 2 seconds and outputs CSS variables; Tailwind v4 @theme directive maps these to utility classes
 5. Documentation exists for migrating from seed tokens to Tokens Studio / Figma Variables
 
 **Scope:**
@@ -82,8 +82,7 @@ Plans:
 - Seed token JSON files: colors (neutral, primary, destructive), spacing, typography, border radii
 - Light and dark color schemes as separate token sets
 - Style Dictionary transforms: JSON → CSS custom properties
-- Style Dictionary transforms: JSON → Tailwind preset
-- Tailwind config in apps/web consuming generated preset
+- Tailwind v4 @theme directive in apps/web mapping token CSS variables to utility classes
 - Dark mode via class strategy (class="dark")
 - Migration guide: seed tokens → Tokens Studio / Figma Variables
 
@@ -276,4 +275,4 @@ Phase 6 (AI Integration) ← Requires complete component library
 
 ---
 
-_Last updated: 2026-02-01 after phase 02 planning_
+_Last updated: 2026-02-01 after phase 02 plan revision (TOKN-04 clarified for @theme approach)_

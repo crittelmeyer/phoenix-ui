@@ -23,8 +23,8 @@
 - [ ] **TOKN-01**: Seed token set covering colors (neutral, primary, destructive), spacing scale, typography scale, and border radii
 - [ ] **TOKN-02**: Light and dark color schemes defined as separate token sets
 - [ ] **TOKN-03**: Style Dictionary pipeline transforming JSON tokens → CSS custom properties
-- [ ] **TOKN-04**: Style Dictionary pipeline generating Tailwind preset from tokens
-- [ ] **TOKN-05**: Tailwind config in apps/web consuming generated preset
+- [ ] **TOKN-04**: Tailwind v4 @theme directive mapping token CSS variables to utility classes (e.g., bg-primary resolves to token value)
+- [ ] **TOKN-05**: Tailwind config in apps/web consuming token CSS variables via @theme
 - [ ] **TOKN-06**: Dark mode toggle working via CSS class strategy (class="dark")
 - [ ] **TOKN-07**: Documented migration path from seed tokens to Tokens Studio / Figma Variables sync
 
@@ -104,8 +104,8 @@
 
 ## Traceability
 
-| Requirement | Phase   | Status  |
-| ----------- | ------- | ------- |
+| Requirement | Phase   | Status   |
+| ----------- | ------- | -------- |
 | FNDN-01     | Phase 1 | Complete |
 | FNDN-02     | Phase 1 | Complete |
 | FNDN-03     | Phase 1 | Complete |
@@ -116,39 +116,39 @@
 | FNDN-08     | Phase 1 | Complete |
 | FNDN-09     | Phase 1 | Complete |
 | FNDN-10     | Phase 1 | Complete |
-| TOKN-01     | Phase 2 | Pending |
-| TOKN-02     | Phase 2 | Pending |
-| TOKN-03     | Phase 2 | Pending |
-| TOKN-04     | Phase 2 | Pending |
-| TOKN-05     | Phase 2 | Pending |
-| TOKN-06     | Phase 2 | Pending |
-| TOKN-07     | Phase 2 | Pending |
-| COMP-01     | Phase 3 | Pending |
-| COMP-02     | Phase 3 | Pending |
-| COMP-03     | Phase 3 | Pending |
-| COMP-04     | Phase 3 | Pending |
-| COMP-05     | Phase 3 | Pending |
-| COMP-06     | Phase 3 | Pending |
-| COMP-07     | Phase 3 | Pending |
-| COMP-08     | Phase 3 | Pending |
-| COMP-09     | Phase 5 | Pending |
-| COMP-10     | Phase 5 | Pending |
-| COMP-11     | Phase 5 | Pending |
-| COMP-12     | Phase 5 | Pending |
-| COMP-13     | Phase 5 | Pending |
-| COMP-14     | Phase 5 | Pending |
-| COMP-15     | Phase 5 | Pending |
-| DOCS-01     | Phase 4 | Pending |
-| DOCS-02     | Phase 4 | Pending |
-| DOCS-03     | Phase 4 | Pending |
-| DOCS-04     | Phase 4 | Pending |
-| DOCS-05     | Phase 4 | Pending |
-| AIML-01     | Phase 6 | Pending |
-| AIML-02     | Phase 6 | Pending |
-| AIML-03     | Phase 6 | Pending |
-| AIML-04     | Phase 6 | Pending |
-| AIML-05     | Phase 6 | Pending |
-| AIML-06     | Phase 6 | Pending |
+| TOKN-01     | Phase 2 | Pending  |
+| TOKN-02     | Phase 2 | Pending  |
+| TOKN-03     | Phase 2 | Pending  |
+| TOKN-04     | Phase 2 | Pending  |
+| TOKN-05     | Phase 2 | Pending  |
+| TOKN-06     | Phase 2 | Pending  |
+| TOKN-07     | Phase 2 | Pending  |
+| COMP-01     | Phase 3 | Pending  |
+| COMP-02     | Phase 3 | Pending  |
+| COMP-03     | Phase 3 | Pending  |
+| COMP-04     | Phase 3 | Pending  |
+| COMP-05     | Phase 3 | Pending  |
+| COMP-06     | Phase 3 | Pending  |
+| COMP-07     | Phase 3 | Pending  |
+| COMP-08     | Phase 3 | Pending  |
+| COMP-09     | Phase 5 | Pending  |
+| COMP-10     | Phase 5 | Pending  |
+| COMP-11     | Phase 5 | Pending  |
+| COMP-12     | Phase 5 | Pending  |
+| COMP-13     | Phase 5 | Pending  |
+| COMP-14     | Phase 5 | Pending  |
+| COMP-15     | Phase 5 | Pending  |
+| DOCS-01     | Phase 4 | Pending  |
+| DOCS-02     | Phase 4 | Pending  |
+| DOCS-03     | Phase 4 | Pending  |
+| DOCS-04     | Phase 4 | Pending  |
+| DOCS-05     | Phase 4 | Pending  |
+| AIML-01     | Phase 6 | Pending  |
+| AIML-02     | Phase 6 | Pending  |
+| AIML-03     | Phase 6 | Pending  |
+| AIML-04     | Phase 6 | Pending  |
+| AIML-05     | Phase 6 | Pending  |
+| AIML-06     | Phase 6 | Pending  |
 
 **Coverage:**
 
@@ -168,4 +168,4 @@
 ---
 
 _Requirements defined: 2026-02-01_
-_Last updated: 2026-02-01 after roadmap creation_
+_Last updated: 2026-02-01 after phase 02 plan revision (TOKN-04 clarified for @theme approach)_
