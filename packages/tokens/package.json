@@ -1,0 +1,19 @@
+{
+  "name": "@phoenix/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "build": "echo 'No build step yet'"
+  },
+  "devDependencies": {
+    "@phoenix/typescript-config": "workspace:*",
+    "@phoenix/eslint-config": "workspace:*",
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0"
+  }
+}

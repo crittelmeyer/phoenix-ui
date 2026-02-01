@@ -1,0 +1,12 @@
+{
+  "name": "@phoenix/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Storybook dev server not configured yet'",
+    "build": "echo 'Storybook build not configured yet'"
+  },
+  "devDependencies": {
+    "@phoenix/typescript-config": "workspace:*"
+  }
+}

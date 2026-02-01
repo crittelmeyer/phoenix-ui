@@ -1,0 +1,4 @@
+{
+  "extends": "@phoenix/typescript-config/react.json",
+  "include": ["src"]
+}
