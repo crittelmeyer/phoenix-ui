@@ -1,0 +1,310 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Design System/Tokens" />
+
+# Design Tokens
+
+This page visualizes all design tokens in the Phoenix Design System. Use the theme toggle in the toolbar to see how tokens respond to dark mode.
+
+## Colors
+
+Our semantic color tokens automatically adapt to light and dark themes.
+
+<div className="grid grid-cols-2 gap-4 my-6">
+  <div>
+    <div className="h-20 rounded-md bg-background border border-border mb-2"></div>
+    <div className="font-semibold">Background</div>
+    <code className="text-sm text-muted-foreground">--color-background</code>
+  </div>
+
+<div>
+  <div className="bg-foreground border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Foreground</div>
+  <code className="text-muted-foreground text-sm">--color-foreground</code>
+</div>
+
+<div>
+  <div className="bg-card border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Card</div>
+  <code className="text-muted-foreground text-sm">--color-card</code>
+</div>
+
+<div>
+  <div className="bg-card-foreground border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Card Foreground</div>
+  <code className="text-muted-foreground text-sm">--color-card-foreground</code>
+</div>
+
+<div>
+  <div className="bg-primary border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Primary</div>
+  <code className="text-muted-foreground text-sm">--color-primary</code>
+</div>
+
+<div>
+  <div className="bg-primary-foreground border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Primary Foreground</div>
+  <code className="text-muted-foreground text-sm">
+    --color-primary-foreground
+  </code>
+</div>
+
+<div>
+  <div className="bg-secondary border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Secondary</div>
+  <code className="text-muted-foreground text-sm">--color-secondary</code>
+</div>
+
+<div>
+  <div className="bg-secondary-foreground border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Secondary Foreground</div>
+  <code className="text-muted-foreground text-sm">
+    --color-secondary-foreground
+  </code>
+</div>
+
+<div>
+  <div className="bg-muted border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Muted</div>
+  <code className="text-muted-foreground text-sm">--color-muted</code>
+</div>
+
+<div>
+  <div className="bg-muted-foreground border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Muted Foreground</div>
+  <code className="text-muted-foreground text-sm">
+    --color-muted-foreground
+  </code>
+</div>
+
+<div>
+  <div className="bg-accent border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Accent</div>
+  <code className="text-muted-foreground text-sm">--color-accent</code>
+</div>
+
+<div>
+  <div className="bg-accent-foreground border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Accent Foreground</div>
+  <code className="text-muted-foreground text-sm">
+    --color-accent-foreground
+  </code>
+</div>
+
+<div>
+  <div className="bg-destructive border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Destructive</div>
+  <code className="text-muted-foreground text-sm">--color-destructive</code>
+</div>
+
+<div>
+  <div className="bg-destructive-foreground border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Destructive Foreground</div>
+  <code className="text-muted-foreground text-sm">
+    --color-destructive-foreground
+  </code>
+</div>
+
+<div>
+  <div className="bg-border border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Border</div>
+  <code className="text-muted-foreground text-sm">--color-border</code>
+</div>
+
+<div>
+  <div className="bg-input border-border mb-2 h-20 rounded-md border"></div>
+  <div className="font-semibold">Input</div>
+  <code className="text-muted-foreground text-sm">--color-input</code>
+</div>
+
+  <div>
+    <div className="h-20 rounded-md bg-ring border border-border mb-2"></div>
+    <div className="font-semibold">Ring</div>
+    <code className="text-sm text-muted-foreground">--color-ring</code>
+  </div>
+</div>
+
+## Spacing
+
+Our 8px-based spacing scale provides consistent rhythm across layouts.
+
+<div className="space-y-2 my-6">
+  <div className="flex items-center gap-4">
+    <div className="w-1 h-6 bg-primary rounded"></div>
+    <div className="text-sm">
+      <span className="font-semibold">spacing-1</span>
+      <span className="text-muted-foreground ml-2">4px</span>
+    </div>
+  </div>
+
+<div className="flex items-center gap-4">
+  <div className="bg-primary h-6 w-2 rounded"></div>
+  <div className="text-sm">
+    <span className="font-semibold">spacing-2</span>
+    <span className="text-muted-foreground ml-2">8px</span>
+  </div>
+</div>
+
+<div className="flex items-center gap-4">
+  <div className="bg-primary h-6 w-3 rounded"></div>
+  <div className="text-sm">
+    <span className="font-semibold">spacing-3</span>
+    <span className="text-muted-foreground ml-2">12px</span>
+  </div>
+</div>
+
+<div className="flex items-center gap-4">
+  <div className="bg-primary h-6 w-4 rounded"></div>
+  <div className="text-sm">
+    <span className="font-semibold">spacing-4</span>
+    <span className="text-muted-foreground ml-2">16px</span>
+  </div>
+</div>
+
+<div className="flex items-center gap-4">
+  <div className="bg-primary h-6 w-5 rounded"></div>
+  <div className="text-sm">
+    <span className="font-semibold">spacing-5</span>
+    <span className="text-muted-foreground ml-2">20px</span>
+  </div>
+</div>
+
+<div className="flex items-center gap-4">
+  <div className="bg-primary h-6 w-6 rounded"></div>
+  <div className="text-sm">
+    <span className="font-semibold">spacing-6</span>
+    <span className="text-muted-foreground ml-2">24px</span>
+  </div>
+</div>
+
+<div className="flex items-center gap-4">
+  <div className="bg-primary h-6 w-8 rounded"></div>
+  <div className="text-sm">
+    <span className="font-semibold">spacing-8</span>
+    <span className="text-muted-foreground ml-2">32px</span>
+  </div>
+</div>
+
+<div className="flex items-center gap-4">
+  <div className="bg-primary h-6 w-10 rounded"></div>
+  <div className="text-sm">
+    <span className="font-semibold">spacing-10</span>
+    <span className="text-muted-foreground ml-2">40px</span>
+  </div>
+</div>
+
+<div className="flex items-center gap-4">
+  <div className="bg-primary h-6 w-12 rounded"></div>
+  <div className="text-sm">
+    <span className="font-semibold">spacing-12</span>
+    <span className="text-muted-foreground ml-2">48px</span>
+  </div>
+</div>
+
+  <div className="flex items-center gap-4">
+    <div className="w-16 h-6 bg-primary rounded"></div>
+    <div className="text-sm">
+      <span className="font-semibold">spacing-16</span>
+      <span className="text-muted-foreground ml-2">64px</span>
+    </div>
+  </div>
+</div>
+
+## Typography
+
+Type scale from extra-small to 3xl for hierarchical text.
+
+<div className="space-y-4 my-6">
+  <div>
+    <div className="text-xs text-muted-foreground">text-xs</div>
+    <div className="text-xs font-sans">The quick brown fox jumps over the lazy dog</div>
+  </div>
+
+<div>
+  <div className="text-muted-foreground text-xs">text-sm</div>
+  <div className="font-sans text-sm">
+    The quick brown fox jumps over the lazy dog
+  </div>
+</div>
+
+<div>
+  <div className="text-muted-foreground text-xs">text-base</div>
+  <div className="font-sans text-base">
+    The quick brown fox jumps over the lazy dog
+  </div>
+</div>
+
+<div>
+  <div className="text-muted-foreground text-xs">text-lg</div>
+  <div className="font-sans text-lg">
+    The quick brown fox jumps over the lazy dog
+  </div>
+</div>
+
+<div>
+  <div className="text-muted-foreground text-xs">text-xl</div>
+  <div className="font-sans text-xl">
+    The quick brown fox jumps over the lazy dog
+  </div>
+</div>
+
+<div>
+  <div className="text-muted-foreground text-xs">text-2xl</div>
+  <div className="font-sans text-2xl">
+    The quick brown fox jumps over the lazy dog
+  </div>
+</div>
+
+  <div>
+    <div className="text-xs text-muted-foreground">text-3xl</div>
+    <div className="text-3xl font-sans">The quick brown fox jumps over the lazy dog</div>
+  </div>
+</div>
+
+## Border Radius
+
+Radius tokens for consistent corner treatments.
+
+<div className="grid grid-cols-4 gap-4 my-6">
+  <div>
+    <div className="h-20 bg-muted rounded-sm border border-border mb-2"></div>
+    <div className="text-sm font-semibold">rounded-sm</div>
+    <code className="text-xs text-muted-foreground">--radius-sm</code>
+  </div>
+
+<div>
+  <div className="bg-muted border-border mb-2 h-20 rounded border"></div>
+  <div className="text-sm font-semibold">rounded</div>
+  <code className="text-muted-foreground text-xs">--radius-base</code>
+</div>
+
+<div>
+  <div className="bg-muted border-border mb-2 h-20 rounded-md border"></div>
+  <div className="text-sm font-semibold">rounded-md</div>
+  <code className="text-muted-foreground text-xs">--radius-md</code>
+</div>
+
+<div>
+  <div className="bg-muted border-border mb-2 h-20 rounded-lg border"></div>
+  <div className="text-sm font-semibold">rounded-lg</div>
+  <code className="text-muted-foreground text-xs">--radius-lg</code>
+</div>
+
+<div>
+  <div className="bg-muted border-border mb-2 h-20 rounded-xl border"></div>
+  <div className="text-sm font-semibold">rounded-xl</div>
+  <code className="text-muted-foreground text-xs">--radius-xl</code>
+</div>
+
+<div>
+  <div className="bg-muted border-border mb-2 h-20 rounded-2xl border"></div>
+  <div className="text-sm font-semibold">rounded-2xl</div>
+  <code className="text-muted-foreground text-xs">--radius-2xl</code>
+</div>
+
+  <div>
+    <div className="h-20 bg-muted rounded-full border border-border mb-2"></div>
+    <div className="text-sm font-semibold">rounded-full</div>
+    <code className="text-xs text-muted-foreground">--radius-full</code>
+  </div>
+</div>
