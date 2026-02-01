@@ -137,6 +137,14 @@ Plans:
 
 **Dependencies:** Phase 3 (requires first 6 components to document)
 
+**Plans:** 3 plans
+
+Plans:
+
+- [ ] 04-01-PLAN.md — Storybook app setup with Vite + Tailwind CSS 4 + dark mode + tokens overview page
+- [ ] 04-02-PLAN.md — Component stories for all 7 components (Button, Input, Textarea, Select, Checkbox, RadioGroup, Dialog)
+- [ ] 04-03-PLAN.md — Figma Code Connect scaffolding + root README.md
+
 **Requirements:** DOCS-01, DOCS-02, DOCS-03, DOCS-04, DOCS-05
 
 **Success Criteria:**
@@ -144,17 +152,17 @@ Plans:
 1. Developer runs `pnpm storybook` and sees interactive docs for Button, Input, Textarea, Select, Checkbox, Radio at localhost:6006
 2. Each component story shows all variants and sizes with controls to toggle props
 3. Tokens overview page visualizes all colors, spacing values, typography scales, and border radii
-4. Figma Code Connect mappings link React components to Figma component definitions for all 6 components
+4. Figma Code Connect mappings link React components to Figma component definitions for all 7 components
 5. README includes clone instructions, scope rename guide (@phoenix → @yourscope), and development workflow
 
 **Scope:**
 
 - Storybook 10.1 app in apps/storybook
 - Vite integration with @tailwindcss/vite plugin (Tailwind CSS 4 support)
-- One story per component (Button, Input, Textarea, Select, Checkbox, Radio)
+- One story per component (Button, Input, Textarea, Select, Checkbox, RadioGroup, Dialog)
 - Stories demonstrate all variants, sizes, and states
 - Tokens overview page with color swatches, spacing scale, typography samples
-- Figma Code Connect mappings for 6 components
+- Figma Code Connect mappings for 7 components
 - README.md with setup, rename, and workflow instructions
 
 ---
