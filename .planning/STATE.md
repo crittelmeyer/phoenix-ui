@@ -13,23 +13,23 @@ Phase 2 Token System COMPLETE - ready for Phase 3 (Core Components).
 
 ## Current Position
 
-**Phase:** 2 - Token System (2 of 6) - COMPLETE
-**Plan:** All 3 plans complete (02-01, 02-02, 02-03)
-**Status:** Complete
-**Last activity:** 2026-02-01 - Completed 02-02-PLAN.md (Tailwind v4 @theme + dark mode toggle)
-**Progress:** █████████████████░░░ 21/38 requirements (55%)
+**Phase:** 3 - Core Components (3 of 6) - IN PROGRESS
+**Plan:** 1 of 3 plans complete (03-01)
+**Status:** In Progress
+**Last activity:** 2026-02-01 - Completed 03-01-PLAN.md (Core component foundation)
+**Progress:** ██████████████████░░ 25/38 requirements (66%)
 
-**Next Milestone:** Begin Phase 3 (Core Components Foundation)
+**Next Milestone:** Continue Phase 3 (Form components - Select, Checkbox, Radio, Label)
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                                                                                |
-| -------------------- | ----- | ------------------------------------------------------------------------------------ |
-| Phases completed     | 2/6   | Phase 1 and Phase 2 complete                                                         |
-| Requirements shipped | 21/38 | Foundation complete (10), Token System complete (7), Components pending (15+6)       |
-| Plans executed       | 6     | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min) |
-| Blockers             | 0     | —                                                                                    |
-| Research flags       | 0     | Research complete (SUMMARY.md)                                                       |
+| Metric               | Value | Notes                                                                                              |
+| -------------------- | ----- | -------------------------------------------------------------------------------------------------- |
+| Phases completed     | 2/6   | Phase 1 and Phase 2 complete                                                                       |
+| Requirements shipped | 25/38 | Foundation complete (10), Token System complete (7), Components started (4/15)                     |
+| Plans executed       | 7     | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min) |
+| Blockers             | 0     | —                                                                                                  |
+| Research flags       | 0     | Research complete (SUMMARY.md)                                                                     |
 
 ## Accumulated Context
 
@@ -138,6 +138,30 @@ Phase 2 Token System COMPLETE - ready for Phase 3 (Core Components).
 - Applies .dark class synchronously to prevent white flash
 - Zero FOUC (Flash of Unstyled Content) on dark mode page load
 
+**2026-02-01: CVA for variant management**
+
+- Use class-variance-authority for type-safe component variants
+- Pattern: Define variants object with defaultVariants, extract VariantProps
+- Provides IntelliSense autocomplete for variant/size props
+- Eliminates manual className string concatenation
+- Impact: All components with variants (Button, Select, Dialog) follow this pattern
+
+**2026-02-01: Semantic token classes only in components**
+
+- All component styling uses semantic tokens (bg-primary, text-foreground, border-input)
+- Zero arbitrary values (no bg-[#hex] or text-[#hex])
+- Ensures automatic dark mode support via CSS variable swapping
+- Verified via grep check: no style= attributes, no arbitrary color values
+- Impact: Components inherit theme changes automatically
+
+**2026-02-01: Textarea autoResize pattern**
+
+- Custom autoResize prop grows/shrinks textarea with content
+- Reset-then-set pattern: height='auto' → height=scrollHeight prevents layout thrashing
+- useLayoutEffect prevents visual flicker (runs before paint)
+- Ref merging pattern: internal ref for measurement + forwarded ref for parent access
+- Impact: Enhanced UX for multi-line inputs, pattern reusable for other auto-sizing needs
+
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
@@ -146,13 +170,14 @@ Phase 2 Token System COMPLETE - ready for Phase 3 (Core Components).
 - [x] DTCG tokens + Style Dictionary pipeline (02-01 complete)
 - [x] Tailwind v4 @theme integration + dark mode (02-02 complete)
 - [x] Token migration guide (02-03 complete)
-- [ ] Begin Phase 3: Core Components Foundation
+- [x] Core component foundation (03-01 complete)
+- [ ] Form components: Select, Checkbox, Radio, Label
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
 - [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
-None - Phase 2 complete, ready for Phase 3 (Core Components).
+None - Phase 3 Plan 1 complete, ready for Plan 2 (Form components).
 
 ### Research Notes
 
@@ -169,34 +194,31 @@ None - Phase 2 complete, ready for Phase 3 (Core Components).
 
 ## Session Continuity
 
-**Last session:** 2026-02-01T19:24:03Z
-**Stopped at:** Completed Phase 2 (all 3 plans: 02-01, 02-02, 02-03)
+**Last session:** 2026-02-01T20:40:15Z
+**Stopped at:** Completed 03-01-PLAN.md (Core component foundation)
 **Resume file:** None
 
 **What you were doing:**
-Completed Phase 2 Token System - Wired design tokens into Tailwind v4 via @theme directive (plan 02-02), added dark mode toggle with localStorage persistence, and verified complete token system functionality.
+Completed Phase 3 Plan 1 - Created cn() utility and first 3 components (Button, Input, Textarea) establishing the component authoring pattern with CVA, forwardRef, and semantic tokens.
 
 **What's next:**
-Begin Phase 3: Core Components Foundation (Button, Input, Textarea, Select, Checkbox, Radio, Dialog components).
+Continue Phase 3: Plan 2 (Form components - Select, Checkbox, Radio, Label).
 
 **Important context for next session:**
 
 - Phase 1 COMPLETE: All 10 FNDN requirements shipped
-- Phase 2 COMPLETE: All 7 TOKN requirements shipped (TOKN-01 through TOKN-07)
-- Token system fully operational: 187 tokens consumable via Tailwind utilities
-- Tailwind v4 @theme configured: semantic tokens (bg-primary) + full scales (bg-neutral-500)
-- Dark mode working: .dark class toggle, localStorage persistence, flash prevention
-- Apps/web ready for component development with token-based styling
+- Phase 2 COMPLETE: All 7 TOKN requirements shipped
+- Phase 3 STARTED: 4/15 COMP requirements shipped (COMP-01 through COMP-04)
+- Component authoring pattern established: cn() + CVA + forwardRef + semantic tokens
+- CVA proven with Button (6 variants, 4 sizes) and asChild polymorphism
+- All Phase 3 dependencies installed (CVA, clsx, tailwind-merge, Radix UI packages)
 
-**Key files created in Phase 2:**
+**Key files created in Phase 3 Plan 1:**
 
-- `packages/tokens/src/tokens/*.json` - 5 DTCG token source files (187 tokens)
-- `packages/tokens/src/build.mjs` - Style Dictionary build pipeline
-- `packages/tokens/dist/tokens.css` - Light mode CSS custom properties
-- `packages/tokens/dist/tokens.dark.css` - Dark mode CSS custom properties
-- `apps/web/src/index.css` - Tailwind v4 @theme directive (185 lines)
-- `apps/web/src/components/theme-toggle.tsx` - Dark mode toggle component
-- `docs/token-migration.md` - Migration guide for Tokens Studio / Figma Variables
+- `packages/ui/src/lib/utils.ts` - cn() utility function
+- `packages/ui/src/components/button.tsx` - Button with CVA variants + asChild
+- `packages/ui/src/components/input.tsx` - Input with forwardRef
+- `packages/ui/src/components/textarea.tsx` - Textarea with autoResize prop
 
 **Files to reference:**
 
@@ -206,9 +228,10 @@ Begin Phase 3: Core Components Foundation (Button, Input, Textarea, Select, Chec
 - `/Users/chris/Repos/phoenix/.planning/research/SUMMARY.md` - Critical pitfalls and architecture
 - `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-03-SUMMARY.md` - Phase 1 complete
 - `/Users/chris/Repos/phoenix/.planning/phases/02-token-system/02-01-SUMMARY.md` - Token foundation
-- `/Users/chris/Repos/phoenix/.planning/phases/02-token-system/02-02-SUMMARY.md` - Tailwind integration (latest)
+- `/Users/chris/Repos/phoenix/.planning/phases/02-token-system/02-02-SUMMARY.md` - Tailwind integration
 - `/Users/chris/Repos/phoenix/.planning/phases/02-token-system/02-03-SUMMARY.md` - Migration guide
+- `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-01-SUMMARY.md` - Component foundation (latest)
 
 ---
 
-_State updated: 2026-02-01 after Phase 2 completion (plans 02-01, 02-02, 02-03)_
+_State updated: 2026-02-01 after Phase 3 Plan 1 completion (03-01)_
