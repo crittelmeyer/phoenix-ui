@@ -9,27 +9,27 @@
 AI agents (Claude Code specifically) can add, modify, and extend components without human hand-holding — because the repo structure, naming, patterns, and rules are explicit and enforced.
 
 **Current Focus:**
-Phase 4 Documentation Infrastructure IN PROGRESS - Component stories complete.
+Phase 4 Documentation Infrastructure COMPLETE - Figma Code Connect and root README complete.
 
 ## Current Position
 
-**Phase:** 4 - Documentation Infrastructure (4 of 6) - IN PROGRESS
-**Plan:** 2 of 3 plans complete (04-02)
-**Status:** In Progress
-**Last activity:** 2026-02-01 - Completed 04-02-PLAN.md (Component stories)
-**Progress:** ████████████████████████ 32/38 requirements (84%)
+**Phase:** 4 - Documentation Infrastructure (4 of 6) - COMPLETE
+**Plan:** 3 of 3 plans complete (04-03)
+**Status:** Phase Complete
+**Last activity:** 2026-02-01 - Completed 04-03-PLAN.md (Figma Code Connect and root README)
+**Progress:** █████████████████████████ 33/38 requirements (87%)
 
 **Next Milestone:** Complete Phase 4 documentation infrastructure
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                                                                                                                                                      |
-| -------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Phases completed     | 3/6   | Foundation, Token System, and Core Components complete                                                                                                     |
-| Requirements shipped | 32/38 | Foundation (10), Token System (7), Core Components (11/15), Documentation (2/3)                                                                            |
-| Plans executed       | 11    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min) |
-| Blockers             | 0     | —                                                                                                                                                          |
-| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                             |
+| Metric               | Value | Notes                                                                                                                                                                    |
+| -------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Phases completed     | 4/6   | Foundation, Token System, Core Components, and Documentation Infrastructure complete                                                                                     |
+| Requirements shipped | 33/38 | Foundation (10), Token System (7), Core Components (11/15), Documentation (3/3)                                                                                          |
+| Plans executed       | 12    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min), 04-03 (4min) |
+| Blockers             | 0     | —                                                                                                                                                                        |
+| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                                           |
 
 ## Accumulated Context
 
@@ -239,6 +239,22 @@ Phase 4 Documentation Infrastructure IN PROGRESS - Component stories complete.
 - Follows Storybook best practice from research (Pitfall 2)
 - Interactive triggers (DialogTrigger with Button) for real-world usage demonstration
 
+**2026-02-01: Figma Code Connect placeholder scaffolding**
+
+- Created figma.config.json at repo root with include glob for .figma.tsx files
+- All 7 components have co-located .figma.tsx placeholder files
+- Placeholder URLs: `https://www.figma.com/design/FIGMA_FILE_KEY?node-id=NODE_ID`
+- ESLint ignores .figma.tsx files to prevent false errors
+- Rationale: Design file doesn't exist yet, but infrastructure ready for future Figma integration
+
+**2026-02-01: AI-optimized root README.md**
+
+- Explicit note that README is optimized for AI agents (Claude Code and similar tools)
+- Documents exact tech stack versions, all conventions, and architectural patterns
+- Includes monorepo structure tree, dependency graph, and development workflow
+- Covers scope renaming via script, token modification workflow, component addition steps
+- Rationale: AI agents need explicit context about patterns, constraints, and conventions to work autonomously
+
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
@@ -252,12 +268,13 @@ Phase 4 Documentation Infrastructure IN PROGRESS - Component stories complete.
 - [x] Dialog component and barrel export (03-03 complete)
 - [x] Storybook foundation with Vite builder and tokens page (04-01 complete)
 - [x] Component stories for all 7 core components (04-02 complete)
+- [x] Figma Code Connect scaffolding and root README (04-03 complete)
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
 - [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
-None - Phase 4 Plan 2 complete. Ready for Plan 3 (if exists) or phase completion.
+None - Phase 4 COMPLETE. Ready for Phase 5 (Advanced Components).
 
 ### Research Notes
 
@@ -274,22 +291,22 @@ None - Phase 4 Plan 2 complete. Ready for Plan 3 (if exists) or phase completion
 
 ## Session Continuity
 
-**Last session:** 2026-02-01T22:41:40Z
-**Stopped at:** Completed 04-02-PLAN.md (Component stories)
+**Last session:** 2026-02-01T22:44:34Z
+**Stopped at:** Completed 04-03-PLAN.md (Figma Code Connect and root README)
 **Resume file:** None
 
 **What you were doing:**
-Completed Phase 4 Plan 2 - Created 7 comprehensive story files for all core components using CSF 3.0 format with auto-docs, subcomponents property for compound components, and interactive examples showing all variants, sizes, and states including disabled.
+Completed Phase 4 Plan 3 - Scaffolded Figma Code Connect infrastructure with 7 placeholder .figma.tsx files mapping component props to Figma properties, and verified comprehensive root README.md with 10 sections documenting architecture, conventions, and workflows for AI agent comprehension.
 
 **What's next:**
-Continue Phase 4 with Plan 3 (if exists) or complete Phase 4 and move to Phase 5 (Advanced Components).
+Phase 4 COMPLETE. Ready to begin Phase 5 (Advanced Components) or finalize remaining Phase 3 requirements (testing, advanced docs).
 
 **Important context for next session:**
 
 - Phase 1 COMPLETE: All 10 FNDN requirements shipped
 - Phase 2 COMPLETE: All 7 TOKN requirements shipped
-- Phase 3 COMPLETE: 11/15 COMP requirements shipped (remaining are docs/testing)
-- Phase 4 IN PROGRESS: 2/3 DOCS requirements shipped (Storybook foundation + component stories)
+- Phase 3 COMPLETE: 11/15 COMP requirements shipped (4 remaining: testing/advanced docs)
+- Phase 4 COMPLETE: All 3/3 DOCS requirements shipped (Storybook + stories + Figma/README)
 - All 7 core components built: Button, Input, Textarea, Select, Checkbox, RadioGroup, Label, Dialog
 - All 7 components have comprehensive Storybook stories with auto-docs
 - Barrel export enables: `import { Button, Input, Select, Dialog } from "@phoenix/ui"`
@@ -323,6 +340,9 @@ Continue Phase 4 with Plan 3 (if exists) or complete Phase 4 and move to Phase 5
 - `apps/storybook/stories/Select.stories.tsx` - Select compound component stories (04-02)
 - `apps/storybook/stories/RadioGroup.stories.tsx` - RadioGroup stories with layouts (04-02)
 - `apps/storybook/stories/Dialog.stories.tsx` - Dialog compound component stories (04-02)
+- `figma.config.json` - Figma Code Connect root configuration (04-03)
+- `packages/ui/src/components/*.figma.tsx` - 7 Figma Code Connect placeholder mappings (04-03)
+- `README.md` - Comprehensive root documentation optimized for AI agents (04-03)
 
 **Files to reference:**
 
@@ -338,8 +358,9 @@ Continue Phase 4 with Plan 3 (if exists) or complete Phase 4 and move to Phase 5
 - `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-02-SUMMARY.md` - Form components
 - `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-03-SUMMARY.md` - Dialog and barrel export
 - `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-01-SUMMARY.md` - Storybook foundation
-- `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-02-SUMMARY.md` - Component stories (latest)
+- `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-02-SUMMARY.md` - Component stories
+- `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-03-SUMMARY.md` - Figma Code Connect and root README (latest)
 
 ---
 
-_State updated: 2026-02-01 after Phase 4 Plan 2 completion (04-02)_
+_State updated: 2026-02-01 after Phase 4 Plan 3 completion (04-03)_
