@@ -1,4 +1,7 @@
 {
   "extends": "@phoenix/typescript-config/react.json",
-  "include": ["src"]
+  "include": ["src", "stories", ".storybook"],
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
 }
