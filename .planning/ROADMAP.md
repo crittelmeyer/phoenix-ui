@@ -96,6 +96,14 @@ Plans:
 
 **Dependencies:** Phase 2 (requires semantic tokens)
 
+**Plans:** 3 plans
+
+Plans:
+
+- [ ] 03-01-PLAN.md — Install deps, cn() utility, Button, Input, Textarea
+- [ ] 03-02-PLAN.md — Select, Checkbox, RadioGroup, Label (Radix form primitives)
+- [ ] 03-03-PLAN.md — Dialog compound component + barrel exports
+
 **Requirements:** COMP-01, COMP-02, COMP-03, COMP-04, COMP-05, COMP-06, COMP-07, COMP-08
 
 **Success Criteria:**
