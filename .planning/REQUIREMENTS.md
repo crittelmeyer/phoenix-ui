@@ -7,16 +7,16 @@
 
 ### Foundation
 
-- [ ] **FNDN-01**: Developer can clone repo and run `pnpm install && pnpm dev` with zero additional setup
-- [ ] **FNDN-02**: pnpm workspaces with Turborepo orchestrating builds across apps/web, apps/storybook, packages/ui, packages/tokens
-- [ ] **FNDN-03**: TypeScript strict mode with shared tsconfig base across all packages
-- [ ] **FNDN-04**: Vite + React Router app in apps/web consuming @phoenix/ui components
-- [ ] **FNDN-05**: ESLint + Prettier enforcing consistent code style across all packages
-- [ ] **FNDN-06**: Prettier Tailwind plugin sorting class names deterministically
-- [ ] **FNDN-07**: ESLint rule banning arbitrary Tailwind values (mt-[13px]) in packages/ui
-- [ ] **FNDN-08**: ESLint rule banning inline styles in packages/ui
-- [ ] **FNDN-09**: Pre-commit hooks running lint, typecheck, and format:check — all must pass
-- [ ] **FNDN-10**: Turborepo build pipeline with correct dependency ordering (tokens → ui → apps)
+- [x] **FNDN-01**: Developer can clone repo and run `pnpm install && pnpm dev` with zero additional setup
+- [x] **FNDN-02**: pnpm workspaces with Turborepo orchestrating builds across apps/web, apps/storybook, packages/ui, packages/tokens
+- [x] **FNDN-03**: TypeScript strict mode with shared tsconfig base across all packages
+- [x] **FNDN-04**: Vite + React Router app in apps/web consuming @phoenix/ui components
+- [x] **FNDN-05**: ESLint + Prettier enforcing consistent code style across all packages
+- [x] **FNDN-06**: Prettier Tailwind plugin sorting class names deterministically
+- [x] **FNDN-07**: ESLint rule banning arbitrary Tailwind values (mt-[13px]) in packages/ui
+- [x] **FNDN-08**: ESLint rule banning inline styles in packages/ui
+- [x] **FNDN-09**: Pre-commit hooks running lint, typecheck, and format:check — all must pass
+- [x] **FNDN-10**: Turborepo build pipeline with correct dependency ordering (tokens → ui → apps)
 
 ### Tokens
 
@@ -30,14 +30,14 @@
 
 ### Components
 
-- [ ] **COMP-01**: cn() utility combining clsx + tailwind-merge for class composition
-- [ ] **COMP-02**: Button component with variant (default, outline, ghost) and size (sm, md, lg) via CVA
-- [ ] **COMP-03**: Input component with Radix-compatible forwarded ref and semantic tokens
-- [ ] **COMP-04**: Textarea component with auto-resize option and semantic tokens
-- [ ] **COMP-05**: Select component built on Radix Select primitive
-- [ ] **COMP-06**: Checkbox component built on Radix Checkbox primitive
-- [ ] **COMP-07**: Radio component built on Radix RadioGroup primitive
-- [ ] **COMP-08**: Dialog component built on Radix Dialog primitive
+- [x] **COMP-01**: cn() utility combining clsx + tailwind-merge for class composition
+- [x] **COMP-02**: Button component with variant (default, outline, ghost) and size (sm, md, lg) via CVA
+- [x] **COMP-03**: Input component with Radix-compatible forwarded ref and semantic tokens
+- [x] **COMP-04**: Textarea component with auto-resize option and semantic tokens
+- [x] **COMP-05**: Select component built on Radix Select primitive
+- [x] **COMP-06**: Checkbox component built on Radix Checkbox primitive
+- [x] **COMP-07**: Radio component built on Radix RadioGroup primitive
+- [x] **COMP-08**: Dialog component built on Radix Dialog primitive
 - [ ] **COMP-09**: DropdownMenu component built on Radix DropdownMenu primitive
 - [ ] **COMP-10**: Tabs component built on Radix Tabs primitive
 - [ ] **COMP-11**: Tooltip component built on Radix Tooltip primitive
@@ -123,14 +123,14 @@
 | TOKN-05     | Phase 2 | Complete |
 | TOKN-06     | Phase 2 | Complete |
 | TOKN-07     | Phase 2 | Complete |
-| COMP-01     | Phase 3 | Pending  |
-| COMP-02     | Phase 3 | Pending  |
-| COMP-03     | Phase 3 | Pending  |
-| COMP-04     | Phase 3 | Pending  |
-| COMP-05     | Phase 3 | Pending  |
-| COMP-06     | Phase 3 | Pending  |
-| COMP-07     | Phase 3 | Pending  |
-| COMP-08     | Phase 3 | Pending  |
+| COMP-01     | Phase 3 | Complete |
+| COMP-02     | Phase 3 | Complete |
+| COMP-03     | Phase 3 | Complete |
+| COMP-04     | Phase 3 | Complete |
+| COMP-05     | Phase 3 | Complete |
+| COMP-06     | Phase 3 | Complete |
+| COMP-07     | Phase 3 | Complete |
+| COMP-08     | Phase 3 | Complete |
 | COMP-09     | Phase 5 | Pending  |
 | COMP-10     | Phase 5 | Pending  |
 | COMP-11     | Phase 5 | Pending  |
@@ -168,4 +168,4 @@
 ---
 
 _Requirements defined: 2026-02-01_
-_Last updated: 2026-02-01 after phase 02 execution complete (TOKN-01 through TOKN-07 shipped)_
+_Last updated: 2026-02-01 after phase 03 execution complete (COMP-01 through COMP-08 shipped)_

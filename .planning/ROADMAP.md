@@ -92,7 +92,7 @@ Plans:
 
 **Goal:** Developer can build forms using Button, Input, Textarea, Select, Checkbox, and Radio components.
 
-**Status:** Pending
+**Status:** Complete (3/3 plans complete)
 
 **Dependencies:** Phase 2 (requires semantic tokens)
 
@@ -100,9 +100,9 @@ Plans:
 
 Plans:
 
-- [ ] 03-01-PLAN.md — Install deps, cn() utility, Button, Input, Textarea
-- [ ] 03-02-PLAN.md — Select, Checkbox, RadioGroup, Label (Radix form primitives)
-- [ ] 03-03-PLAN.md — Dialog compound component + barrel exports
+- [x] 03-01-PLAN.md — Install deps, cn() utility, Button, Input, Textarea (complete 2026-02-01, 3min)
+- [x] 03-02-PLAN.md — Select, Checkbox, RadioGroup, Label (Radix form primitives) (complete 2026-02-01, 2min)
+- [x] 03-03-PLAN.md — Dialog compound component + barrel exports (complete 2026-02-01, 2min)
 
 **Requirements:** COMP-01, COMP-02, COMP-03, COMP-04, COMP-05, COMP-06, COMP-07, COMP-08
 
@@ -226,7 +226,7 @@ Plans:
 | -------------------------------- | -------- | ------------ | ------------- |
 | 1 - Foundation                   | Complete | 10           | 100% (10 req) |
 | 2 - Token System                 | Complete | 7            | 100% (7 req)  |
-| 3 - Core Components (Foundation) | Pending  | 8            | 0%            |
+| 3 - Core Components (Foundation) | Complete | 8            | 100% (8 req)  |
 | 4 - Documentation Infrastructure | Pending  | 5            | 0%            |
 | 5 - Core Components (Advanced)   | Pending  | 7            | 0%            |
 | 6 - AI Integration               | Pending  | 6            | 0%            |
@@ -283,4 +283,4 @@ Phase 6 (AI Integration) ← Requires complete component library
 
 ---
 
-_Last updated: 2026-02-01 after phase 02 execution complete (all 7 TOKN requirements shipped)_
+_Last updated: 2026-02-01 after phase 03 execution complete (all 8 COMP requirements shipped)_
