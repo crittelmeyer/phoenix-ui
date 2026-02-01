@@ -20,38 +20,38 @@ The established libraries/tools for this domain:
 
 ### Core
 
-| Library | Version | Purpose | Why Standard |
-|---------|---------|---------|--------------|
-| pnpm | 10.x | Package manager + workspace protocol | Fastest install speed, strict dependency resolution prevents phantom deps, workspace:* protocol for local packages, 2026 industry standard for monorepos |
-| Turborepo | 2.7.x | Task orchestration + caching | Rust-based performance (100x faster incremental builds), remote caching, automatic task parallelization, Vercel-maintained with design-system examples |
-| TypeScript | 5.9.x | Type system | Latest stable, avoid TS 7 beta, project references for monorepos, strict mode standard in 2026 |
-| ESLint | 9.x | Code linting | Flat config format (eslint.config.mjs), CSS support added 2025, ecosystem plugins mature |
-| Prettier | 3.x | Code formatting | ESM-only, deterministic formatting, integrates with Tailwind plugin, industry standard |
-| Husky | 9.x | Git hook management | .husky/ directory, prepare script auto-install, Conventional Commits ecosystem |
-| lint-staged | 16.x | Staged file linting | Monorepo-ready (auto-discovers configs), filters staged files for performance, TS config support |
+| Library     | Version | Purpose                              | Why Standard                                                                                                                                              |
+| ----------- | ------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pnpm        | 10.x    | Package manager + workspace protocol | Fastest install speed, strict dependency resolution prevents phantom deps, workspace:\* protocol for local packages, 2026 industry standard for monorepos |
+| Turborepo   | 2.7.x   | Task orchestration + caching         | Rust-based performance (100x faster incremental builds), remote caching, automatic task parallelization, Vercel-maintained with design-system examples    |
+| TypeScript  | 5.9.x   | Type system                          | Latest stable, avoid TS 7 beta, project references for monorepos, strict mode standard in 2026                                                            |
+| ESLint      | 9.x     | Code linting                         | Flat config format (eslint.config.mjs), CSS support added 2025, ecosystem plugins mature                                                                  |
+| Prettier    | 3.x     | Code formatting                      | ESM-only, deterministic formatting, integrates with Tailwind plugin, industry standard                                                                    |
+| Husky       | 9.x     | Git hook management                  | .husky/ directory, prepare script auto-install, Conventional Commits ecosystem                                                                            |
+| lint-staged | 16.x    | Staged file linting                  | Monorepo-ready (auto-discovers configs), filters staged files for performance, TS config support                                                          |
 
 ### Supporting
 
-| Library | Version | Purpose | When to Use |
-|---------|---------|---------|-------------|
-| eslint-plugin-tailwindcss | 3.17.x | Tailwind linting rules | Enforce no-arbitrary-value in packages/ui, classnames-order can conflict with Prettier |
-| prettier-plugin-tailwindcss | 0.6.x | Tailwind class sorting | MUST load last in plugins array, official sorting algorithm, requires Prettier 3 |
-| @commitlint/cli | 19.x | Commit message linting | Conventional Commits enforcement, integrates with Husky commit-msg hook |
-| @commitlint/config-conventional | 19.x | Standard commit types | Defines feat/fix/chore/docs/etc., Angular convention-based |
-| eslint-config-prettier | 9.x | Disable conflicting ESLint rules | ESSENTIAL to prevent ESLint + Prettier conflicts, especially with Tailwind plugins |
-| @ianvs/prettier-plugin-sort-imports | 4.x | Import statement sorting | React first, external, internal (@phoenix/*), relative order |
-| Vite | 7.3.x | Build tool | 100x faster than webpack, native ESM, @tailwindcss/vite integration |
-| React Router | 7.13.x | SPA routing | Library mode (not framework), BrowserRouter for client-side routing |
-| Tailwind CSS | 4.1.x | Utility-first CSS | @import "tailwindcss" syntax, @tailwindcss/vite plugin, 5x faster builds |
+| Library                             | Version | Purpose                          | When to Use                                                                            |
+| ----------------------------------- | ------- | -------------------------------- | -------------------------------------------------------------------------------------- |
+| eslint-plugin-tailwindcss           | 3.17.x  | Tailwind linting rules           | Enforce no-arbitrary-value in packages/ui, classnames-order can conflict with Prettier |
+| prettier-plugin-tailwindcss         | 0.6.x   | Tailwind class sorting           | MUST load last in plugins array, official sorting algorithm, requires Prettier 3       |
+| @commitlint/cli                     | 19.x    | Commit message linting           | Conventional Commits enforcement, integrates with Husky commit-msg hook                |
+| @commitlint/config-conventional     | 19.x    | Standard commit types            | Defines feat/fix/chore/docs/etc., Angular convention-based                             |
+| eslint-config-prettier              | 9.x     | Disable conflicting ESLint rules | ESSENTIAL to prevent ESLint + Prettier conflicts, especially with Tailwind plugins     |
+| @ianvs/prettier-plugin-sort-imports | 4.x     | Import statement sorting         | React first, external, internal (@phoenix/\*), relative order                          |
+| Vite                                | 7.3.x   | Build tool                       | 100x faster than webpack, native ESM, @tailwindcss/vite integration                    |
+| React Router                        | 7.13.x  | SPA routing                      | Library mode (not framework), BrowserRouter for client-side routing                    |
+| Tailwind CSS                        | 4.1.x   | Utility-first CSS                | @import "tailwindcss" syntax, @tailwindcss/vite plugin, 5x faster builds               |
 
 ### Alternatives Considered
 
-| Instead of | Could Use | Tradeoff |
-|------------|-----------|----------|
-| pnpm | Yarn Berry (v4) | Yarn has Plug'n'Play but more complex, pnpm simpler and faster in 2026 benchmarks |
-| Turborepo | Nx | Nx more features (generators, migrations) but heavier, Turborepo lighter for pure build orchestration |
-| Husky | Lefthook | Lefthook faster (Go-based) but smaller ecosystem, Husky more integrations |
-| lint-staged | pre-commit (Python) | pre-commit language-agnostic but adds Python dependency, lint-staged native to JS ecosystem |
+| Instead of  | Could Use           | Tradeoff                                                                                              |
+| ----------- | ------------------- | ----------------------------------------------------------------------------------------------------- |
+| pnpm        | Yarn Berry (v4)     | Yarn has Plug'n'Play but more complex, pnpm simpler and faster in 2026 benchmarks                     |
+| Turborepo   | Nx                  | Nx more features (generators, migrations) but heavier, Turborepo lighter for pure build orchestration |
+| Husky       | Lefthook            | Lefthook faster (Go-based) but smaller ecosystem, Husky more integrations                             |
+| lint-staged | pre-commit (Python) | pre-commit language-agnostic but adds Python dependency, lint-staged native to JS ecosystem           |
 
 **Installation:**
 
@@ -126,8 +126,8 @@ phoenix/
 ```yaml
 # pnpm-workspace.yaml
 packages:
-  - "apps/*"
-  - "packages/*"
+  - 'apps/*'
+  - 'packages/*'
 ```
 
 **Critical:** Turborepo does NOT support nested globs like `packages/**`. Use flat patterns only (`packages/*`, `packages/group/*`).
@@ -227,11 +227,11 @@ packages:
 ```javascript
 // packages/eslint-config/react.mjs
 import js from '@eslint/js'
-import tseslint from 'typescript-eslint'
+import prettier from 'eslint-config-prettier'
 import reactPlugin from 'eslint-plugin-react'
 import hooksPlugin from 'eslint-plugin-react-hooks'
 import tailwindPlugin from 'eslint-plugin-tailwindcss'
-import prettier from 'eslint-config-prettier'
+import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
   js.configs.recommended,
@@ -250,7 +250,7 @@ export default tseslint.config(
       'tailwindcss/no-custom-classname': 'off',
     },
   },
-  prettier // MUST be last to disable conflicting rules
+  prettier, // MUST be last to disable conflicting rules
 )
 ```
 
@@ -318,13 +318,8 @@ pnpm lint-staged
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md,mdx,css}": [
-      "prettier --write"
-    ]
+    "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+    "*.{json,md,mdx,css}": ["prettier --write"]
   }
 }
 ```
@@ -397,9 +392,9 @@ pnpm lint-staged
 
 ```typescript
 // apps/web/vite.config.ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
@@ -413,7 +408,7 @@ export default defineConfig({
 
 ```css
 /* apps/web/src/index.css */
-@import "tailwindcss";
+@import 'tailwindcss';
 ```
 
 ```tsx
@@ -429,7 +424,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 )
 ```
 
@@ -474,16 +469,16 @@ export default {
 
 Problems that look simple but have existing solutions:
 
-| Problem | Don't Build | Use Instead | Why |
-|---------|-------------|-------------|-----|
-| Commit message validation | Custom git hook script | commitlint + @commitlint/config-conventional | 200+ commit types edge cases (merge commits, reverts, breaking changes), semver integration, changelog generation compatibility |
-| Workspace task orchestration | bash scripts with package manager | Turborepo | Dependency graph analysis, incremental builds, remote caching, parallelization, 100x faster than manual scripts |
-| Pre-commit file filtering | Custom git diff logic | lint-staged | Handles renames, deletions, binary files, supports multiple config files in monorepo, escapes special chars in filenames |
-| Import statement sorting | Manual ESLint rule | @ianvs/prettier-plugin-sort-imports | Type-aware sorting, side-effect imports handling, namespace imports, 50+ edge cases |
-| Package scope renaming | Find-replace + sed scripts | Use official tools (e.g., @manypkg/cli) or vetted community scripts | Package.json patching, lockfile updates, git history preservation, import path rewriting |
-| TypeScript config sharing | Copy-paste tsconfig | @phoenix/typescript-config package | Version pinning, consistent options, incremental updates, project references setup |
-| ESLint config sharing | Copy-paste rules | @phoenix/eslint-config package | Plugin version compatibility, rule presets, TypeScript parser config |
-| Node version enforcement | README warning | engines field + .npmrc engine-strict=true | Hard failure on wrong version, CI integration, automatic tooling (nvm, volta) detection |
+| Problem                      | Don't Build                       | Use Instead                                                         | Why                                                                                                                             |
+| ---------------------------- | --------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Commit message validation    | Custom git hook script            | commitlint + @commitlint/config-conventional                        | 200+ commit types edge cases (merge commits, reverts, breaking changes), semver integration, changelog generation compatibility |
+| Workspace task orchestration | bash scripts with package manager | Turborepo                                                           | Dependency graph analysis, incremental builds, remote caching, parallelization, 100x faster than manual scripts                 |
+| Pre-commit file filtering    | Custom git diff logic             | lint-staged                                                         | Handles renames, deletions, binary files, supports multiple config files in monorepo, escapes special chars in filenames        |
+| Import statement sorting     | Manual ESLint rule                | @ianvs/prettier-plugin-sort-imports                                 | Type-aware sorting, side-effect imports handling, namespace imports, 50+ edge cases                                             |
+| Package scope renaming       | Find-replace + sed scripts        | Use official tools (e.g., @manypkg/cli) or vetted community scripts | Package.json patching, lockfile updates, git history preservation, import path rewriting                                        |
+| TypeScript config sharing    | Copy-paste tsconfig               | @phoenix/typescript-config package                                  | Version pinning, consistent options, incremental updates, project references setup                                              |
+| ESLint config sharing        | Copy-paste rules                  | @phoenix/eslint-config package                                      | Plugin version compatibility, rule presets, TypeScript parser config                                                            |
+| Node version enforcement     | README warning                    | engines field + .npmrc engine-strict=true                           | Hard failure on wrong version, CI integration, automatic tooling (nvm, volta) detection                                         |
 
 **Key insight:** Monorepo tooling has matured in 2024-2026. The "simple bash script" approach scales poorly and misses edge cases discovered by ecosystem tools. The time cost of hand-rolling is higher than learning standard tools.
 
@@ -496,6 +491,7 @@ Problems that look simple but have existing solutions:
 **Why it happens:** TypeScript must analyze entire project graph to type-check any file (imports, exports, type references). Passing staged file paths as `tsc file1.ts file2.ts` doesn't work - tsc ignores tsconfig.json and treats them as isolated files.
 
 **How to avoid:**
+
 - **Option A (Recommended):** Run typecheck as separate Turborepo task (`turbo run typecheck`), not in pre-commit hook
 - **Option B:** Use `turbo run typecheck --filter=[HEAD^1]` in pre-commit to check only affected packages
 - **Option C:** Accept whole-project typecheck in pre-commit, optimize with incremental builds
@@ -582,7 +578,11 @@ export default [
   "extends": ["//"],
   "tasks": {
     "build": {
-      "inputs": ["$TURBO_DEFAULT$", "../tokens/dist/**/*.css", "../tokens/dist/**/*.json"]
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "../tokens/dist/**/*.css",
+        "../tokens/dist/**/*.json"
+      ]
     }
   }
 }
@@ -599,6 +599,7 @@ export default [
 **Why it happens:** Vite loads bundled code from packages/ui/dist, doesn't watch source files. Every change requires rebuild.
 
 **How to avoid:**
+
 - **Option A (Development):** Export source TypeScript from packages/ui: `"main": "src/index.ts"` in dev mode
 - **Option B (Production-like):** Use Vite's `optimizeDeps.exclude: ['@phoenix/ui']` to force Vite to re-bundle on changes
 - **Option C (Watcher):** Run `turbo run build --watch` in parallel with dev server
@@ -647,9 +648,7 @@ engine-strict=true
 ```json
 // turbo.json
 {
-  "globalDependencies": [
-    "!**/.env*"
-  ],
+  "globalDependencies": ["!**/.env*"],
   "tasks": {
     "build": {
       "inputs": ["$TURBO_DEFAULT$", "!.env*"]
@@ -658,7 +657,7 @@ engine-strict=true
 }
 ```
 
-**Best practice:** Never commit .env files. Use .env.example as template, add .env* to .gitignore.
+**Best practice:** Never commit .env files. Use .env.example as template, add .env\* to .gitignore.
 
 **Warning signs:** Turborepo cache misses on every run, FULL_TURBO output never appears
 
@@ -690,6 +689,7 @@ Use BrowserRouter, not createBrowserRouter/RouterProvider (data routers are fram
 **Why it happens:** Sloppy package boundaries - utilities belong in separate packages/utils package
 
 **How to avoid:**
+
 - Strict dependency hierarchy: tokens (no deps) → ui (depends on tokens) → apps (depends on ui)
 - Never import from higher layers to lower layers
 - Extract shared utilities to separate packages/utils package
@@ -708,8 +708,8 @@ Verified patterns from official sources:
 # pnpm-workspace.yaml
 # Source: https://pnpm.io/workspaces
 packages:
-  - "apps/*"
-  - "packages/*"
+  - 'apps/*'
+  - 'packages/*'
 ```
 
 ```json
@@ -750,13 +750,8 @@ packages:
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md,mdx,css}": [
-      "prettier --write"
-    ]
+    "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+    "*.{json,md,mdx,css}": ["prettier --write"]
   }
 }
 ```
@@ -777,9 +772,7 @@ public-hoist-pattern[]=@types/react-dom
 // Source: https://turborepo.dev/docs/reference/configuration
 {
   "$schema": "https://turborepo.dev/schema.json",
-  "globalDependencies": [
-    "!**/.env*"
-  ],
+  "globalDependencies": ["!**/.env*"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -808,11 +801,11 @@ public-hoist-pattern[]=@types/react-dom
 // packages/eslint-config/react.mjs
 // Source: https://typescript-eslint.io/getting-started
 import js from '@eslint/js'
-import tseslint from 'typescript-eslint'
+import prettier from 'eslint-config-prettier'
 import reactPlugin from 'eslint-plugin-react'
 import hooksPlugin from 'eslint-plugin-react-hooks'
 import tailwindPlugin from 'eslint-plugin-tailwindcss'
-import prettier from 'eslint-config-prettier'
+import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
   js.configs.recommended,
@@ -838,7 +831,7 @@ export default tseslint.config(
       'tailwindcss/classnames-order': 'off', // Prettier handles this
     },
   },
-  prettier
+  prettier,
 )
 ```
 
@@ -851,18 +844,15 @@ export default baseConfig
 
 ```javascript
 // apps/web/eslint.config.mjs
-import baseConfig from '@phoenix/eslint-config/react.mjs'
 import tseslint from 'typescript-eslint'
+import baseConfig from '@phoenix/eslint-config/react.mjs'
 
-export default tseslint.config(
-  ...baseConfig,
-  {
-    rules: {
-      // Downgrade to warning in apps
-      'tailwindcss/no-arbitrary-value': 'warn',
-    },
-  }
-)
+export default tseslint.config(...baseConfig, {
+  rules: {
+    // Downgrade to warning in apps
+    'tailwindcss/no-arbitrary-value': 'warn',
+  },
+})
 ```
 
 ### Prettier Configuration with Plugins
@@ -924,9 +914,9 @@ export default {
 ```typescript
 // apps/web/vite.config.ts
 // Source: https://vite.dev/guide/ + https://tailwindcss.com/docs
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
@@ -941,7 +931,7 @@ export default defineConfig({
 ```css
 /* apps/web/src/index.css */
 /* Source: https://tailwindcss.com/docs/installation/framework-guides/vite */
-@import "tailwindcss";
+@import 'tailwindcss';
 ```
 
 ### Rename Script for Package Scope
@@ -978,18 +968,19 @@ console.log(`Renamed ${oldScope} to ${newScope}`)
 
 ## State of the Art
 
-| Old Approach | Current Approach | When Changed | Impact |
-|--------------|------------------|--------------|--------|
-| ESLint .eslintrc.json | ESLint 9 flat config (eslint.config.mjs) | ESLint 9.0 (2024) | Plugins as imports, better TypeScript support, breaking change |
-| Prettier 2 (CJS) | Prettier 3 (ESM-only) | Prettier 3.0 (2023) | Faster, requires `type: module` or .mjs files |
-| Tailwind v3 + PostCSS | Tailwind v4 + @tailwindcss/vite | Tailwind 4.0 (2024) | 5x faster builds, CSS-first config, no tailwind.config.js |
-| npm/yarn workspaces | pnpm workspaces | Industry shift (2022-2024) | Faster installs, strict deps prevent phantom issues |
-| Lerna for task running | Turborepo | Vercel acquisition + Turborepo 2.0 (2024) | 100x faster, better caching, simpler config |
-| React Router v6 | React Router v7 (Remix merge) | React Router 7.0 (2024) | Framework mode (SSR) + library mode (SPA), breaking API changes |
-| TypeScript 5.x | TypeScript 5.9 (stable for 2026) | Avoid TS 7 beta | TS 7 too unstable for production use |
-| Manual hook scripts | Husky 9 | Husky 9.0 (2024) | Simpler setup (husky init), better DX |
+| Old Approach           | Current Approach                         | When Changed                              | Impact                                                          |
+| ---------------------- | ---------------------------------------- | ----------------------------------------- | --------------------------------------------------------------- |
+| ESLint .eslintrc.json  | ESLint 9 flat config (eslint.config.mjs) | ESLint 9.0 (2024)                         | Plugins as imports, better TypeScript support, breaking change  |
+| Prettier 2 (CJS)       | Prettier 3 (ESM-only)                    | Prettier 3.0 (2023)                       | Faster, requires `type: module` or .mjs files                   |
+| Tailwind v3 + PostCSS  | Tailwind v4 + @tailwindcss/vite          | Tailwind 4.0 (2024)                       | 5x faster builds, CSS-first config, no tailwind.config.js       |
+| npm/yarn workspaces    | pnpm workspaces                          | Industry shift (2022-2024)                | Faster installs, strict deps prevent phantom issues             |
+| Lerna for task running | Turborepo                                | Vercel acquisition + Turborepo 2.0 (2024) | 100x faster, better caching, simpler config                     |
+| React Router v6        | React Router v7 (Remix merge)            | React Router 7.0 (2024)                   | Framework mode (SSR) + library mode (SPA), breaking API changes |
+| TypeScript 5.x         | TypeScript 5.9 (stable for 2026)         | Avoid TS 7 beta                           | TS 7 too unstable for production use                            |
+| Manual hook scripts    | Husky 9                                  | Husky 9.0 (2024)                          | Simpler setup (husky init), better DX                           |
 
 **Deprecated/outdated:**
+
 - **create-react-app:** Officially deprecated, use Vite instead
 - **Lerna for task orchestration:** Still maintained for versioning but Turborepo preferred for builds
 - **@tailwind directives:** Use `@import "tailwindcss"` in Tailwind v4
@@ -1055,6 +1046,7 @@ Things that couldn't be fully resolved:
 ## Metadata
 
 **Confidence breakdown:**
+
 - Standard stack: HIGH — All versions verified via official npm releases and documentation
 - Architecture: HIGH — Official Turborepo examples, pnpm docs, ESLint/Prettier official guides
 - Pitfalls: HIGH — React 18 pinning from project SUMMARY.md (verified GitHub issue), ESLint conflicts documented in official eslint-config-prettier, typecheck in lint-staged well-documented problem

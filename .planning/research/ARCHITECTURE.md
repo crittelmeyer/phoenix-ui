@@ -59,14 +59,14 @@ phoenix/
 
 ## Package Boundaries & Responsibilities
 
-| Package | Responsibility | Dependencies | Consumers | Confidence |
-|---------|---------------|--------------|-----------|-----------|
-| **packages/tokens** | Design token transformation: seed → CSS vars + Tailwind preset | style-dictionary, @tokens-studio/sd-transforms | @phoenix/ui, apps/web, apps/storybook | HIGH |
-| **packages/ui** | React component library (CVA + Radix pattern) | @phoenix/tokens (Tailwind preset), react, @radix-ui/*, cva, tailwind-merge | apps/web, apps/storybook | HIGH |
-| **packages/eslint-config** | Shared linting rules (Tailwind class sorting, no arbitrary values) | eslint (peer), typescript-eslint (peer) | All packages, all apps | HIGH |
-| **packages/tsconfig** | TypeScript configuration presets (paths, strictness) | None | All packages, all apps | HIGH |
-| **apps/web** | Main consumer application | @phoenix/ui, @phoenix/tokens (Tailwind preset) | End users | HIGH |
-| **apps/storybook** | Component documentation & visual regression | @phoenix/ui | Developers | HIGH |
+| Package                    | Responsibility                                                     | Dependencies                                                                | Consumers                             | Confidence |
+| -------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------- | ------------------------------------- | ---------- |
+| **packages/tokens**        | Design token transformation: seed → CSS vars + Tailwind preset     | style-dictionary, @tokens-studio/sd-transforms                              | @phoenix/ui, apps/web, apps/storybook | HIGH       |
+| **packages/ui**            | React component library (CVA + Radix pattern)                      | @phoenix/tokens (Tailwind preset), react, @radix-ui/\*, cva, tailwind-merge | apps/web, apps/storybook              | HIGH       |
+| **packages/eslint-config** | Shared linting rules (Tailwind class sorting, no arbitrary values) | eslint (peer), typescript-eslint (peer)                                     | All packages, all apps                | HIGH       |
+| **packages/tsconfig**      | TypeScript configuration presets (paths, strictness)               | None                                                                        | All packages, all apps                | HIGH       |
+| **apps/web**               | Main consumer application                                          | @phoenix/ui, @phoenix/tokens (Tailwind preset)                              | End users                             | HIGH       |
+| **apps/storybook**         | Component documentation & visual regression                        | @phoenix/ui                                                                 | Developers                            | HIGH       |
 
 ### Critical Constraints
 
@@ -107,6 +107,7 @@ pnpm build:tokens  →  Style Dictionary reads config.js
 ```
 
 **Transforms applied:**
+
 - Token name formatting (camelCase → kebab-case)
 - Value resolution (semantic tokens referencing base tokens)
 - Platform-specific conversions (px → rem, hex → rgba)
@@ -129,20 +130,17 @@ packages/tokens/dist/
 
 ```typescript
 // packages/ui/src/components/button.tsx
-import { cva } from "class-variance-authority"
+import { cva } from 'class-variance-authority'
 
 // Uses semantic tokens (from Tailwind preset)
-const buttonVariants = cva(
-  "rounded-md font-medium transition-colors",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        outline: "border border-input bg-background hover:bg-accent"
-      }
-    }
-  }
-)
+const buttonVariants = cva('rounded-md font-medium transition-colors', {
+  variants: {
+    variant: {
+      default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+      outline: 'border border-input bg-background hover:bg-accent',
+    },
+  },
+})
 ```
 
 **Key insight:** Components never use arbitrary values like `bg-[#3b82f6]`. Tailwind preset makes semantic tokens available as utility classes (`bg-primary`, `text-foreground`).
@@ -210,13 +208,14 @@ Parallel execution:
 
 ```typescript
 // packages/ui/src/index.ts
-export { Button } from "./components/button"
-export { Input } from "./components/input"
-export { cn } from "./lib/utils"
-export { useTheme } from "./hooks/use-theme"
+export { Button } from './components/button'
+export { Input } from './components/input'
+export { cn } from './lib/utils'
+export { useTheme } from './hooks/use-theme'
 ```
 
 **Why barrel exports:**
+
 - Single import point for consumers: `import { Button, Input } from "@phoenix/ui"`
 - Clear public API surface (internal files not exported = private)
 - Tree-shaking works (modern bundlers eliminate unused exports)
@@ -258,6 +257,7 @@ export { useTheme } from "./hooks/use-theme"
 ```
 
 **The `workspace:*` protocol:**
+
 - Ensures pnpm resolves to local workspace packages (never npm registry)
 - Changes to `@phoenix/ui` immediately available in `apps/web` during dev
 - On publish, `workspace:*` converts to actual version number
@@ -267,11 +267,13 @@ export { useTheme } from "./hooks/use-theme"
 ### Version Alignment
 
 **Option A: Independent versioning (Recommended for Phoenix)**
+
 - Each package has its own version
 - Use Changesets for automated versioning and changelogs
 - Apps pin to `workspace:*` (always latest local version)
 
 **Option B: Unified versioning**
+
 - All packages share single version number
 - Simpler, but overkill for a starter template
 
@@ -287,6 +289,7 @@ packages/ui/components.json        # Shared components (button, input, etc.)
 ```
 
 **shadcn CLI behavior:**
+
 - Run from `apps/web/`: Installs base components to `packages/ui`, specialized components to `apps/web`
 - Automatically rewrites imports: `@/components/button` → `@phoenix/ui/components/button`
 
@@ -325,23 +328,26 @@ Phoenix uses **numbered rule files with frontmatter scoping**:
 name: token-pipeline-rules
 description: Style Dictionary token authoring and transformation rules
 paths:
-  - "packages/tokens/**"
+  - 'packages/tokens/**'
 ---
 
 # Token Pipeline Rules
 
 When working in packages/tokens/:
+
 - NEVER manually edit files in dist/ (generated artifacts)
-- Seed tokens are source of truth (src/seed/*.json)
+- Seed tokens are source of truth (src/seed/\*.json)
 - Run pnpm build to regenerate after token changes
 ```
 
 **How Claude uses this:**
+
 - When Claude opens `packages/tokens/src/seed/colors.json`, only `10-tokens.md` loads
 - When Claude opens `packages/ui/src/components/button.tsx`, only `20-ui.md` loads
 - Context window stays clean; rules only load when relevant
 
 **File naming convention:**
+
 ```
 10-tokens.md     (loads for packages/tokens/**)
 20-ui.md         (loads for packages/ui/**)
@@ -363,13 +369,11 @@ When working in packages/tokens/:
 ```typescript
 // CORRECT: Uses semantic tokens
 const buttonVariants = cva(
-  "bg-primary text-primary-foreground hover:bg-primary/90"
+  'bg-primary text-primary-foreground hover:bg-primary/90',
 )
 
 // INCORRECT: Arbitrary values bypass token system
-const buttonVariants = cva(
-  "bg-[#3b82f6] text-white hover:bg-[#2563eb]"
-)
+const buttonVariants = cva('bg-[#3b82f6] text-white hover:bg-[#2563eb]')
 ```
 
 **Enforcement:** ESLint rule `no-arbitrary-values` in `packages/ui/.eslintrc.js`
@@ -381,15 +385,17 @@ const buttonVariants = cva(
 **When:** Always. Violations break the build order.
 
 **Valid:**
+
 ```typescript
 // packages/ui/src/components/button.tsx
-import "@phoenix/tokens/dist/css/vars.css"  // Lower layer → OK
+import '@phoenix/tokens/dist/css/vars.css' // Lower layer → OK
 ```
 
 **Invalid:**
+
 ```typescript
 // packages/tokens/src/config.js
-import { Button } from "@phoenix/ui"  // Higher layer → CIRCULAR DEP
+import { Button } from '@phoenix/ui' // Higher layer → CIRCULAR DEP
 ```
 
 **Enforcement:** pnpm refuses to resolve circular workspace dependencies.
@@ -424,11 +430,11 @@ dist/
 {
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],  // Build deps first
+      "dependsOn": ["^build"], // Build deps first
       "outputs": ["dist/**"]
     },
     "test": {
-      "dependsOn": ["build"]    // Test requires built artifacts
+      "dependsOn": ["build"] // Test requires built artifacts
     }
   }
 }
@@ -444,10 +450,10 @@ dist/
 
 ```typescript
 // INCORRECT
-import { Button } from "@phoenix/ui/src/components/button"
 
 // CORRECT
-import { Button } from "@phoenix/ui"
+import { Button } from '@phoenix/ui'
+import { Button } from '@phoenix/ui/src/components/button'
 ```
 
 **Why bad:** Bypasses the build step, breaks TypeScript types, causes bundler errors.
@@ -467,7 +473,7 @@ import { Button } from "@phoenix/ui"
 }
 
 /* CORRECT: Import generated vars */
-@import "@phoenix/tokens/dist/css/vars.css";
+@import '@phoenix/tokens/dist/css/vars.css';
 ```
 
 **Why bad:** Creates drift between design tokens and actual styles. Token changes don't propagate.
@@ -480,7 +486,7 @@ import { Button } from "@phoenix/ui"
 
 ```typescript
 // INCORRECT
-export { default as clsx } from "clsx"
+export { default as clsx } from 'clsx'
 
 // CORRECT
 // Consumers install clsx themselves if needed
@@ -496,7 +502,7 @@ export { default as clsx } from "clsx"
 
 ```typescript
 // apps/web/src/pages/home.tsx
-import { Dashboard } from "../../storybook/stories/dashboard"  // WRONG
+import { Dashboard } from '../../storybook/stories/dashboard' // WRONG
 ```
 
 **Why bad:** Apps are deployment units, not shared packages. Creates coupling and breaks independent builds.
@@ -510,6 +516,7 @@ import { Dashboard } from "../../storybook/stories/dashboard"  // WRONG
 **Why bad:** Bloats repository, causes stale cache issues.
 
 **Prevention:**
+
 ```gitignore
 node_modules/
 .turbo/
@@ -519,13 +526,13 @@ build/
 
 ## Scalability Considerations
 
-| Concern | At 12 Components (MVP) | At 50 Components | At 200 Components |
-|---------|----------------------|------------------|-------------------|
-| **Build time** | < 10s for full build | < 30s with Turborepo caching | Requires remote caching (Vercel Remote Cache) |
-| **Type checking** | Instant | Use TypeScript project references (`composite: true`) | Require incremental builds |
-| **Component discovery** | Storybook sufficient | Add search/filter to Storybook | Need dedicated docs site (Docusaurus, Nextra) |
-| **Token management** | Flat token files OK | Organize by category (color.json, spacing.json) | Introduce token groups, aliasing |
-| **Package split** | Single @phoenix/ui | Split by domain (layout, forms, feedback) | Micro-packages per component |
+| Concern                 | At 12 Components (MVP) | At 50 Components                                      | At 200 Components                             |
+| ----------------------- | ---------------------- | ----------------------------------------------------- | --------------------------------------------- |
+| **Build time**          | < 10s for full build   | < 30s with Turborepo caching                          | Requires remote caching (Vercel Remote Cache) |
+| **Type checking**       | Instant                | Use TypeScript project references (`composite: true`) | Require incremental builds                    |
+| **Component discovery** | Storybook sufficient   | Add search/filter to Storybook                        | Need dedicated docs site (Docusaurus, Nextra) |
+| **Token management**    | Flat token files OK    | Organize by category (color.json, spacing.json)       | Introduce token groups, aliasing              |
+| **Package split**       | Single @phoenix/ui     | Split by domain (layout, forms, feedback)             | Micro-packages per component                  |
 
 **Phoenix targets MVP scale** (12 components). Architecture supports growth to 50+ components without changes.
 
@@ -546,6 +553,7 @@ build/
 **What:** Husky + lint-staged runs checks before commit.
 
 **Enforces:**
+
 - `pnpm lint` (ESLint)
 - `pnpm format:check` (Prettier)
 - `pnpm typecheck` (TypeScript)
@@ -557,6 +565,7 @@ build/
 **What:** GitHub Actions runs on every push.
 
 **Steps:**
+
 1. Install dependencies (`pnpm install`)
 2. Build all packages (`pnpm build`)
 3. Lint (`pnpm lint`)
@@ -572,6 +581,7 @@ build/
 **Decision:** Use tsup for building `packages/ui`
 
 **Rationale:**
+
 - Zero-config for TypeScript libraries
 - Dual ESM/CJS output with single command
 - Automatic .d.ts generation
@@ -585,6 +595,7 @@ build/
 **Decision:** Use Style Dictionary for token transformation
 
 **Rationale:**
+
 - Platform-agnostic (can generate iOS, Android tokens later)
 - Transformation pipeline (references, aliasing, math)
 - Figma integration via @tokens-studio/sd-transforms
@@ -597,6 +608,7 @@ build/
 **Decision:** `apps/storybook/` instead of `packages/ui/.storybook/`
 
 **Rationale:**
+
 - Keeps `packages/ui` lean (no dev dependencies)
 - Can import from `@phoenix/ui` like real consumers
 - Easier to deploy as standalone docs site
@@ -609,6 +621,7 @@ build/
 **Decision:** `10-tokens.md`, `20-ui.md` instead of single `CLAUDE.md`
 
 **Rationale:**
+
 - Path scoping keeps context windows clean
 - Only relevant rules load per package
 - Numbering indicates load priority
@@ -651,6 +664,7 @@ build/
 ## Sources
 
 **HIGH Confidence (Official Documentation):**
+
 - [Turborepo Design System Example](https://github.com/vercel/turborepo/tree/main/examples/design-system)
 - [shadcn/ui Monorepo Documentation](https://ui.shadcn.com/docs/monorepo)
 - [Style Dictionary Design Tokens](https://styledictionary.com/info/tokens/)
@@ -658,11 +672,13 @@ build/
 - [Turborepo Pipeline Configuration](https://turbo.build/repo/docs/handbook/linting/eslint)
 
 **MEDIUM Confidence (Community Best Practices):**
+
 - [Scaling Frontend with Monorepo and Design Systems](https://medium.com/@satnammca/scaling-your-frontend-a-monorepo-and-design-system-playbook-957e38c8c9e4)
 - [Complete Monorepo Guide 2026](https://jsdev.space/complete-monorepo-guide/)
 - [Style Dictionary + Tailwind Integration](https://github.com/style-dictionary/style-dictionary/tree/main/examples/advanced/tailwind-preset)
 - [Turborepo Build Order Management](https://www.luisball.com/blog/turborepo-prepare-tasks)
 
 **LOW Confidence (Requires Validation):**
+
 - Figma Code Connect impact on build performance (not documented)
 - Optimal threshold for package splitting (50 vs 200 components)

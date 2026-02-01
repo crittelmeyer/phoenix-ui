@@ -1,13 +1,13 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router'
 
 export default function Root() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900">
-      <div className="text-center space-y-8 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-slate-900">
+      <div className="space-y-8 px-4 text-center">
         {/* Phoenix Logo */}
         <div className="flex justify-center">
           <svg
-            className="w-24 h-24 text-orange-500"
+            className="h-24 w-24 text-orange-500"
             viewBox="0 0 24 24"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
@@ -21,57 +21,64 @@ export default function Root() {
 
         {/* Project Name */}
         <div>
-          <h1 className="text-6xl font-bold text-white mb-4">Phoenix</h1>
+          <h1 className="mb-4 text-6xl font-bold text-white">Phoenix</h1>
           <p className="text-2xl text-slate-400">Design System Starter</p>
         </div>
 
         {/* Description */}
-        <p className="text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          A production-ready design system monorepo built with React, TypeScript,
-          Tailwind CSS 4, and Radix UI. Designed for AI agents to add, modify,
-          and extend components without human hand-holding.
+        <p className="mx-auto max-w-2xl leading-relaxed text-slate-300">
+          A production-ready design system monorepo built with React,
+          TypeScript, Tailwind CSS 4, and Radix UI. Designed for AI agents to
+          add, modify, and extend components without human hand-holding.
         </p>
 
         {/* Action Links */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="http://localhost:6006"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+            className="rounded-lg bg-orange-500 px-8 py-3 font-semibold text-white transition-colors hover:bg-orange-600"
           >
             View Storybook
           </a>
           <Link
             to="/components"
-            className="px-8 py-3 bg-slate-700 text-white font-semibold rounded-lg hover:bg-slate-600 transition-colors"
+            className="rounded-lg bg-slate-700 px-8 py-3 font-semibold text-white transition-colors hover:bg-slate-600"
           >
             Browse Components
           </Link>
         </div>
 
         {/* Feature List */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 text-left max-w-4xl mx-auto">
-          <div className="bg-slate-800 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold text-white mb-2">Monorepo Structure</h3>
-            <p className="text-slate-400 text-sm">
-              pnpm workspaces with Turborepo orchestration for optimal build performance.
+        <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 text-left sm:grid-cols-3">
+          <div className="rounded-lg bg-slate-800 p-6">
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              Monorepo Structure
+            </h3>
+            <p className="text-sm text-slate-400">
+              pnpm workspaces with Turborepo orchestration for optimal build
+              performance.
             </p>
           </div>
-          <div className="bg-slate-800 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold text-white mb-2">Design Tokens</h3>
-            <p className="text-slate-400 text-sm">
-              Style Dictionary pipeline generating Tailwind CSS tokens from source definitions.
+          <div className="rounded-lg bg-slate-800 p-6">
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              Design Tokens
+            </h3>
+            <p className="text-sm text-slate-400">
+              Style Dictionary pipeline generating Tailwind CSS tokens from
+              source definitions.
             </p>
           </div>
-          <div className="bg-slate-800 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold text-white mb-2">AI-Ready</h3>
-            <p className="text-slate-400 text-sm">
-              Explicit patterns and rules enforced via ESLint for consistent AI modifications.
+          <div className="rounded-lg bg-slate-800 p-6">
+            <h3 className="mb-2 text-lg font-semibold text-white">AI-Ready</h3>
+            <p className="text-sm text-slate-400">
+              Explicit patterns and rules enforced via ESLint for consistent AI
+              modifications.
             </p>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

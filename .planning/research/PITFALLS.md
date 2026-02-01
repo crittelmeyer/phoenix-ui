@@ -17,18 +17,21 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 **Why it happens:** React 19 changed ref callback behavior to support cleanup functions. The `setRef` function in `@radix-ui/react-compose-refs` recursively triggers itself because it doesn't account for this new behavior, creating an infinite loop.
 
 **Consequences:**
+
 - Application completely breaks at runtime
 - Affects ALL Radix UI components (Dialog, Popover, Select, etc.)
 - No error boundaries can catch it (React internal error)
 - Issue is OPEN as of January 26, 2026 with no official fix
 
 **Prevention:**
+
 1. **Pin React to v18** until Radix UI releases official React 19 support
 2. Use `peerDependencies` constraint: `"react": "^18.3.0"`
 3. Add `.npmrc` with `strict-peer-dependencies=true` to prevent accidental upgrades
 4. Monitor [radix-ui/primitives#3799](https://github.com/radix-ui/primitives/issues/3799) for resolution
 
 **Detection:**
+
 - Runtime error: "Maximum update depth exceeded"
 - Error occurs in `@radix-ui/react-compose-refs`
 - Happens on component mount/update
@@ -47,6 +50,7 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 **Why it happens:** Tailwind CSS 4 is a complete architectural rewrite using modern CSS features (`@property`, `color-mix()`), removing deprecated utilities, renaming core utilities, and changing fundamental syntax patterns.
 
 **Consequences:**
+
 - **Browser support drops drastically** (Safari 16.4+, Chrome 111+, Firefox 128+ ONLY)
 - **All configuration** must migrate from JS to CSS (`@import "tailwindcss"` instead of `@tailwind` directives)
 - **Renamed utilities** break existing components (e.g., `shadow-sm` → `shadow-xs`, `rounded-sm` → `rounded-xs`)
@@ -56,6 +60,7 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 - **Variant stacking order reversed** (right-to-left → left-to-right)
 
 **Prevention:**
+
 1. **Use official migration tool:** `npx @tailwindcss/upgrade` automates most changes
 2. **Audit browser support requirements FIRST** - If you need Safari <16.4, DO NOT migrate
 3. **Create migration branch** and test systematically:
@@ -71,6 +76,7 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 5. **Document migration in ADR** with before/after examples
 
 **Detection:**
+
 - Build errors about `@tailwind` directives not recognized
 - Visual regressions in component borders/shadows/rings
 - CSS variables not resolving (`--` syntax errors)
@@ -83,15 +89,15 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 
 **Key breaking changes reference:**
 
-| Category | v3 | v4 | Impact |
-|----------|----|----|--------|
-| **Imports** | `@tailwind base/components/utilities` | `@import "tailwindcss"` | Build breaks |
-| **Shadows** | `shadow-sm/shadow` | `shadow-xs/shadow-sm` | Visual regression |
-| **Borders** | Default `gray-200` | Default `currentColor` | Visual regression |
-| **Ring** | 3px width, `blue-500` color | 1px width, `currentColor` | Visual regression |
-| **CSS vars** | `bg-[--color]` | `bg-(--color)` | Build breaks |
-| **Arbitrary** | `grid-cols-[1fr,auto]` | `grid-cols-[1fr_auto]` | Build breaks |
-| **Variants** | `first:*:pt-0` (right-to-left) | `*:first:pt-0` (left-to-right) | Logic errors |
+| Category      | v3                                    | v4                             | Impact            |
+| ------------- | ------------------------------------- | ------------------------------ | ----------------- |
+| **Imports**   | `@tailwind base/components/utilities` | `@import "tailwindcss"`        | Build breaks      |
+| **Shadows**   | `shadow-sm/shadow`                    | `shadow-xs/shadow-sm`          | Visual regression |
+| **Borders**   | Default `gray-200`                    | Default `currentColor`         | Visual regression |
+| **Ring**      | 3px width, `blue-500` color           | 1px width, `currentColor`      | Visual regression |
+| **CSS vars**  | `bg-[--color]`                        | `bg-(--color)`                 | Build breaks      |
+| **Arbitrary** | `grid-cols-[1fr,auto]`                | `grid-cols-[1fr_auto]`         | Build breaks      |
+| **Variants**  | `first:*:pt-0` (right-to-left)        | `*:first:pt-0` (left-to-right) | Logic errors      |
 
 ---
 
@@ -102,34 +108,41 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 **Why it happens:** v4 rewrote to ES Modules with full async support for all hooks (parsers, transforms, formats). Previously synchronous operations like `buildAllPlatforms()` now require `await`.
 
 **Consequences:**
+
 - **Build scripts fail** with "Cannot use await outside async function"
 - **Turborepo tasks deadlock** if not configured for async operations
 - **Token generation blocks** entire monorepo build
 - **Migration is NOT backward compatible** - can't gradually migrate
 
 **Prevention:**
-1. **Migrate build scripts to async/await:**
-   ```javascript
-   // OLD (v3)
-   const StyleDictionary = require('style-dictionary');
-   StyleDictionary.buildAllPlatforms();
 
+1. **Migrate build scripts to async/await:**
+
+   ```javascript
    // NEW (v4)
-   import StyleDictionary from 'style-dictionary';
-   const sd = new StyleDictionary(config);
-   await sd.hasInitialized;
-   await sd.buildAllPlatforms();
+   import StyleDictionary from 'style-dictionary'
+
+   // OLD (v3)
+   const StyleDictionary = require('style-dictionary')
+   StyleDictionary.buildAllPlatforms()
+
+   const sd = new StyleDictionary(config)
+   await sd.hasInitialized
+   await sd.buildAllPlatforms()
    ```
 
 2. **Update package.json to ESM:**
+
    ```json
    {
      "type": "module"
    }
    ```
+
    OR use `.mjs` file extensions
 
 3. **Configure Turborepo for async tasks:**
+
    ```json
    {
      "tasks": {
@@ -143,6 +156,7 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
    ```
 
 4. **Pin Style Dictionary version** in root `package.json` to prevent accidental upgrades:
+
    ```json
    "resolutions": {
      "style-dictionary": "^4.0.0"
@@ -150,13 +164,14 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
    ```
 
 5. **Migrate hooks to new structure:**
+
    ```javascript
    // OLD
    StyleDictionary.registerTransform({
      name: 'custom',
      type: 'value',
-     transformer: (token) => token.value
-   });
+     transformer: (token) => token.value,
+   })
 
    // NEW
    const sd = new StyleDictionary({
@@ -164,14 +179,15 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
        transforms: {
          custom: {
            type: 'value',
-           transform: async (token) => token.value
-         }
-       }
-     }
-   });
+           transform: async (token) => token.value,
+         },
+       },
+     },
+   })
    ```
 
 **Detection:**
+
 - Build errors: "Cannot use await outside async function"
 - TypeError: "StyleDictionary is not a constructor"
 - Import errors: "Named export not found"
@@ -183,15 +199,15 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 
 **Full breaking changes:**
 
-| Area | v3 | v4 | Migration |
-|------|----|----|-----------|
-| **Init** | Object | Class with `new` | `new StyleDictionary(config)` |
-| **Methods** | Sync | Async | Add `await` everywhere |
-| **Modules** | CommonJS | ESM | Add `"type": "module"` |
-| **Hooks** | Singular (`transform`) | Plural (`transforms`) | Rename properties |
-| **Types** | Path-based (CTI) | `token.type` property | Add `type` to all tokens |
-| **Reference** | `{ref.foo}` | `{ref.foo}` | No custom syntax allowed |
-| **Node** | v16+ | v18+ | Upgrade runtime |
+| Area          | v3                     | v4                    | Migration                     |
+| ------------- | ---------------------- | --------------------- | ----------------------------- |
+| **Init**      | Object                 | Class with `new`      | `new StyleDictionary(config)` |
+| **Methods**   | Sync                   | Async                 | Add `await` everywhere        |
+| **Modules**   | CommonJS               | ESM                   | Add `"type": "module"`        |
+| **Hooks**     | Singular (`transform`) | Plural (`transforms`) | Rename properties             |
+| **Types**     | Path-based (CTI)       | `token.type` property | Add `type` to all tokens      |
+| **Reference** | `{ref.foo}`            | `{ref.foo}`           | No custom syntax allowed      |
+| **Node**      | v16+                   | v18+                  | Upgrade runtime               |
 
 ---
 
@@ -202,6 +218,7 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 **Why it happens:** Turborepo's cache key generation doesn't automatically track transitive file dependencies across workspace boundaries. Token files in `@repo/tokens` changing don't invalidate cache for `@repo/ui` components that import them.
 
 **Consequences:**
+
 - Components render with old token values
 - Visual regressions appear in production
 - Developers waste hours debugging "phantom" bugs
@@ -209,7 +226,9 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 - Design system and Figma tokens drift out of sync
 
 **Prevention:**
+
 1. **Explicit input glob patterns in turbo.json:**
+
    ```json
    {
      "tasks": {
@@ -227,6 +246,7 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
    ```
 
 2. **Use hash-based cache keys for tokens package:**
+
    ```json
    {
      "tasks": {
@@ -240,20 +260,22 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
    ```
 
 3. **Add token hash to consuming package builds:**
+
    ```javascript
    // In component package build script
-   import { readFileSync } from 'fs';
-   import { createHash } from 'crypto';
+   import { createHash } from 'crypto'
+   import { readFileSync } from 'fs'
 
    const tokenHash = createHash('sha256')
      .update(readFileSync('../tokens/dist/tokens.css'))
      .digest('hex')
-     .slice(0, 8);
+     .slice(0, 8)
 
-   process.env.TOKEN_HASH = tokenHash;
+   process.env.TOKEN_HASH = tokenHash
    ```
 
 4. **Configure environment variable in turbo.json:**
+
    ```json
    {
      "tasks": {
@@ -270,6 +292,7 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
    ```
 
 **Detection:**
+
 - Components showing old colors/spacing after token changes
 - `turbo run build` shows "cache hit" even after token modifications
 - Manual `--force` flag fixes the issue
@@ -289,6 +312,7 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 **Why it happens:** Storybook uses its own Vite instance that doesn't include the `@tailwindcss/vite` plugin by default. The Tailwind directives pass through unprocessed, generating no utility classes.
 
 **Consequences:**
+
 - All components render unstyled in Storybook
 - Design system documentation is broken
 - Component development workflow blocked
@@ -296,35 +320,39 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
 - Stakeholders see broken component library
 
 **Prevention:**
+
 1. **Install Tailwind CSS 4 Vite plugin:**
+
    ```bash
    pnpm add -D @tailwindcss/vite
    ```
 
 2. **Configure `.storybook/main.ts` with viteFinal hook:**
+
    ```typescript
-   import type { StorybookConfig } from '@storybook/react-vite';
-   import tailwindcss from '@tailwindcss/vite';
+   import type { StorybookConfig } from '@storybook/react-vite'
+   import tailwindcss from '@tailwindcss/vite'
 
    const config: StorybookConfig = {
      framework: '@storybook/react-vite',
      stories: ['../src/**/*.stories.tsx'],
 
      async viteFinal(config) {
-       const { mergeConfig } = await import('vite');
+       const { mergeConfig } = await import('vite')
 
        return mergeConfig(config, {
          plugins: [tailwindcss()],
-       });
+       })
      },
-   };
+   }
 
-   export default config;
+   export default config
    ```
 
 3. **Import Tailwind CSS in `.storybook/preview.ts`:**
+
    ```typescript
-   import '../src/index.css'; // Contains @import "tailwindcss"
+   import '../src/index.css' // Contains @import "tailwindcss"
    ```
 
 4. **Handle PostCSS deprecation warning:**
@@ -348,6 +376,7 @@ Mistakes that cause rewrites, major bugs, or complete blockers.
    ```
 
 **Detection:**
+
 - Storybook renders components without any Tailwind classes applied
 - Browser DevTools show `@import "tailwindcss"` in CSS unchanged
 - Console warnings about unrecognized CSS syntax
@@ -370,18 +399,22 @@ Mistakes that cause delays, technical debt, or require refactoring.
 **Why it happens:** CVA concatenates class strings but doesn't intelligently merge conflicting Tailwind utilities. The order in the HTML class attribute doesn't guarantee CSS specificity.
 
 **Consequences:**
+
 - Components render with unintended spacing/sizing
 - Variant combinations produce unexpected results
 - Responsive variants behave inconsistently
 - Debugging requires inspecting computed styles
 
 **Prevention:**
+
 1. **Install tailwind-merge:**
+
    ```bash
    pnpm add tailwind-merge
    ```
 
 2. **Wrap CVA with twMerge:**
+
    ```typescript
    import { cva, type VariantProps } from 'class-variance-authority';
    import { twMerge } from 'tailwind-merge';
@@ -413,6 +446,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 3. **Create reusable cn() utility:**
+
    ```typescript
    // lib/utils.ts
    import { clsx, type ClassValue } from 'clsx';
@@ -427,6 +461,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 4. **Document pattern in component guidelines:**
+
    ```markdown
    ## Component Patterns
 
@@ -438,6 +473,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 **Detection:**
+
 - Spacing/sizing doesn't match expected variant
 - DevTools show multiple conflicting Tailwind utilities
 - Responsive variants partially working
@@ -456,19 +492,23 @@ Mistakes that cause delays, technical debt, or require refactoring.
 **Why it happens:** pnpm's strict dependency isolation prevents Radix UI from accessing `@types/react` unless explicitly declared as a dependency. pnpm doesn't hoist by default like npm/yarn.
 
 **Consequences:**
+
 - TypeScript compilation fails
 - IDE shows type errors for all Radix components
 - Build tasks hang on type checking
 - Cannot import Radix components without type errors
 
 **Prevention:**
+
 1. **Install @types/react as direct dependency in consuming packages:**
+
    ```bash
    # In each package that uses Radix UI
    pnpm add -D @types/react @types/react-dom
    ```
 
 2. **Configure .npmrc with selective hoisting:**
+
    ```ini
    # .npmrc
    public-hoist-pattern[]=@radix-ui/*
@@ -476,19 +516,23 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 3. **OR use node-linker=hoisted for full hoisting:**
+
    ```ini
    # .npmrc
    node-linker=hoisted
    ```
+
    **Trade-off:** Loses pnpm's strict dependency isolation benefits.
 
 4. **Verify with pnpm why:**
+
    ```bash
    pnpm why @types/react
    pnpm why @radix-ui/react-dialog
    ```
 
 5. **Document in CONTRIBUTING.md:**
+
    ```markdown
    ## Adding Radix UI Components
 
@@ -500,6 +544,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 **Detection:**
+
 - TypeScript error: "Cannot find declaration file for 'react'"
 - Error occurs when importing `@radix-ui/react-*` packages
 - `pnpm why @types/react` shows package not in node_modules
@@ -518,39 +563,56 @@ Mistakes that cause delays, technical debt, or require refactoring.
 **Why it happens:** Vite's React Fast Refresh requires `.tsx` files to ONLY export React components (PascalCase). Exporting hooks, utilities, or constants invalidates the module, triggering full reload.
 
 **Consequences:**
+
 - Component state resets on every file save
 - Form inputs lose values during development
 - Development experience significantly degraded
 - Developers waste time re-entering test data
 
 **Prevention:**
+
 1. **Separate components from hooks/utilities:**
+
    ```typescript
    // ❌ BAD: Button.tsx (breaks Fast Refresh)
-   export function Button() { /*...*/ }
-   export function useButton() { /*...*/ }
-   export const BUTTON_SIZES = { /*...*/ };
+   export function Button() {
+     /*...*/
+   }
+   export function useButton() {
+     /*...*/
+   }
+   export const BUTTON_SIZES = {
+     /*...*/
+   }
 
    // ✅ GOOD: Split into multiple files
    // Button.tsx
-   export function Button() { /*...*/ }
+   export function Button() {
+     /*...*/
+   }
 
    // useButton.ts
-   export function useButton() { /*...*/ }
+   export function useButton() {
+     /*...*/
+   }
 
    // constants.ts
-   export const BUTTON_SIZES = { /*...*/ };
+   export const BUTTON_SIZES = {
+     /*...*/
+   }
    ```
 
 2. **Use barrel exports carefully:**
+
    ```typescript
    // index.ts (non-.tsx, can export anything)
-   export { Button } from './Button';
-   export { useButton } from './useButton';
-   export { BUTTON_SIZES } from './constants';
+   export { Button } from './Button'
+   export { useButton } from './useButton'
+   export { BUTTON_SIZES } from './constants'
    ```
 
 3. **Configure ESLint rule:**
+
    ```json
    {
      "rules": {
@@ -563,11 +625,13 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 4. **Enable HMR debugging:**
+
    ```bash
    pnpm vite --debug hmr
    ```
 
 5. **Document in component guidelines:**
+
    ```markdown
    ## Fast Refresh Requirements
 
@@ -580,6 +644,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 **Detection:**
+
 - Full page reload on every file save
 - Vite console: "Could not Fast Refresh"
 - Browser console: "Unable to preserve local component state"
@@ -598,6 +663,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
 **Why it happens:** Independent versioning allows packages to evolve at different rates, but doesn't automatically enforce inter-package compatibility. Semantic versioning works per-package, not across the dependency graph.
 
 **Consequences:**
+
 - Runtime errors from token format mismatches
 - Visual regressions from missing token values
 - Type errors from mismatched interfaces
@@ -605,9 +671,11 @@ Mistakes that cause delays, technical debt, or require refactoring.
 - Consumers can't determine compatible versions
 
 **Prevention:**
+
 1. **Choose versioning strategy explicitly:**
 
    **Option A: Fixed/Unified Versioning** (Recommended for design systems)
+
    ```json
    // All packages share same version
    {
@@ -621,6 +689,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
    **Cons:** All packages bump version even if unchanged
 
    **Option B: Independent with Pinned Dependencies**
+
    ```json
    // @repo/ui package.json
    {
@@ -636,18 +705,18 @@ Mistakes that cause delays, technical debt, or require refactoring.
    **Cons:** Complex compatibility matrix
 
 2. **Configure changesets for fixed versioning:**
+
    ```json
    // .changeset/config.json
    {
-     "fixed": [
-       ["@repo/tokens", "@repo/ui", "@repo/icons"]
-     ],
+     "fixed": [["@repo/tokens", "@repo/ui", "@repo/icons"]],
      "linked": [],
      "changelog": "@changesets/cli/changelog"
    }
    ```
 
 3. **OR configure semantic-release with namespace tags:**
+
    ```json
    // package.json for each package
    {
@@ -658,35 +727,38 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 4. **Document compatibility in README:**
+
    ```markdown
    ## Version Compatibility
 
    | @repo/ui | @repo/tokens | @repo/icons |
-   |----------|--------------|-------------|
+   | -------- | ------------ | ----------- |
    | 2.x      | 2.x          | 2.x         |
    | 1.x      | 1.x          | 1.x         |
    ```
 
 5. **Add version check script:**
+
    ```javascript
    // scripts/check-versions.js
-   import { readFileSync } from 'fs';
-   import { glob } from 'glob';
+   import { readFileSync } from 'fs'
+   import { glob } from 'glob'
 
-   const packages = glob.sync('packages/*/package.json');
-   const versions = new Set();
+   const packages = glob.sync('packages/*/package.json')
+   const versions = new Set()
 
-   packages.forEach(path => {
-     const pkg = JSON.parse(readFileSync(path));
-     versions.add(pkg.version);
-   });
+   packages.forEach((path) => {
+     const pkg = JSON.parse(readFileSync(path))
+     versions.add(pkg.version)
+   })
 
    if (versions.size > 1) {
-     throw new Error('Version mismatch detected');
+     throw new Error('Version mismatch detected')
    }
    ```
 
 **Detection:**
+
 - Runtime errors: "Token not found" or "undefined is not an object"
 - Type errors after updating single package
 - Different behavior in local dev vs production
@@ -706,6 +778,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
 **Why it happens:** `eslint-plugin-tailwindcss` and `prettier-plugin-tailwindcss` both sort classes but use different algorithms. Without `eslint-config-prettier`, ESLint formatting rules conflict with Prettier.
 
 **Consequences:**
+
 - File changes on every save (format loop)
 - Git diffs show class reordering noise
 - Pre-commit hooks fail repeatedly
@@ -713,7 +786,9 @@ Mistakes that cause delays, technical debt, or require refactoring.
 - Inconsistent formatting across team
 
 **Prevention:**
+
 1. **Install all three packages:**
+
    ```bash
    pnpm add -D \
      eslint-plugin-tailwindcss \
@@ -722,6 +797,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 2. **Configure ESLint with prettier LAST:**
+
    ```json
    // .eslintrc.json
    {
@@ -739,6 +815,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 3. **Configure Prettier:**
+
    ```json
    // .prettierrc
    {
@@ -748,6 +825,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
    ```
 
 4. **Disable format-on-save for ESLint, enable for Prettier:**
+
    ```json
    // .vscode/settings.json
    {
@@ -756,13 +834,12 @@ Mistakes that cause delays, technical debt, or require refactoring.
      "editor.codeActionsOnSave": {
        "source.fixAll.eslint": "explicit"
      },
-     "eslint.rules.customizations": [
-       { "rule": "*", "severity": "warn" }
-     ]
+     "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }]
    }
    ```
 
 5. **Verify no conflicts:**
+
    ```bash
    # Should show no rules
    npx eslint-config-prettier .eslintrc.json
@@ -774,6 +851,7 @@ Mistakes that cause delays, technical debt, or require refactoring.
    - Monitor [francoismassart/eslint-plugin-tailwindcss#325](https://github.com/francoismassart/eslint-plugin-tailwindcss/issues/325)
 
 **Detection:**
+
 - File content changes on every save
 - Git shows class order changes with no other changes
 - ESLint and Prettier both show formatting suggestions
@@ -797,13 +875,16 @@ Mistakes that cause annoyance but are easily fixable.
 **Why it happens:** React Router v7 generates types dynamically based on route files discovered during build process. These types don't exist until the dev server runs.
 
 **Consequences:**
+
 - Initial IDE setup shows red squiggles
 - Type-checking fails in CI before build step
 - New contributors confused by "missing types"
 - Pre-commit type check fails
 
 **Prevention:**
+
 1. **Run dev server once after cloning:**
+
    ```bash
    pnpm dev
    # Wait for "ready in X ms"
@@ -811,6 +892,7 @@ Mistakes that cause annoyance but are easily fixable.
    ```
 
 2. **Add postinstall script:**
+
    ```json
    {
      "scripts": {
@@ -820,6 +902,7 @@ Mistakes that cause annoyance but are easily fixable.
    ```
 
 3. **Exclude .react-router/ from git, include in npm package:**
+
    ```gitignore
    # .gitignore
    .react-router/
@@ -833,6 +916,7 @@ Mistakes that cause annoyance but are easily fixable.
    ```
 
 4. **Document in CONTRIBUTING.md:**
+
    ```markdown
    ## First-Time Setup
 
@@ -840,6 +924,7 @@ Mistakes that cause annoyance but are easily fixable.
    ```
 
 **Detection:**
+
 - TypeScript errors: "Module not found: .react-router/types"
 - IDE shows missing type definitions
 - Types appear after running dev server
@@ -858,13 +943,16 @@ Mistakes that cause annoyance but are easily fixable.
 **Why it happens:** Turborepo runs tasks concurrently by default. If `build:storybook` task starts before `^build` completes, Storybook can't find compiled component files.
 
 **Consequences:**
+
 - Storybook build fails in CI
 - Cannot deploy component documentation
 - Race condition is intermittent (fails 30% of the time)
 - Developers resort to running builds twice
 
 **Prevention:**
+
 1. **Configure explicit dependency chain in turbo.json:**
+
    ```json
    {
      "tasks": {
@@ -879,14 +967,17 @@ Mistakes that cause annoyance but are easily fixable.
      }
    }
    ```
+
    Note: `"^build"` means "parent packages", `"build"` means "this package"
 
 2. **Use topological graph to verify order:**
+
    ```bash
    pnpm turbo run build:storybook --graph
    ```
 
 3. **Add build verification in Storybook build script:**
+
    ```json
    {
      "scripts": {
@@ -911,6 +1002,7 @@ Mistakes that cause annoyance but are easily fixable.
    ```
 
 **Detection:**
+
 - Storybook build fails: "Cannot find module '@repo/ui'"
 - Error occurs in CI but not locally (timing-dependent)
 - Manual `pnpm build && pnpm build:storybook` works
@@ -924,22 +1016,22 @@ Mistakes that cause annoyance but are easily fixable.
 
 ## Phase-Specific Warnings
 
-| Phase | Topic | Likely Pitfall | Mitigation |
-|-------|-------|---------------|------------|
-| **Phase 0: Setup** | React version | React 19 + Radix UI incompatibility | Pin React to v18.3.0 in root package.json |
-| **Phase 0: Setup** | Browser support | Tailwind CSS 4 requires Safari 16.4+ | Audit browser requirements, consider staying on v3 |
-| **Phase 0: Setup** | Versioning | Independent vs fixed versioning decision | Choose fixed versioning for design systems |
-| **Phase 1: Foundation** | pnpm config | Radix UI type resolution failures | Configure public-hoist-pattern for @types/* |
-| **Phase 1: Foundation** | Tailwind migration | 12+ breaking changes cascade | Run `npx @tailwindcss/upgrade` systematically |
-| **Phase 1: Foundation** | Linting | ESLint + Prettier class order conflicts | Use eslint-config-prettier, configure both plugins |
-| **Phase 2: Tokens** | Style Dictionary | Async migration required for v4 | Migrate build scripts to ESM + async/await |
-| **Phase 2: Tokens** | Turborepo cache | Token changes don't invalidate component cache | Add explicit input globs for token files |
-| **Phase 3: Components** | Storybook | Tailwind directives not processed | Add @tailwindcss/vite to viteFinal hook |
-| **Phase 3: Components** | CVA | Class conflicts without merge utility | Wrap CVA with tailwind-merge |
-| **Phase 3: Components** | Vite HMR | Mixed exports break Fast Refresh | Separate components, hooks, constants into different files |
-| **Phase 4: Documentation** | Build order | Storybook builds before components | Configure dependsOn: ["^build", "build"] |
-| **Phase 4: Documentation** | Type generation | React Router types missing on fresh clone | Add postinstall script to generate types |
-| **Phase 5+: Publishing** | Versioning | Incompatible package combinations | Use fixed versioning or pinned dependencies |
+| Phase                      | Topic              | Likely Pitfall                                 | Mitigation                                                 |
+| -------------------------- | ------------------ | ---------------------------------------------- | ---------------------------------------------------------- |
+| **Phase 0: Setup**         | React version      | React 19 + Radix UI incompatibility            | Pin React to v18.3.0 in root package.json                  |
+| **Phase 0: Setup**         | Browser support    | Tailwind CSS 4 requires Safari 16.4+           | Audit browser requirements, consider staying on v3         |
+| **Phase 0: Setup**         | Versioning         | Independent vs fixed versioning decision       | Choose fixed versioning for design systems                 |
+| **Phase 1: Foundation**    | pnpm config        | Radix UI type resolution failures              | Configure public-hoist-pattern for @types/\*               |
+| **Phase 1: Foundation**    | Tailwind migration | 12+ breaking changes cascade                   | Run `npx @tailwindcss/upgrade` systematically              |
+| **Phase 1: Foundation**    | Linting            | ESLint + Prettier class order conflicts        | Use eslint-config-prettier, configure both plugins         |
+| **Phase 2: Tokens**        | Style Dictionary   | Async migration required for v4                | Migrate build scripts to ESM + async/await                 |
+| **Phase 2: Tokens**        | Turborepo cache    | Token changes don't invalidate component cache | Add explicit input globs for token files                   |
+| **Phase 3: Components**    | Storybook          | Tailwind directives not processed              | Add @tailwindcss/vite to viteFinal hook                    |
+| **Phase 3: Components**    | CVA                | Class conflicts without merge utility          | Wrap CVA with tailwind-merge                               |
+| **Phase 3: Components**    | Vite HMR           | Mixed exports break Fast Refresh               | Separate components, hooks, constants into different files |
+| **Phase 4: Documentation** | Build order        | Storybook builds before components             | Configure dependsOn: ["^build", "build"]                   |
+| **Phase 4: Documentation** | Type generation    | React Router types missing on fresh clone      | Add postinstall script to generate types                   |
+| **Phase 5+: Publishing**   | Versioning         | Incompatible package combinations              | Use fixed versioning or pinned dependencies                |
 
 ---
 
@@ -948,21 +1040,25 @@ Mistakes that cause annoyance but are easily fixable.
 Areas requiring phase-specific investigation before implementation:
 
 ### Phase 2: Tokens System
+
 - **Tokens Studio plugin integration:** Specific transform configurations for Figma → Style Dictionary
 - **Token theming strategy:** CSS variables vs Tailwind config, dark mode approach
 - **Token naming conventions:** DTCG spec compliance, migration from CTI structure
 
 ### Phase 3: Component Development
+
 - **Radix UI React 19 workarounds:** Monitor for official fix, potential fork if needed
 - **Compound component patterns:** CVA + Radix asChild API interactions
 - **Accessibility testing:** @storybook/addon-a11y with Radix primitives
 
 ### Phase 4: Documentation
+
 - **Storybook 8 + Vite 6 compatibility:** Check for regressions with Tailwind CSS 4
 - **MDX 3 migration:** Story format updates, frontmatter changes
 - **Visual regression testing:** Chromatic integration with Turborepo cache
 
 ### Phase 5: Publishing Strategy
+
 - **Provenance attestation:** npm publish with --provenance flag
 - **Package exports mapping:** Conditional exports for ESM/CJS consumers
 - **Peer dependency ranges:** Acceptable React 18/19 version constraints
@@ -972,45 +1068,55 @@ Areas requiring phase-specific investigation before implementation:
 ## Sources
 
 **React 19 + Radix UI:**
+
 - [Maximum update depth exceeded issue](https://github.com/radix-ui/primitives/issues/3799) - HIGH confidence
 - [React 19 compatibility discussion](https://github.com/radix-ui/primitives/issues/2900)
 
 **Tailwind CSS 4:**
+
 - [Official upgrade guide](https://tailwindcss.com/docs/upgrade-guide) - HIGH confidence
 - [Migration guide articles](https://medium.com/@mernstackdevbykevin/tailwind-css-v4-0-complete-migration-guide-breaking-changes-you-need-to-know-7f99944a9f95)
 - [Storybook integration issue](https://github.com/tailwindlabs/tailwindcss/discussions/16687)
 
 **Style Dictionary v4:**
+
 - [Official migration guide](https://styledictionary.com/versions/v4/migration/) - HIGH confidence
 - [V4 release plans](https://tokens.studio/blog/style-dictionary-v4-plan)
 
 **Storybook + Vite + Tailwind:**
+
 - [Tailwind CSS integration issue](https://github.com/tailwindlabs/tailwindcss/discussions/16451)
 - [Official Storybook recipes](https://storybook.js.org/recipes/tailwindcss)
 
 **pnpm + Turborepo:**
+
 - [Radix UI phantom dependencies](https://github.com/radix-ui/primitives/issues/1896)
 - [pnpm hoisting documentation](https://pnpm.io/workspaces)
 - [Turborepo cache invalidation](https://github.com/vercel/turborepo/issues/1274)
 - [Storybook configuration guide](https://turborepo.dev/docs/guides/tools/storybook)
 
 **CVA + Tailwind Merge:**
+
 - [CVA documentation](https://cva.style/docs)
 - [Class conflict patterns](https://medium.com/@settahkader/mastering-tailwind-css-resolving-class-conflicts-with-twmerge-and-custom-configurations-5ff2853abf2d)
 
 **Vite Fast Refresh:**
+
 - [Export restrictions issue](https://github.com/vitejs/vite-plugin-react/issues/411)
 - [Official troubleshooting](https://vite.dev/guide/troubleshooting)
 
 **Monorepo Versioning:**
+
 - [Version strategies guide](https://amarchenko.dev/blog/2023-09-26-versioning/)
 - [Semantic release limitations](https://github.com/pmowrer/semantic-release-monorepo)
 - [Monorepo anti-patterns](https://www.infoq.com/presentations/monorepo-mistakes/)
 
 **ESLint + Prettier:**
+
 - [Class order conflicts](https://github.com/tailwindlabs/prettier-plugin-tailwindcss/issues/278)
 - [Tailwind v4 support status](https://github.com/francoismassart/eslint-plugin-tailwindcss/issues/325)
 
 **React Router v7:**
+
 - [Official guide](https://blog.logrocket.com/react-router-v7-guide/)
 - [React Router v7 announcement](https://remix.run/blog/react-router-v7)

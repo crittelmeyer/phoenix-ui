@@ -90,72 +90,74 @@
 
 ## Out of Scope
 
-| Feature | Reason |
-|---------|--------|
-| React 19 support | Radix UI infinite loop bug — upgrade path documented, revisit when fixed |
-| Biome (replacing ESLint + Prettier) | Tailwind class sorting not mature enough in Biome |
-| Server-side rendering | Vite + React Router chosen deliberately for simplicity; no SSR opinions |
-| Authentication / API layer | UI starter, not app template |
-| Mobile / React Native | Web-first, separate concern |
-| CI/CD configuration | Too environment-specific for a starter template |
-| Figma file / design assets | Users bring their own designs or start from seed tokens |
-| npm publishing pipeline | Starter is cloned and owned, not consumed as dependency |
-| Internationalization (i18n) | Orthogonal concern, add per-product |
+| Feature                             | Reason                                                                   |
+| ----------------------------------- | ------------------------------------------------------------------------ |
+| React 19 support                    | Radix UI infinite loop bug — upgrade path documented, revisit when fixed |
+| Biome (replacing ESLint + Prettier) | Tailwind class sorting not mature enough in Biome                        |
+| Server-side rendering               | Vite + React Router chosen deliberately for simplicity; no SSR opinions  |
+| Authentication / API layer          | UI starter, not app template                                             |
+| Mobile / React Native               | Web-first, separate concern                                              |
+| CI/CD configuration                 | Too environment-specific for a starter template                          |
+| Figma file / design assets          | Users bring their own designs or start from seed tokens                  |
+| npm publishing pipeline             | Starter is cloned and owned, not consumed as dependency                  |
+| Internationalization (i18n)         | Orthogonal concern, add per-product                                      |
 
 ## Traceability
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| FNDN-01 | Phase 1 | Pending |
-| FNDN-02 | Phase 1 | Pending |
-| FNDN-03 | Phase 1 | Pending |
-| FNDN-04 | Phase 1 | Pending |
-| FNDN-05 | Phase 1 | Pending |
-| FNDN-06 | Phase 1 | Pending |
-| FNDN-07 | Phase 1 | Pending |
-| FNDN-08 | Phase 1 | Pending |
-| FNDN-09 | Phase 1 | Pending |
-| FNDN-10 | Phase 1 | Pending |
-| TOKN-01 | Phase 2 | Pending |
-| TOKN-02 | Phase 2 | Pending |
-| TOKN-03 | Phase 2 | Pending |
-| TOKN-04 | Phase 2 | Pending |
-| TOKN-05 | Phase 2 | Pending |
-| TOKN-06 | Phase 2 | Pending |
-| TOKN-07 | Phase 2 | Pending |
-| COMP-01 | Phase 3 | Pending |
-| COMP-02 | Phase 3 | Pending |
-| COMP-03 | Phase 3 | Pending |
-| COMP-04 | Phase 3 | Pending |
-| COMP-05 | Phase 3 | Pending |
-| COMP-06 | Phase 3 | Pending |
-| COMP-07 | Phase 3 | Pending |
-| COMP-08 | Phase 3 | Pending |
-| COMP-09 | Phase 5 | Pending |
-| COMP-10 | Phase 5 | Pending |
-| COMP-11 | Phase 5 | Pending |
-| COMP-12 | Phase 5 | Pending |
-| COMP-13 | Phase 5 | Pending |
-| COMP-14 | Phase 5 | Pending |
-| COMP-15 | Phase 5 | Pending |
-| DOCS-01 | Phase 4 | Pending |
-| DOCS-02 | Phase 4 | Pending |
-| DOCS-03 | Phase 4 | Pending |
-| DOCS-04 | Phase 4 | Pending |
-| DOCS-05 | Phase 4 | Pending |
-| AIML-01 | Phase 6 | Pending |
-| AIML-02 | Phase 6 | Pending |
-| AIML-03 | Phase 6 | Pending |
-| AIML-04 | Phase 6 | Pending |
-| AIML-05 | Phase 6 | Pending |
-| AIML-06 | Phase 6 | Pending |
+| Requirement | Phase   | Status  |
+| ----------- | ------- | ------- |
+| FNDN-01     | Phase 1 | Pending |
+| FNDN-02     | Phase 1 | Pending |
+| FNDN-03     | Phase 1 | Pending |
+| FNDN-04     | Phase 1 | Pending |
+| FNDN-05     | Phase 1 | Pending |
+| FNDN-06     | Phase 1 | Pending |
+| FNDN-07     | Phase 1 | Pending |
+| FNDN-08     | Phase 1 | Pending |
+| FNDN-09     | Phase 1 | Pending |
+| FNDN-10     | Phase 1 | Pending |
+| TOKN-01     | Phase 2 | Pending |
+| TOKN-02     | Phase 2 | Pending |
+| TOKN-03     | Phase 2 | Pending |
+| TOKN-04     | Phase 2 | Pending |
+| TOKN-05     | Phase 2 | Pending |
+| TOKN-06     | Phase 2 | Pending |
+| TOKN-07     | Phase 2 | Pending |
+| COMP-01     | Phase 3 | Pending |
+| COMP-02     | Phase 3 | Pending |
+| COMP-03     | Phase 3 | Pending |
+| COMP-04     | Phase 3 | Pending |
+| COMP-05     | Phase 3 | Pending |
+| COMP-06     | Phase 3 | Pending |
+| COMP-07     | Phase 3 | Pending |
+| COMP-08     | Phase 3 | Pending |
+| COMP-09     | Phase 5 | Pending |
+| COMP-10     | Phase 5 | Pending |
+| COMP-11     | Phase 5 | Pending |
+| COMP-12     | Phase 5 | Pending |
+| COMP-13     | Phase 5 | Pending |
+| COMP-14     | Phase 5 | Pending |
+| COMP-15     | Phase 5 | Pending |
+| DOCS-01     | Phase 4 | Pending |
+| DOCS-02     | Phase 4 | Pending |
+| DOCS-03     | Phase 4 | Pending |
+| DOCS-04     | Phase 4 | Pending |
+| DOCS-05     | Phase 4 | Pending |
+| AIML-01     | Phase 6 | Pending |
+| AIML-02     | Phase 6 | Pending |
+| AIML-03     | Phase 6 | Pending |
+| AIML-04     | Phase 6 | Pending |
+| AIML-05     | Phase 6 | Pending |
+| AIML-06     | Phase 6 | Pending |
 
 **Coverage:**
+
 - v1 requirements: 38 total
 - Mapped to phases: 38
 - Unmapped: 0
 
 **Phase distribution:**
+
 - Phase 1 (Foundation): 10 requirements
 - Phase 2 (Token System): 7 requirements
 - Phase 3 (Core Components Foundation): 8 requirements
@@ -164,5 +166,6 @@
 - Phase 6 (AI Integration): 6 requirements
 
 ---
-*Requirements defined: 2026-02-01*
-*Last updated: 2026-02-01 after roadmap creation*
+
+_Requirements defined: 2026-02-01_
+_Last updated: 2026-02-01 after roadmap creation_

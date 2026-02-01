@@ -59,14 +59,15 @@ AI agents (Claude Code specifically) can add, modify, and extend components with
 
 ## Key Decisions
 
-| Decision | Rationale | Outcome |
-|----------|-----------|---------|
-| Vite + React Router over Next.js | Lighter, faster dev, no SSR opinions — better for a design system starter | — Pending |
-| ESLint + Prettier over Biome | Tailwind class sorting plugin is mature; Claude knows this config deeply | — Pending |
-| .claude/rules/ with path scoping over single CLAUDE.md | Keeps context windows clean; rules only load when relevant | — Pending |
-| Seed tokens with Figma upgrade path over Figma-required | Starter must work day-one without Figma; documented migration path when ready | — Pending |
-| shadcn "own the code" over npm dependency | Components are committed source, not installed packages — full control | — Pending |
-| React 18.3.0 over React 19 | Radix UI infinite loop bug with React 19 (Jan 2026, unresolved) — pin 18.3.0, upgrade when fixed | — Pending |
+| Decision                                                | Rationale                                                                                        | Outcome   |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------- |
+| Vite + React Router over Next.js                        | Lighter, faster dev, no SSR opinions — better for a design system starter                        | — Pending |
+| ESLint + Prettier over Biome                            | Tailwind class sorting plugin is mature; Claude knows this config deeply                         | — Pending |
+| .claude/rules/ with path scoping over single CLAUDE.md  | Keeps context windows clean; rules only load when relevant                                       | — Pending |
+| Seed tokens with Figma upgrade path over Figma-required | Starter must work day-one without Figma; documented migration path when ready                    | — Pending |
+| shadcn "own the code" over npm dependency               | Components are committed source, not installed packages — full control                           | — Pending |
+| React 18.3.0 over React 19                              | Radix UI infinite loop bug with React 19 (Jan 2026, unresolved) — pin 18.3.0, upgrade when fixed | — Pending |
 
 ---
-*Last updated: 2026-02-01 after research — pinned React 18.3.0*
+
+_Last updated: 2026-02-01 after research — pinned React 18.3.0_

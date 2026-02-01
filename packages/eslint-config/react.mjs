@@ -1,8 +1,8 @@
 import js from '@eslint/js'
-import tseslint from 'typescript-eslint'
+import prettier from 'eslint-config-prettier'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
-import prettier from 'eslint-config-prettier'
+import tseslint from 'typescript-eslint'
 
 // Note: eslint-plugin-tailwindcss removed - incompatible with Tailwind CSS 4
 // Tailwind CSS 4 uses a new architecture that doesn't export resolveConfig

@@ -1,6 +1,6 @@
-import { Routes, Route } from 'react-router';
-import Root from '@/routes/root';
-import Components from '@/routes/components';
+import Components from '@/routes/components'
+import Root from '@/routes/root'
+import { Route, Routes } from 'react-router'
 
 export default function App() {
   return (
@@ -8,5 +8,5 @@ export default function App() {
       <Route path="/" element={<Root />} />
       <Route path="/components" element={<Components />} />
     </Routes>
-  );
+  )
 }

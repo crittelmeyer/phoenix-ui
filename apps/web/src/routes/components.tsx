@@ -1,16 +1,16 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router'
 
 export default function Components() {
   return (
-    <div className="min-h-screen bg-slate-900 text-white p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">Components</h1>
-        <p className="text-slate-400 mb-8">
+    <div className="min-h-screen bg-slate-900 p-8 text-white">
+      <div className="mx-auto max-w-4xl">
+        <h1 className="mb-4 text-4xl font-bold">Components</h1>
+        <p className="mb-8 text-slate-400">
           Components will appear here as they are built in Phase 3.
         </p>
 
-        <div className="bg-slate-800 p-6 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Coming Soon</h2>
+        <div className="rounded-lg bg-slate-800 p-6">
+          <h2 className="mb-4 text-xl font-semibold">Coming Soon</h2>
           <ul className="space-y-2 text-slate-300">
             <li>• Button</li>
             <li>• Input</li>
@@ -26,12 +26,12 @@ export default function Components() {
         <div className="mt-8">
           <Link
             to="/"
-            className="inline-block px-6 py-2 bg-slate-700 text-white font-semibold rounded-lg hover:bg-slate-600 transition-colors"
+            className="inline-block rounded-lg bg-slate-700 px-6 py-2 font-semibold text-white transition-colors hover:bg-slate-600"
           >
             ← Back to Home
           </Link>
         </div>
       </div>
     </div>
-  );
+  )
 }
