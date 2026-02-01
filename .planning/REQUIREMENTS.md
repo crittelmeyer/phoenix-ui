@@ -20,13 +20,13 @@
 
 ### Tokens
 
-- [ ] **TOKN-01**: Seed token set covering colors (neutral, primary, destructive), spacing scale, typography scale, and border radii
-- [ ] **TOKN-02**: Light and dark color schemes defined as separate token sets
-- [ ] **TOKN-03**: Style Dictionary pipeline transforming JSON tokens → CSS custom properties
-- [ ] **TOKN-04**: Tailwind v4 @theme directive mapping token CSS variables to utility classes (e.g., bg-primary resolves to token value)
-- [ ] **TOKN-05**: Tailwind config in apps/web consuming token CSS variables via @theme
-- [ ] **TOKN-06**: Dark mode toggle working via CSS class strategy (class="dark")
-- [ ] **TOKN-07**: Documented migration path from seed tokens to Tokens Studio / Figma Variables sync
+- [x] **TOKN-01**: Seed token set covering colors (neutral, primary, destructive), spacing scale, typography scale, and border radii
+- [x] **TOKN-02**: Light and dark color schemes defined as separate token sets
+- [x] **TOKN-03**: Style Dictionary pipeline transforming JSON tokens → CSS custom properties
+- [x] **TOKN-04**: Tailwind v4 @theme directive mapping token CSS variables to utility classes (e.g., bg-primary resolves to token value)
+- [x] **TOKN-05**: Tailwind config in apps/web consuming token CSS variables via @theme
+- [x] **TOKN-06**: Dark mode toggle working via CSS class strategy (class="dark")
+- [x] **TOKN-07**: Documented migration path from seed tokens to Tokens Studio / Figma Variables sync
 
 ### Components
 
@@ -116,13 +116,13 @@
 | FNDN-08     | Phase 1 | Complete |
 | FNDN-09     | Phase 1 | Complete |
 | FNDN-10     | Phase 1 | Complete |
-| TOKN-01     | Phase 2 | Pending  |
-| TOKN-02     | Phase 2 | Pending  |
-| TOKN-03     | Phase 2 | Pending  |
-| TOKN-04     | Phase 2 | Pending  |
-| TOKN-05     | Phase 2 | Pending  |
-| TOKN-06     | Phase 2 | Pending  |
-| TOKN-07     | Phase 2 | Pending  |
+| TOKN-01     | Phase 2 | Complete |
+| TOKN-02     | Phase 2 | Complete |
+| TOKN-03     | Phase 2 | Complete |
+| TOKN-04     | Phase 2 | Complete |
+| TOKN-05     | Phase 2 | Complete |
+| TOKN-06     | Phase 2 | Complete |
+| TOKN-07     | Phase 2 | Complete |
 | COMP-01     | Phase 3 | Pending  |
 | COMP-02     | Phase 3 | Pending  |
 | COMP-03     | Phase 3 | Pending  |
@@ -168,4 +168,4 @@
 ---
 
 _Requirements defined: 2026-02-01_
-_Last updated: 2026-02-01 after phase 02 plan revision (TOKN-04 clarified for @theme approach)_
+_Last updated: 2026-02-01 after phase 02 execution complete (TOKN-01 through TOKN-07 shipped)_
