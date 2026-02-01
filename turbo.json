@@ -3,6 +3,12 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      "inputs": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.mjs",
+        "src/tokens/**/*.json"
+      ],
       "outputs": ["dist/**"]
     },
     "dev": {
