@@ -9,27 +9,27 @@
 AI agents (Claude Code specifically) can add, modify, and extend components without human hand-holding — because the repo structure, naming, patterns, and rules are explicit and enforced.
 
 **Current Focus:**
-Phase 3 Core Components COMPLETE - all 7 components built with barrel export.
+Phase 4 Documentation Infrastructure IN PROGRESS - Storybook foundation complete.
 
 ## Current Position
 
-**Phase:** 3 - Core Components (3 of 6) - COMPLETE
-**Plan:** 3 of 3 plans complete (03-03)
-**Status:** Phase Complete
-**Last activity:** 2026-02-01 - Completed 03-03-PLAN.md (Dialog and barrel export)
-**Progress:** ██████████████████████ 30/38 requirements (79%)
+**Phase:** 4 - Documentation Infrastructure (4 of 6) - IN PROGRESS
+**Plan:** 1 of 3 plans complete (04-01)
+**Status:** In Progress
+**Last activity:** 2026-02-01 - Completed 04-01-PLAN.md (Storybook foundation)
+**Progress:** ███████████████████████ 31/38 requirements (82%)
 
-**Next Milestone:** Begin Phase 4 or Phase 5
+**Next Milestone:** Complete Phase 4 documentation infrastructure
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                                                                                                                          |
-| -------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Phases completed     | 3/6   | Foundation, Token System, and Core Components complete                                                                         |
-| Requirements shipped | 30/38 | Foundation (10), Token System (7), Core Components (11/15)                                                                     |
-| Plans executed       | 9     | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min) |
-| Blockers             | 0     | —                                                                                                                              |
-| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                 |
+| Metric               | Value | Notes                                                                                                                                        |
+| -------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Phases completed     | 3/6   | Foundation, Token System, and Core Components complete                                                                                       |
+| Requirements shipped | 31/38 | Foundation (10), Token System (7), Core Components (11/15), Documentation (1/3)                                                              |
+| Plans executed       | 10    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min) |
+| Blockers             | 0     | —                                                                                                                                            |
+| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                               |
 
 ## Accumulated Context
 
@@ -204,6 +204,27 @@ Phase 3 Core Components COMPLETE - all 7 components built with barrel export.
 - Enables `import { Button, Input, Dialog } from "@phoenix/ui"` pattern
 - Single source of truth for component imports established early
 
+**2026-02-01: Storybook 8.6 instead of 10.x**
+
+- Plan 04-01 specified Storybook 10.1.0, but version doesn't exist yet (latest is 8.6.15)
+- Used @storybook packages at ^8.6.0 version range
+- No functional impact - Storybook 8.6 has all needed features (Vite builder, addon-themes, MDX)
+- Will upgrade to Storybook 10+ when released
+
+**2026-02-01: Duplicate CSS for Storybook**
+
+- Created apps/storybook/stories/index.css mirroring apps/web/src/index.css
+- UI package has no index.css to import (source exports only via main: "src/index.ts")
+- Duplicated all @import statements and @theme mappings (185 lines)
+- Ensures Storybook has identical token setup to web app for accurate preview
+
+**2026-02-01: Async Tailwind CSS plugin import in Storybook**
+
+- @tailwindcss/vite is ESM-only package
+- Used `await import('@tailwindcss/vite')` in viteFinal hook
+- Matches web app pattern from Phase 2
+- CJS deprecation warning expected and cosmetic (research Pitfall 1)
+
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
@@ -215,12 +236,13 @@ Phase 3 Core Components COMPLETE - all 7 components built with barrel export.
 - [x] Core component foundation (03-01 complete)
 - [x] Form components: Select, Checkbox, Radio, Label (03-02 complete)
 - [x] Dialog component and barrel export (03-03 complete)
+- [x] Storybook foundation with Vite builder and tokens page (04-01 complete)
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
 - [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
-None - Phase 3 complete. Ready for Phase 4 (Documentation) or Phase 5 (Advanced Components).
+None - Phase 4 Plan 1 complete. Ready for Plan 2 (component stories).
 
 ### Research Notes
 
@@ -237,23 +259,25 @@ None - Phase 3 complete. Ready for Phase 4 (Documentation) or Phase 5 (Advanced 
 
 ## Session Continuity
 
-**Last session:** 2026-02-01T20:46:20Z
-**Stopped at:** Completed 03-03-PLAN.md (Dialog component and barrel export)
+**Last session:** 2026-02-01T22:36:24Z
+**Stopped at:** Completed 04-01-PLAN.md (Storybook foundation)
 **Resume file:** None
 
 **What you were doing:**
-Completed Phase 3 Plan 3 - Built Dialog compound component with portal, overlay, animations, and focus trap. Created barrel export (packages/ui/src/index.ts) enabling `import { Button, Input, Dialog } from "@phoenix/ui"` pattern.
+Completed Phase 4 Plan 1 - Set up Storybook 8.6 with Vite builder, Tailwind CSS 4 integration, dark mode theme toggle, and tokens visualization page. Dev server runs on localhost:6006 with working theme switching.
 
 **What's next:**
-Phase 3 COMPLETE. Decide between Phase 4 (Documentation/Storybook) or Phase 5 (Advanced Components).
+Continue Phase 4 with Plan 2 (component stories for basic components) or Plan 3 (compound component stories).
 
 **Important context for next session:**
 
 - Phase 1 COMPLETE: All 10 FNDN requirements shipped
 - Phase 2 COMPLETE: All 7 TOKN requirements shipped
 - Phase 3 COMPLETE: 11/15 COMP requirements shipped (remaining are docs/testing)
+- Phase 4 IN PROGRESS: 1/3 DOCS requirements shipped (Storybook foundation)
 - All 7 core components built: Button, Input, Textarea, Select, Checkbox, RadioGroup, Label, Dialog
 - Barrel export enables: `import { Button, Input, Select, Dialog } from "@phoenix/ui"`
+- Storybook environment ready: localhost:6006 with Tailwind CSS 4 and dark mode toggle
 - Component pattern proven: forwardRef + cn() + semantic tokens + CVA (when needed)
 
 **Key files created in Phase 3:**
@@ -269,6 +293,13 @@ Phase 3 COMPLETE. Decide between Phase 4 (Documentation/Storybook) or Phase 5 (A
 - `packages/ui/src/components/dialog.tsx` - Dialog compound component (10 parts)
 - `packages/ui/src/index.ts` - Barrel export (30+ named exports)
 
+**Key files created in Phase 4 Plan 1:**
+
+- `apps/storybook/.storybook/main.ts` - Storybook config with viteFinal hook
+- `apps/storybook/.storybook/preview.ts` - Theme decorator with withThemeByClassName
+- `apps/storybook/stories/index.css` - Duplicate of web app CSS with @theme mappings
+- `apps/storybook/stories/Tokens.mdx` - Token visualization page
+
 **Files to reference:**
 
 - `/Users/chris/Repos/phoenix/.planning/PROJECT.md` - Core value and constraints
@@ -281,8 +312,9 @@ Phase 3 COMPLETE. Decide between Phase 4 (Documentation/Storybook) or Phase 5 (A
 - `/Users/chris/Repos/phoenix/.planning/phases/02-token-system/02-03-SUMMARY.md` - Migration guide
 - `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-01-SUMMARY.md` - Component foundation
 - `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-02-SUMMARY.md` - Form components
-- `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-03-SUMMARY.md` - Dialog and barrel export (latest)
+- `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-03-SUMMARY.md` - Dialog and barrel export
+- `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-01-SUMMARY.md` - Storybook foundation (latest)
 
 ---
 
-_State updated: 2026-02-01 after Phase 3 completion (03-03)_
+_State updated: 2026-02-01 after Phase 4 Plan 1 completion (04-01)_
