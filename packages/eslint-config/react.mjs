@@ -2,8 +2,11 @@ import js from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
-import tailwindcss from 'eslint-plugin-tailwindcss'
 import prettier from 'eslint-config-prettier'
+
+// Note: eslint-plugin-tailwindcss removed - incompatible with Tailwind CSS 4
+// Tailwind CSS 4 uses a new architecture that doesn't export resolveConfig
+// Inline style bans below still enforce Tailwind usage
 
 export default tseslint.config(
   js.configs.recommended,
@@ -12,7 +15,6 @@ export default tseslint.config(
     plugins: {
       react,
       'react-hooks': reactHooks,
-      tailwindcss,
     },
     settings: {
       react: {
@@ -21,9 +23,6 @@ export default tseslint.config(
     },
     rules: {
       'react/react-in-jsx-scope': 'off',
-      'tailwindcss/no-arbitrary-value': 'error',
-      'tailwindcss/no-custom-classname': 'off',
-      'tailwindcss/classnames-order': 'off',
       ...reactHooks.configs.recommended.rules,
       'react/forbid-dom-props': [
         'error',
