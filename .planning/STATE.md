@@ -9,27 +9,27 @@
 AI agents (Claude Code specifically) can add, modify, and extend components without human hand-holding — because the repo structure, naming, patterns, and rules are explicit and enforced.
 
 **Current Focus:**
-Building Phase 1 Foundation - monorepo scaffold and development environment complete, ready for final plan (git hooks).
+Phase 1 Foundation COMPLETE - ready for Phase 2 (Design Tokens).
 
 ## Current Position
 
-**Phase:** 1 - Foundation (1 of 6)
-**Plan:** 01-02 complete (2 of 3 in phase)
-**Status:** In progress
-**Last activity:** 2026-02-01 - Completed 01-02-PLAN.md (Web app with Vite + React Router)
-**Progress:** ██░░░░░░░░░░░░░░░░░░ 2/38 requirements (5%)
+**Phase:** 1 - Foundation (1 of 6) - COMPLETE
+**Plan:** 01-03 complete (3 of 3 in phase)
+**Status:** Phase complete
+**Last activity:** 2026-02-01 - Completed 01-03-PLAN.md (Git hooks and quality gates)
+**Progress:** ██████████░░░░░░░░░░ 10/38 requirements (26%)
 
-**Next Milestone:** Complete Phase 1 (Foundation) - 8 remaining requirements
+**Next Milestone:** Begin Phase 2 (Design Tokens) - Style Dictionary + token generation
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                          |
-| -------------------- | ----- | ------------------------------ |
-| Phases completed     | 0/6   | Phase 1 in progress            |
-| Requirements shipped | 2/38  | Monorepo + web app complete    |
-| Plans executed       | 2/?   | 01-01 (2min), 01-02 (4min)     |
-| Blockers             | 0     | —                              |
-| Research flags       | 0     | Research complete (SUMMARY.md) |
+| Metric               | Value | Notes                                      |
+| -------------------- | ----- | ------------------------------------------ |
+| Phases completed     | 1/6   | Phase 1 complete                           |
+| Requirements shipped | 10/38 | Foundation complete                        |
+| Plans executed       | 3/?   | 01-01 (2min), 01-02 (4min), 01-03 (3.5min) |
+| Blockers             | 0     | —                                          |
+| Research flags       | 0     | Research complete (SUMMARY.md)             |
 
 ## Accumulated Context
 
@@ -78,17 +78,32 @@ Building Phase 1 Foundation - monorepo scaffold and development environment comp
 - Apps reference workspace packages via tsconfig references array
 - Enables type checking across workspace boundaries
 
+**2026-02-01: Pre-commit hook strategy**
+
+- lint-staged runs prettier on staged files only
+- Separate `pnpm turbo run typecheck` runs on all packages
+- Rationale: TypeScript checks project graph, not individual files
+- Commit-msg hook enforces Conventional Commits via commitlint
+
+**2026-02-01: lint-staged simplified to prettier only**
+
+- Original plan had ESLint + prettier in lint-staged
+- ESLint not available at root level (workspace package tool)
+- Solution: Prettier in lint-staged, ESLint via turbo in CI/manual
+- Tradeoff: Staged files not linted immediately, but formatted
+
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
 - [x] Web app with Vite + React Router (01-02 complete)
-- [ ] Complete Phase 1 with final plan (Husky/git hooks)
+- [x] Complete Phase 1 with git hooks (01-03 complete)
+- [ ] Begin Phase 2 (Design Tokens with Style Dictionary)
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
 - [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
-None - ready to begin Phase 1 planning.
+None - Phase 1 complete, ready for Phase 2.
 
 ### Research Notes
 
@@ -105,29 +120,31 @@ None - ready to begin Phase 1 planning.
 
 ## Session Continuity
 
-**Last session:** 2026-02-01T17:54:59Z
-**Stopped at:** Completed 01-02-PLAN.md (Web app with Vite + React Router)
+**Last session:** 2026-02-01T17:58:27Z
+**Stopped at:** Completed 01-03-PLAN.md (Git hooks and quality gates)
 **Resume file:** None
 
 **What you were doing:**
-Executing Phase 1 Plan 2 - Created apps/web Vite application with React Router 7, Tailwind CSS 4, and Phoenix welcome page.
+Executing Phase 1 Plan 3 - Set up Husky git hooks with lint-staged, commitlint, and scope rename script. Verified all quality gates pass.
 
 **What's next:**
-Continue Phase 1 with Plan 3 (Husky/git hooks setup with commitlint and lint-staged).
+Begin Phase 2 (Design Tokens) - Set up Style Dictionary and generate design tokens.
 
 **Important context for next session:**
 
-- Vite dev server working at localhost:5173 with React Router and Tailwind CSS 4
-- eslint-plugin-tailwindcss removed (incompatible with Tailwind CSS 4)
-- TypeScript project references functional between apps/web and workspace packages
-- Inline style bans enforce Tailwind class usage via react/forbid-dom-props
-- Welcome page showcases Phoenix branding and monorepo features
+- Phase 1 COMPLETE: All 10 FNDN requirements shipped
+- Pre-commit hooks enforce prettier formatting + typecheck
+- Commit-msg hook enforces Conventional Commits
+- All quality gates verified: install, format:check, lint, typecheck, build
+- React 18.3.0 pinned across workspace
+- Developer experience fully functional: clone → pnpm install → pnpm dev
 
 **Key files created:**
 
-- `.planning/phases/01-foundation/01-02-SUMMARY.md` - Execution summary with full context
-- apps/web/vite.config.ts, apps/web/src/App.tsx, apps/web/src/routes/root.tsx
-- apps/web/src/routes/components.tsx (placeholder for Phase 3)
+- `.planning/phases/01-foundation/01-03-SUMMARY.md` - Execution summary
+- `.husky/pre-commit`, `.husky/commit-msg` - Git hooks
+- `scripts/rename-scope.mjs` - Scope rename utility
+- `.node-version` - Node 22 pinning
 
 **Files to reference:**
 
@@ -135,9 +152,10 @@ Continue Phase 1 with Plan 3 (Husky/git hooks setup with commitlint and lint-sta
 - `/Users/chris/Repos/phoenix/.planning/REQUIREMENTS.md` - All 38 v1 requirements with IDs
 - `/Users/chris/Repos/phoenix/.planning/ROADMAP.md` - 6-phase structure
 - `/Users/chris/Repos/phoenix/.planning/research/SUMMARY.md` - Critical pitfalls and architecture
-- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-01-SUMMARY.md` - Monorepo scaffold execution
-- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-02-SUMMARY.md` - Latest execution context
+- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-01-SUMMARY.md` - Monorepo scaffold
+- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-02-SUMMARY.md` - Web app setup
+- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-03-SUMMARY.md` - Git hooks (latest)
 
 ---
 
-_State updated: 2026-02-01 after plan 01-01 execution_
+_State updated: 2026-02-01 after plan 01-03 execution_
