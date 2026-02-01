@@ -9,27 +9,27 @@
 AI agents (Claude Code specifically) can add, modify, and extend components without human hand-holding — because the repo structure, naming, patterns, and rules are explicit and enforced.
 
 **Current Focus:**
-Phase 1 Foundation COMPLETE - ready for Phase 2 (Design Tokens).
+Phase 2 Token System COMPLETE - ready for Phase 3 (Core Components).
 
 ## Current Position
 
-**Phase:** 2 - Token System (2 of 6) - IN PROGRESS
-**Plan:** 02-01 complete (1 of 3 in phase)
-**Status:** In progress
-**Last activity:** 2026-02-01 - Completed 02-01-PLAN.md (DTCG tokens + Style Dictionary pipeline)
-**Progress:** ███████████████░░░░░ 14/38 requirements (37%)
+**Phase:** 2 - Token System (2 of 6) - COMPLETE
+**Plan:** All 3 plans complete (02-01, 02-02, 02-03)
+**Status:** Complete
+**Last activity:** 2026-02-01 - Completed 02-02-PLAN.md (Tailwind v4 @theme + dark mode toggle)
+**Progress:** █████████████████░░░ 21/38 requirements (55%)
 
-**Next Milestone:** Complete Phase 2 plans 02-02 and 02-03
+**Next Milestone:** Begin Phase 3 (Core Components Foundation)
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                                                    |
-| -------------------- | ----- | -------------------------------------------------------- |
-| Phases completed     | 1/6   | Phase 1 complete, Phase 2 in progress                    |
-| Requirements shipped | 14/38 | Foundation complete, TOKN-01,02,03 shipped               |
-| Plans executed       | 4/?   | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min) |
-| Blockers             | 0     | —                                                        |
-| Research flags       | 0     | Research complete (SUMMARY.md)                           |
+| Metric               | Value | Notes                                                                                |
+| -------------------- | ----- | ------------------------------------------------------------------------------------ |
+| Phases completed     | 2/6   | Phase 1 and Phase 2 complete                                                         |
+| Requirements shipped | 21/38 | Foundation complete (10), Token System complete (7), Components pending (15+6)       |
+| Plans executed       | 6     | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min) |
+| Blockers             | 0     | —                                                                                    |
+| Research flags       | 0     | Research complete (SUMMARY.md)                                                       |
 
 ## Accumulated Context
 
@@ -117,19 +117,42 @@ Phase 1 Foundation COMPLETE - ready for Phase 2 (Design Tokens).
 - Better visual rhythm than 4px, aligns with common design grids
 - 33 spacing tokens covering micro (4px) to macro (768px) layouts
 
+**2026-02-01: Tailwind v4 @theme comprehensive mapping**
+
+- Map all semantic tokens AND full color scales in @theme directive
+- Provides flexibility: semantic tokens (bg-primary) OR scale values (bg-primary-600)
+- 185 lines in @theme directive for complete utility coverage
+- Enables both design system constraints and granular control when needed
+
+**2026-02-01: Class-based dark mode for manual control**
+
+- Use .dark class toggle instead of media-query-only
+- Gives users explicit control via ThemeToggle component
+- Allows override of OS preference with localStorage persistence
+- Single class toggle activates all dark mode token overrides
+
+**2026-02-01: Flash prevention via synchronous inline script**
+
+- Inline IIFE in head runs before any rendering
+- Reads localStorage.theme and matchMedia for OS preference
+- Applies .dark class synchronously to prevent white flash
+- Zero FOUC (Flash of Unstyled Content) on dark mode page load
+
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
 - [x] Web app with Vite + React Router (01-02 complete)
 - [x] Complete Phase 1 with git hooks (01-03 complete)
 - [x] DTCG tokens + Style Dictionary pipeline (02-01 complete)
-- [ ] Complete Phase 2 plans 02-02 and 02-03
+- [x] Tailwind v4 @theme integration + dark mode (02-02 complete)
+- [x] Token migration guide (02-03 complete)
+- [ ] Begin Phase 3: Core Components Foundation
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
 - [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
-None - Phase 2 in progress (plan 02-01 complete).
+None - Phase 2 complete, ready for Phase 3 (Core Components).
 
 ### Research Notes
 
@@ -146,32 +169,34 @@ None - Phase 2 in progress (plan 02-01 complete).
 
 ## Session Continuity
 
-**Last session:** 2026-02-01T18:59:39Z
-**Stopped at:** Completed 02-01-PLAN.md (DTCG tokens + Style Dictionary pipeline)
+**Last session:** 2026-02-01T19:24:03Z
+**Stopped at:** Completed Phase 2 (all 3 plans: 02-01, 02-02, 02-03)
 **Resume file:** None
 
 **What you were doing:**
-Executing Phase 2 Plan 1 - Created 187 DTCG-compliant design tokens across 5 JSON files (colors, spacing, typography, radii) and built Style Dictionary pipeline generating CSS custom properties for light and dark modes.
+Completed Phase 2 Token System - Wired design tokens into Tailwind v4 via @theme directive (plan 02-02), added dark mode toggle with localStorage persistence, and verified complete token system functionality.
 
 **What's next:**
-Execute Phase 2 plans 02-02 (Tailwind v4 @theme integration) and 02-03 (Token migration guide).
+Begin Phase 3: Core Components Foundation (Button, Input, Textarea, Select, Checkbox, Radio, Dialog components).
 
 **Important context for next session:**
 
 - Phase 1 COMPLETE: All 10 FNDN requirements shipped
-- Phase 2 in progress: Plan 02-01 complete (TOKN-01, TOKN-02, TOKN-03 shipped)
-- Design token foundation ready: 187 tokens, Style Dictionary pipeline working
-- OKLCH color format throughout (77 light mode colors, 17 dark mode overrides)
-- shadcn/ui semantic token convention followed exactly
-- Turborepo cache invalidation working correctly for token JSON files
+- Phase 2 COMPLETE: All 7 TOKN requirements shipped (TOKN-01 through TOKN-07)
+- Token system fully operational: 187 tokens consumable via Tailwind utilities
+- Tailwind v4 @theme configured: semantic tokens (bg-primary) + full scales (bg-neutral-500)
+- Dark mode working: .dark class toggle, localStorage persistence, flash prevention
+- Apps/web ready for component development with token-based styling
 
-**Key files created:**
+**Key files created in Phase 2:**
 
-- `packages/tokens/src/tokens/*.json` - 5 DTCG token source files (187 tokens total)
-- `packages/tokens/src/build.mjs` - Style Dictionary ESM build script with dual instances
-- `packages/tokens/dist/tokens.css` - Generated light mode CSS custom properties (:root)
-- `packages/tokens/dist/tokens.dark.css` - Generated dark mode CSS custom properties (.dark)
-- `.planning/phases/02-token-system/02-01-SUMMARY.md` - Execution summary
+- `packages/tokens/src/tokens/*.json` - 5 DTCG token source files (187 tokens)
+- `packages/tokens/src/build.mjs` - Style Dictionary build pipeline
+- `packages/tokens/dist/tokens.css` - Light mode CSS custom properties
+- `packages/tokens/dist/tokens.dark.css` - Dark mode CSS custom properties
+- `apps/web/src/index.css` - Tailwind v4 @theme directive (185 lines)
+- `apps/web/src/components/theme-toggle.tsx` - Dark mode toggle component
+- `docs/token-migration.md` - Migration guide for Tokens Studio / Figma Variables
 
 **Files to reference:**
 
@@ -179,10 +204,11 @@ Execute Phase 2 plans 02-02 (Tailwind v4 @theme integration) and 02-03 (Token mi
 - `/Users/chris/Repos/phoenix/.planning/REQUIREMENTS.md` - All 38 v1 requirements with IDs
 - `/Users/chris/Repos/phoenix/.planning/ROADMAP.md` - 6-phase structure
 - `/Users/chris/Repos/phoenix/.planning/research/SUMMARY.md` - Critical pitfalls and architecture
-- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-01-SUMMARY.md` - Monorepo scaffold
-- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-02-SUMMARY.md` - Web app setup
-- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-03-SUMMARY.md` - Git hooks (latest)
+- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-03-SUMMARY.md` - Phase 1 complete
+- `/Users/chris/Repos/phoenix/.planning/phases/02-token-system/02-01-SUMMARY.md` - Token foundation
+- `/Users/chris/Repos/phoenix/.planning/phases/02-token-system/02-02-SUMMARY.md` - Tailwind integration (latest)
+- `/Users/chris/Repos/phoenix/.planning/phases/02-token-system/02-03-SUMMARY.md` - Migration guide
 
 ---
 
-_State updated: 2026-02-01 after plan 02-01 execution_
+_State updated: 2026-02-01 after Phase 2 completion (plans 02-01, 02-02, 02-03)_
