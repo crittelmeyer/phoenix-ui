@@ -1,13 +1,14 @@
 import { Link } from 'react-router'
+import { ThemeToggle } from '../components/theme-toggle'
 
 export default function Root() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-900">
+    <div className="bg-background flex min-h-screen items-center justify-center">
       <div className="space-y-8 px-4 text-center">
         {/* Phoenix Logo */}
         <div className="flex justify-center">
           <svg
-            className="h-24 w-24 text-orange-500"
+            className="text-primary h-24 w-24"
             viewBox="0 0 24 24"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
@@ -21,16 +22,23 @@ export default function Root() {
 
         {/* Project Name */}
         <div>
-          <h1 className="mb-4 text-6xl font-bold text-white">Phoenix</h1>
-          <p className="text-2xl text-slate-400">Design System Starter</p>
+          <h1 className="text-foreground mb-4 text-6xl font-bold">Phoenix</h1>
+          <p className="text-muted-foreground text-2xl">
+            Design System Starter
+          </p>
         </div>
 
         {/* Description */}
-        <p className="mx-auto max-w-2xl leading-relaxed text-slate-300">
+        <p className="text-foreground mx-auto max-w-2xl leading-relaxed">
           A production-ready design system monorepo built with React,
           TypeScript, Tailwind CSS 4, and Radix UI. Designed for AI agents to
           add, modify, and extend components without human hand-holding.
         </p>
+
+        {/* Theme Toggle */}
+        <div className="flex justify-center">
+          <ThemeToggle />
+        </div>
 
         {/* Action Links */}
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -38,13 +46,13 @@ export default function Root() {
             href="http://localhost:6006"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg bg-orange-500 px-8 py-3 font-semibold text-white transition-colors hover:bg-orange-600"
+            className="bg-primary text-primary-foreground rounded-lg px-8 py-3 font-semibold transition-colors hover:opacity-90"
           >
             View Storybook
           </a>
           <Link
             to="/components"
-            className="rounded-lg bg-slate-700 px-8 py-3 font-semibold text-white transition-colors hover:bg-slate-600"
+            className="border-border bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground rounded-lg border px-8 py-3 font-semibold transition-colors"
           >
             Browse Components
           </Link>
@@ -52,27 +60,29 @@ export default function Root() {
 
         {/* Feature List */}
         <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 text-left sm:grid-cols-3">
-          <div className="rounded-lg bg-slate-800 p-6">
-            <h3 className="mb-2 text-lg font-semibold text-white">
+          <div className="border-border bg-card rounded-lg border p-6">
+            <h3 className="text-card-foreground mb-2 text-lg font-semibold">
               Monorepo Structure
             </h3>
-            <p className="text-sm text-slate-400">
+            <p className="text-muted-foreground text-sm">
               pnpm workspaces with Turborepo orchestration for optimal build
               performance.
             </p>
           </div>
-          <div className="rounded-lg bg-slate-800 p-6">
-            <h3 className="mb-2 text-lg font-semibold text-white">
+          <div className="border-border bg-card rounded-lg border p-6">
+            <h3 className="text-card-foreground mb-2 text-lg font-semibold">
               Design Tokens
             </h3>
-            <p className="text-sm text-slate-400">
+            <p className="text-muted-foreground text-sm">
               Style Dictionary pipeline generating Tailwind CSS tokens from
               source definitions.
             </p>
           </div>
-          <div className="rounded-lg bg-slate-800 p-6">
-            <h3 className="mb-2 text-lg font-semibold text-white">AI-Ready</h3>
-            <p className="text-sm text-slate-400">
+          <div className="border-border bg-card rounded-lg border p-6">
+            <h3 className="text-card-foreground mb-2 text-lg font-semibold">
+              AI-Ready
+            </h3>
+            <p className="text-muted-foreground text-sm">
               Explicit patterns and rules enforced via ESLint for consistent AI
               modifications.
             </p>

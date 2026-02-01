@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phoenix Design System</title>
+    <script>
+      ;(function () {
+        const stored = localStorage.getItem('theme')
+        const prefersDark = window.matchMedia(
+          '(prefers-color-scheme: dark)',
+        ).matches
+        const theme = stored || (prefersDark ? 'dark' : 'light')
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark')
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
