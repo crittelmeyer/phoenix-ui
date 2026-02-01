@@ -14,20 +14,20 @@ Phase 1 Foundation COMPLETE - ready for Phase 2 (Design Tokens).
 ## Current Position
 
 **Phase:** 2 - Token System (2 of 6) - IN PROGRESS
-**Plan:** 02-03 complete (1 of 3 in phase)
+**Plan:** 02-01 complete (1 of 3 in phase)
 **Status:** In progress
-**Last activity:** 2026-02-01 - Completed 02-03-PLAN.md (Token migration guide)
-**Progress:** ███████████░░░░░░░░░ 11/38 requirements (29%)
+**Last activity:** 2026-02-01 - Completed 02-01-PLAN.md (DTCG tokens + Style Dictionary pipeline)
+**Progress:** ███████████████░░░░░ 14/38 requirements (37%)
 
-**Next Milestone:** Complete Phase 2 plans 02-01 and 02-02 (running in parallel)
+**Next Milestone:** Complete Phase 2 plans 02-02 and 02-03
 
 ## Performance Metrics
 
 | Metric               | Value | Notes                                                    |
 | -------------------- | ----- | -------------------------------------------------------- |
 | Phases completed     | 1/6   | Phase 1 complete, Phase 2 in progress                    |
-| Requirements shipped | 11/38 | Foundation complete, TOKN-07 shipped                     |
-| Plans executed       | 4/?   | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-03 (2min) |
+| Requirements shipped | 14/38 | Foundation complete, TOKN-01,02,03 shipped               |
+| Plans executed       | 4/?   | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min) |
 | Blockers             | 0     | —                                                        |
 | Research flags       | 0     | Research complete (SUMMARY.md)                           |
 
@@ -92,25 +92,44 @@ Phase 1 Foundation COMPLETE - ready for Phase 2 (Design Tokens).
 - Solution: Prettier in lint-staged, ESLint via turbo in CI/manual
 - Tradeoff: Staged files not linted immediately, but formatted
 
-**2026-02-01: Three-path migration strategy for design tokens**
+**2026-02-01: Dual Style Dictionary instances for light/dark modes**
 
-- Token migration guide documents Tokens Studio (bidirectional), Figma Variables (native), and seed-only (AI-first) workflows
-- Rationale: AI-agent-first core value means JSON-only workflow is equally valid for developer/AI teams
-- OKLCH compatibility caveat included (cutting-edge format may lag in design tool support)
+- Use separate StyleDictionary instances instead of single instance with filters
+- Eliminates collision warnings between light and dark semantic tokens
+- Light mode excludes .dark.json files, dark mode includes only .dark.json files
+- Clearer separation of concerns, matches research pattern
+
+**2026-02-01: OKLCH color format throughout token system**
+
+- All color tokens use OKLCH format (e.g., "oklch(0.647 0.186 264.54)")
+- Rationale: Perceptual uniformity, wide gamut P3 support, better accessibility
+- Future-proof color system consistent with 2026 best practices
+
+**2026-02-01: shadcn/ui semantic token convention**
+
+- Follow shadcn/ui exactly: --background, --foreground, --primary-foreground, --muted, --accent, --destructive, --border, --input, --ring
+- Enables zero translation layer for shadcn component adoption in Phase 3
+- Ecosystem compatibility with existing shadcn patterns
+
+**2026-02-01: 8px base spacing unit**
+
+- 8px base with fractional multipliers (0.5, 1, 1.5, 2, 2.5...) up to 96 units
+- Better visual rhythm than 4px, aligns with common design grids
+- 33 spacing tokens covering micro (4px) to macro (768px) layouts
 
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
 - [x] Web app with Vite + React Router (01-02 complete)
 - [x] Complete Phase 1 with git hooks (01-03 complete)
-- [x] Token migration guide (02-03 complete)
-- [ ] Complete Phase 2 plans 02-01 and 02-02 (parallel execution)
+- [x] DTCG tokens + Style Dictionary pipeline (02-01 complete)
+- [ ] Complete Phase 2 plans 02-02 and 02-03
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
 - [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
-None - Phase 2 in progress (plan 02-03 complete, plans 02-01 and 02-02 running in parallel).
+None - Phase 2 in progress (plan 02-01 complete).
 
 ### Research Notes
 
@@ -127,28 +146,32 @@ None - Phase 2 in progress (plan 02-03 complete, plans 02-01 and 02-02 running i
 
 ## Session Continuity
 
-**Last session:** 2026-02-01T18:56:38Z
-**Stopped at:** Completed 02-03-PLAN.md (Token migration guide)
+**Last session:** 2026-02-01T18:59:39Z
+**Stopped at:** Completed 02-01-PLAN.md (DTCG tokens + Style Dictionary pipeline)
 **Resume file:** None
 
 **What you were doing:**
-Executing Phase 2 Plan 3 - Created token migration guide documenting DTCG-to-Tokens Studio and DTCG-to-Figma Variables migration paths, plus AI-first seed-only workflow.
+Executing Phase 2 Plan 1 - Created 187 DTCG-compliant design tokens across 5 JSON files (colors, spacing, typography, radii) and built Style Dictionary pipeline generating CSS custom properties for light and dark modes.
 
 **What's next:**
-Wait for parallel plans 02-01 and 02-02 to complete (DTCG tokens + Style Dictionary pipeline).
+Execute Phase 2 plans 02-02 (Tailwind v4 @theme integration) and 02-03 (Token migration guide).
 
 **Important context for next session:**
 
 - Phase 1 COMPLETE: All 10 FNDN requirements shipped
-- Phase 2 in progress: Plan 02-03 complete (TOKN-07 shipped)
-- Plans 02-01 and 02-02 running in parallel with 02-03
-- Token migration guide covers three paths: Tokens Studio (bidirectional), Figma Variables (native), seed-only (AI-first)
-- OKLCH format caveat documented for design tool compatibility
+- Phase 2 in progress: Plan 02-01 complete (TOKN-01, TOKN-02, TOKN-03 shipped)
+- Design token foundation ready: 187 tokens, Style Dictionary pipeline working
+- OKLCH color format throughout (77 light mode colors, 17 dark mode overrides)
+- shadcn/ui semantic token convention followed exactly
+- Turborepo cache invalidation working correctly for token JSON files
 
 **Key files created:**
 
-- `docs/token-migration.md` - 224-line migration guide with DTCG format explanation, Tokens Studio and Figma Variables paths, and comparison table
-- `.planning/phases/02-token-system/02-03-SUMMARY.md` - Execution summary
+- `packages/tokens/src/tokens/*.json` - 5 DTCG token source files (187 tokens total)
+- `packages/tokens/src/build.mjs` - Style Dictionary ESM build script with dual instances
+- `packages/tokens/dist/tokens.css` - Generated light mode CSS custom properties (:root)
+- `packages/tokens/dist/tokens.dark.css` - Generated dark mode CSS custom properties (.dark)
+- `.planning/phases/02-token-system/02-01-SUMMARY.md` - Execution summary
 
 **Files to reference:**
 
@@ -162,4 +185,4 @@ Wait for parallel plans 02-01 and 02-02 to complete (DTCG tokens + Style Diction
 
 ---
 
-_State updated: 2026-02-01 after plan 01-03 execution_
+_State updated: 2026-02-01 after plan 02-01 execution_
