@@ -14,7 +14,7 @@ Phoenix delivers an AI-first design system monorepo starter in 6 phases, followi
 
 **Goal:** Developer can clone, install, and run the monorepo with zero configuration.
 
-**Status:** In Progress (1/3 plans complete)
+**Status:** In Progress (2/3 plans complete)
 
 **Dependencies:** None (foundational)
 
@@ -22,7 +22,7 @@ Phoenix delivers an AI-first design system monorepo starter in 6 phases, followi
 
 Plans:
 - [x] 01-01-PLAN.md — Root monorepo scaffolding + shared config packages + stub workspaces (complete 2026-02-01, 2min)
-- [ ] 01-02-PLAN.md — apps/web with Vite + React Router + Tailwind CSS 4 + welcome page
+- [x] 01-02-PLAN.md — apps/web with Vite + React Router + Tailwind CSS 4 + welcome page (complete 2026-02-01, 4min)
 - [ ] 01-03-PLAN.md — Pre-commit hooks + rename script + full verification
 
 **Requirements:** FNDN-01, FNDN-02, FNDN-03, FNDN-04, FNDN-05, FNDN-06, FNDN-07, FNDN-08, FNDN-09, FNDN-10

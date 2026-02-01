@@ -9,25 +9,25 @@
 AI agents (Claude Code specifically) can add, modify, and extend components without human hand-holding — because the repo structure, naming, patterns, and rules are explicit and enforced.
 
 **Current Focus:**
-Awaiting Phase 1 planning to establish monorepo foundation.
+Building Phase 1 Foundation - monorepo scaffold and development environment complete, ready for final plan (git hooks).
 
 ## Current Position
 
 **Phase:** 1 - Foundation (1 of 6)
-**Plan:** 01-01 complete (1 of 3 in phase)
+**Plan:** 01-02 complete (2 of 3 in phase)
 **Status:** In progress
-**Last activity:** 2026-02-01 - Completed 01-01-PLAN.md (Monorepo scaffold)
-**Progress:** █░░░░░░░░░░░░░░░░░░░ 1/38 requirements (3%)
+**Last activity:** 2026-02-01 - Completed 01-02-PLAN.md (Web app with Vite + React Router)
+**Progress:** ██░░░░░░░░░░░░░░░░░░ 2/38 requirements (5%)
 
-**Next Milestone:** Complete Phase 1 (Foundation) - 9 remaining requirements
+**Next Milestone:** Complete Phase 1 (Foundation) - 8 remaining requirements
 
 ## Performance Metrics
 
 | Metric | Value | Notes |
 |--------|-------|-------|
 | Phases completed | 0/6 | Phase 1 in progress |
-| Requirements shipped | 1/38 | Monorepo scaffold complete |
-| Plans executed | 1/? | 01-01 complete (2min) |
+| Requirements shipped | 2/38 | Monorepo + web app complete |
+| Plans executed | 2/? | 01-01 (2min), 01-02 (4min) |
 | Blockers | 0 | — |
 | Research flags | 0 | Research complete (SUMMARY.md) |
 
@@ -56,15 +56,28 @@ Awaiting Phase 1 planning to establish monorepo foundation.
 - Build step will be added in later phase
 
 **2026-02-01: ESLint strictness for token enforcement**
-- `tailwindcss/no-arbitrary-value` set to error (not warning)
 - Inline style ban via `react/forbid-dom-props` and `react/forbid-component-props`
-- Forces developers to use design tokens instead of arbitrary values
+- Forces developers to use Tailwind classes instead of inline styles
+- Note: eslint-plugin-tailwindcss removed (incompatible with Tailwind CSS 4)
+
+**2026-02-01: Tailwind CSS 4 ESLint plugin incompatibility**
+- eslint-plugin-tailwindcss removed from shared ESLint config
+- Plugin tries to import `resolveConfig` which doesn't exist in Tailwind CSS 4 architecture
+- Inline style bans still enforce Tailwind usage
+- Will re-evaluate when plugin updates for Tailwind CSS 4
+
+**2026-02-01: TypeScript project references for monorepo**
+- Workspace packages must set `noEmit: false` with `declaration: true` for composite builds
+- Apps reference workspace packages via tsconfig references array
+- Enables type checking across workspace boundaries
 
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
-- [ ] Continue Phase 1 with remaining plans (Husky setup, Next.js app)
+- [x] Web app with Vite + React Router (01-02 complete)
+- [ ] Complete Phase 1 with final plan (Husky/git hooks)
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
+- [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
@@ -83,35 +96,35 @@ None - ready to begin Phase 1 planning.
 
 ## Session Continuity
 
-**Last session:** 2026-02-01T17:47:11Z
-**Stopped at:** Completed 01-01-PLAN.md (Monorepo scaffold)
+**Last session:** 2026-02-01T17:54:59Z
+**Stopped at:** Completed 01-02-PLAN.md (Web app with Vite + React Router)
 **Resume file:** None
 
 **What you were doing:**
-Executing Phase 1 Plan 1 - Monorepo scaffold with pnpm, Turborepo, shared configs.
+Executing Phase 1 Plan 2 - Created apps/web Vite application with React Router 7, Tailwind CSS 4, and Phoenix welcome page.
 
 **What's next:**
-Continue Phase 1 with remaining plans (Husky/git hooks setup, Next.js app scaffold).
+Continue Phase 1 with Plan 3 (Husky/git hooks setup with commitlint and lint-staged).
 
 **Important context for next session:**
-- Monorepo scaffold complete: 6 packages, Turborepo working, React 18.3.0 pinned
-- ESLint no-arbitrary-value set to error - will enforce token usage from Phase 2 onward
-- Source exports (main: src/index.ts) established for HMR
-- Turborepo dependency chain verified: tokens → ui → apps
-- All shared configs (TypeScript, ESLint) ready for consumption
+- Vite dev server working at localhost:5173 with React Router and Tailwind CSS 4
+- eslint-plugin-tailwindcss removed (incompatible with Tailwind CSS 4)
+- TypeScript project references functional between apps/web and workspace packages
+- Inline style bans enforce Tailwind class usage via react/forbid-dom-props
+- Welcome page showcases Phoenix branding and monorepo features
 
 **Key files created:**
-- `.planning/phases/01-foundation/01-01-SUMMARY.md` - Execution summary with full context
-- Root package.json, pnpm-workspace.yaml, turbo.json
-- packages/typescript-config, packages/eslint-config
-- Stub packages: ui, tokens, storybook
+- `.planning/phases/01-foundation/01-02-SUMMARY.md` - Execution summary with full context
+- apps/web/vite.config.ts, apps/web/src/App.tsx, apps/web/src/routes/root.tsx
+- apps/web/src/routes/components.tsx (placeholder for Phase 3)
 
 **Files to reference:**
 - `/Users/chris/Repos/phoenix/.planning/PROJECT.md` - Core value and constraints
 - `/Users/chris/Repos/phoenix/.planning/REQUIREMENTS.md` - All 38 v1 requirements with IDs
 - `/Users/chris/Repos/phoenix/.planning/ROADMAP.md` - 6-phase structure
 - `/Users/chris/Repos/phoenix/.planning/research/SUMMARY.md` - Critical pitfalls and architecture
-- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-01-SUMMARY.md` - Latest execution context
+- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-01-SUMMARY.md` - Monorepo scaffold execution
+- `/Users/chris/Repos/phoenix/.planning/phases/01-foundation/01-02-SUMMARY.md` - Latest execution context
 
 ---
 
