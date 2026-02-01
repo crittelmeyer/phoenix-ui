@@ -9,27 +9,27 @@
 AI agents (Claude Code specifically) can add, modify, and extend components without human hand-holding — because the repo structure, naming, patterns, and rules are explicit and enforced.
 
 **Current Focus:**
-Phase 4 Documentation Infrastructure IN PROGRESS - Storybook foundation complete.
+Phase 4 Documentation Infrastructure IN PROGRESS - Component stories complete.
 
 ## Current Position
 
 **Phase:** 4 - Documentation Infrastructure (4 of 6) - IN PROGRESS
-**Plan:** 1 of 3 plans complete (04-01)
+**Plan:** 2 of 3 plans complete (04-02)
 **Status:** In Progress
-**Last activity:** 2026-02-01 - Completed 04-01-PLAN.md (Storybook foundation)
-**Progress:** ███████████████████████ 31/38 requirements (82%)
+**Last activity:** 2026-02-01 - Completed 04-02-PLAN.md (Component stories)
+**Progress:** ████████████████████████ 32/38 requirements (84%)
 
 **Next Milestone:** Complete Phase 4 documentation infrastructure
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                                                                                                                                        |
-| -------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Phases completed     | 3/6   | Foundation, Token System, and Core Components complete                                                                                       |
-| Requirements shipped | 31/38 | Foundation (10), Token System (7), Core Components (11/15), Documentation (1/3)                                                              |
-| Plans executed       | 10    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min) |
-| Blockers             | 0     | —                                                                                                                                            |
-| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                               |
+| Metric               | Value | Notes                                                                                                                                                      |
+| -------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Phases completed     | 3/6   | Foundation, Token System, and Core Components complete                                                                                                     |
+| Requirements shipped | 32/38 | Foundation (10), Token System (7), Core Components (11/15), Documentation (2/3)                                                                            |
+| Plans executed       | 11    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min) |
+| Blockers             | 0     | —                                                                                                                                                          |
+| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                             |
 
 ## Accumulated Context
 
@@ -225,6 +225,20 @@ Phase 4 Documentation Infrastructure IN PROGRESS - Storybook foundation complete
 - Matches web app pattern from Phase 2
 - CJS deprecation warning expected and cosmetic (research Pitfall 1)
 
+**2026-02-01: CSF 3.0 format for all stories**
+
+- Used `const meta = { ... } satisfies Meta<typeof Component>` for type safety
+- All stories include `tags: ['autodocs']` for automatic prop table generation
+- Enables better IntelliSense and compile-time type checking
+- Pattern established in 04-02 for all 7 component stories
+
+**2026-02-01: Compound component documentation pattern**
+
+- Select, RadioGroup, and Dialog use `subcomponents` property in meta
+- Enables auto-docs to generate prop tables for all sub-parts
+- Follows Storybook best practice from research (Pitfall 2)
+- Interactive triggers (DialogTrigger with Button) for real-world usage demonstration
+
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
@@ -237,12 +251,13 @@ Phase 4 Documentation Infrastructure IN PROGRESS - Storybook foundation complete
 - [x] Form components: Select, Checkbox, Radio, Label (03-02 complete)
 - [x] Dialog component and barrel export (03-03 complete)
 - [x] Storybook foundation with Vite builder and tokens page (04-01 complete)
+- [x] Component stories for all 7 core components (04-02 complete)
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
 - [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
-None - Phase 4 Plan 1 complete. Ready for Plan 2 (component stories).
+None - Phase 4 Plan 2 complete. Ready for Plan 3 (if exists) or phase completion.
 
 ### Research Notes
 
@@ -259,26 +274,28 @@ None - Phase 4 Plan 1 complete. Ready for Plan 2 (component stories).
 
 ## Session Continuity
 
-**Last session:** 2026-02-01T22:36:24Z
-**Stopped at:** Completed 04-01-PLAN.md (Storybook foundation)
+**Last session:** 2026-02-01T22:41:40Z
+**Stopped at:** Completed 04-02-PLAN.md (Component stories)
 **Resume file:** None
 
 **What you were doing:**
-Completed Phase 4 Plan 1 - Set up Storybook 8.6 with Vite builder, Tailwind CSS 4 integration, dark mode theme toggle, and tokens visualization page. Dev server runs on localhost:6006 with working theme switching.
+Completed Phase 4 Plan 2 - Created 7 comprehensive story files for all core components using CSF 3.0 format with auto-docs, subcomponents property for compound components, and interactive examples showing all variants, sizes, and states including disabled.
 
 **What's next:**
-Continue Phase 4 with Plan 2 (component stories for basic components) or Plan 3 (compound component stories).
+Continue Phase 4 with Plan 3 (if exists) or complete Phase 4 and move to Phase 5 (Advanced Components).
 
 **Important context for next session:**
 
 - Phase 1 COMPLETE: All 10 FNDN requirements shipped
 - Phase 2 COMPLETE: All 7 TOKN requirements shipped
 - Phase 3 COMPLETE: 11/15 COMP requirements shipped (remaining are docs/testing)
-- Phase 4 IN PROGRESS: 1/3 DOCS requirements shipped (Storybook foundation)
+- Phase 4 IN PROGRESS: 2/3 DOCS requirements shipped (Storybook foundation + component stories)
 - All 7 core components built: Button, Input, Textarea, Select, Checkbox, RadioGroup, Label, Dialog
+- All 7 components have comprehensive Storybook stories with auto-docs
 - Barrel export enables: `import { Button, Input, Select, Dialog } from "@phoenix/ui"`
-- Storybook environment ready: localhost:6006 with Tailwind CSS 4 and dark mode toggle
+- Storybook environment ready: localhost:6006 with working stories and dark mode toggle
 - Component pattern proven: forwardRef + cn() + semantic tokens + CVA (when needed)
+- Story pattern proven: CSF 3.0 with tags: ['autodocs'] and subcomponents for compound components
 
 **Key files created in Phase 3:**
 
@@ -293,12 +310,19 @@ Continue Phase 4 with Plan 2 (component stories for basic components) or Plan 3 
 - `packages/ui/src/components/dialog.tsx` - Dialog compound component (10 parts)
 - `packages/ui/src/index.ts` - Barrel export (30+ named exports)
 
-**Key files created in Phase 4 Plan 1:**
+**Key files created in Phase 4:**
 
-- `apps/storybook/.storybook/main.ts` - Storybook config with viteFinal hook
-- `apps/storybook/.storybook/preview.ts` - Theme decorator with withThemeByClassName
-- `apps/storybook/stories/index.css` - Duplicate of web app CSS with @theme mappings
-- `apps/storybook/stories/Tokens.mdx` - Token visualization page
+- `apps/storybook/.storybook/main.ts` - Storybook config with viteFinal hook (04-01)
+- `apps/storybook/.storybook/preview.ts` - Theme decorator with withThemeByClassName (04-01)
+- `apps/storybook/stories/index.css` - Duplicate of web app CSS with @theme mappings (04-01)
+- `apps/storybook/stories/Tokens.mdx` - Token visualization page (04-01)
+- `apps/storybook/stories/Button.stories.tsx` - Button stories with all variants and sizes (04-02)
+- `apps/storybook/stories/Input.stories.tsx` - Input stories with types and states (04-02)
+- `apps/storybook/stories/Textarea.stories.tsx` - Textarea stories with autoResize (04-02)
+- `apps/storybook/stories/Checkbox.stories.tsx` - Checkbox stories with checked states (04-02)
+- `apps/storybook/stories/Select.stories.tsx` - Select compound component stories (04-02)
+- `apps/storybook/stories/RadioGroup.stories.tsx` - RadioGroup stories with layouts (04-02)
+- `apps/storybook/stories/Dialog.stories.tsx` - Dialog compound component stories (04-02)
 
 **Files to reference:**
 
@@ -313,8 +337,9 @@ Continue Phase 4 with Plan 2 (component stories for basic components) or Plan 3 
 - `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-01-SUMMARY.md` - Component foundation
 - `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-02-SUMMARY.md` - Form components
 - `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-03-SUMMARY.md` - Dialog and barrel export
-- `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-01-SUMMARY.md` - Storybook foundation (latest)
+- `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-01-SUMMARY.md` - Storybook foundation
+- `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-02-SUMMARY.md` - Component stories (latest)
 
 ---
 
-_State updated: 2026-02-01 after Phase 4 Plan 1 completion (04-01)_
+_State updated: 2026-02-01 after Phase 4 Plan 2 completion (04-02)_
