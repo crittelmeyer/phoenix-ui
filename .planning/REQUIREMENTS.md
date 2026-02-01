@@ -106,16 +106,16 @@
 
 | Requirement | Phase   | Status  |
 | ----------- | ------- | ------- |
-| FNDN-01     | Phase 1 | Pending |
-| FNDN-02     | Phase 1 | Pending |
-| FNDN-03     | Phase 1 | Pending |
-| FNDN-04     | Phase 1 | Pending |
-| FNDN-05     | Phase 1 | Pending |
-| FNDN-06     | Phase 1 | Pending |
-| FNDN-07     | Phase 1 | Pending |
-| FNDN-08     | Phase 1 | Pending |
-| FNDN-09     | Phase 1 | Pending |
-| FNDN-10     | Phase 1 | Pending |
+| FNDN-01     | Phase 1 | Complete |
+| FNDN-02     | Phase 1 | Complete |
+| FNDN-03     | Phase 1 | Complete |
+| FNDN-04     | Phase 1 | Complete |
+| FNDN-05     | Phase 1 | Complete |
+| FNDN-06     | Phase 1 | Complete |
+| FNDN-07     | Phase 1 | Complete |
+| FNDN-08     | Phase 1 | Complete |
+| FNDN-09     | Phase 1 | Complete |
+| FNDN-10     | Phase 1 | Complete |
 | TOKN-01     | Phase 2 | Pending |
 | TOKN-02     | Phase 2 | Pending |
 | TOKN-03     | Phase 2 | Pending |
