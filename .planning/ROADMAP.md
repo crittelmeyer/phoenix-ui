@@ -171,7 +171,7 @@ Plans:
 
 **Goal:** Developer can build complex UIs with overlays, navigation, notifications, and forms.
 
-**Status:** Planned (3 plans in 3 waves)
+**Status:** In Progress (2/3 plans complete)
 
 **Dependencies:** Phase 4 (requires Storybook for visual validation)
 
@@ -179,8 +179,8 @@ Plans:
 
 Plans:
 
-- [x] 05-01-PLAN.md — Install Phase 5 deps + DropdownMenu component + story + Figma Code Connect (COMPLETE)
-- [ ] 05-02-PLAN.md — Tabs + Tooltip + Toast components + stories + Figma Code Connect
+- [x] 05-01-PLAN.md — Install Phase 5 deps + DropdownMenu component + story + Figma Code Connect (complete 2026-02-02, 3min)
+- [x] 05-02-PLAN.md — Tabs + Tooltip + Toast components + stories + Figma Code Connect (complete 2026-02-02, 2min)
 - [ ] 05-03-PLAN.md — Form wrapper (react-hook-form + Zod) + barrel exports + semantic token audit
 
 **Requirements:** COMP-09, COMP-10, COMP-11, COMP-12, COMP-13, COMP-14, COMP-15

@@ -9,27 +9,27 @@
 AI agents (Claude Code specifically) can add, modify, and extend components without human hand-holding — because the repo structure, naming, patterns, and rules are explicit and enforced.
 
 **Current Focus:**
-Phase 5 Core Components Advanced - DropdownMenu component complete with all Phase 5 dependencies installed.
+Phase 5 Core Components Advanced - Tabs, Tooltip, and Toast components complete.
 
 ## Current Position
 
 **Phase:** 5 - Core Components Advanced (5 of 6) - IN PROGRESS
-**Plan:** 1 of 3 plans complete (05-01)
+**Plan:** 2 of 3 plans complete (05-01, 05-02)
 **Status:** In progress
-**Last activity:** 2026-02-02 - Completed 05-01-PLAN.md (DropdownMenu component and Phase 5 dependencies)
-**Progress:** ██████████████████████████████ 36/38 requirements (95%)
+**Last activity:** 2026-02-02 - Completed 05-02-PLAN.md (Tabs, Tooltip, Toast components)
+**Progress:** ██████████████████████████████ 37/38 requirements (97%)
 
-**Next Milestone:** Complete Phase 5 (Tabs, Tooltip, Toast, Form components)
+**Next Milestone:** Complete Phase 5 (Form component and barrel export updates)
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                                                                                                                                                                                  |
-| -------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Phases completed     | 4/6   | Foundation, Token System, Core Components, and Documentation Infrastructure complete                                                                                                   |
-| Requirements shipped | 36/38 | Foundation (10), Token System (7), Core Components (12/15), Documentation (5/5), Advanced Components (1/4)                                                                             |
-| Plans executed       | 13    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min), 04-03 (4min), 05-01 (3min) |
-| Blockers             | 0     | —                                                                                                                                                                                      |
-| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                                                         |
+| Metric               | Value | Notes                                                                                                                                                                                                |
+| -------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Phases completed     | 4/6   | Foundation, Token System, Core Components, and Documentation Infrastructure complete                                                                                                                 |
+| Requirements shipped | 37/38 | Foundation (10), Token System (7), Core Components (12/15), Documentation (5/5), Advanced Components (2/4)                                                                                           |
+| Plans executed       | 14    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min), 04-03 (4min), 05-01 (3min), 05-02 (2min) |
+| Blockers             | 0     | —                                                                                                                                                                                                    |
+| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                                                                       |
 
 ## Accumulated Context
 
@@ -276,6 +276,27 @@ Phase 5 Core Components Advanced - DropdownMenu component complete with all Phas
 - DropdownMenuShortcut as plain span (not forwardRef) for simplicity
 - Most complex compound component to date, establishes pattern for future multi-part components
 
+**2026-02-02: Underline-style tabs with border-bottom indicator**
+
+- Active tab uses data-[state=active]:border-b-2 border-primary
+- TabsContent does not use forceMount - hidden content unmounts from DOM
+- Provides better performance than keeping all panels mounted
+- Consistent with Dialog and overlay component unmounting behavior
+
+**2026-02-02: Portal-wrapped tooltip with side-aware animations**
+
+- TooltipContent rendered inside Portal for proper z-index stacking
+- Side-aware slide animations using data-[side] attributes
+- Default sideOffset of 4px for visual separation
+- TooltipProvider enables shared delay configuration across components
+
+**2026-02-02: Toast as Sonner wrapper with semantic tokens**
+
+- Toaster component wraps Sonner with semantic token classNames
+- Consumers import toast() from 'sonner' directly (not re-exported)
+- Provides design system styling while maintaining third-party API
+- Automatic dark mode support via semantic token CSS variables
+
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
@@ -296,7 +317,7 @@ Phase 5 Core Components Advanced - DropdownMenu component complete with all Phas
 
 ### Blockers
 
-None - Phase 5 Plan 1 COMPLETE. Ready for Plan 05-02 (Tabs and Tooltip components).
+None - Phase 5 Plan 2 COMPLETE. Ready for Plan 05-03 (Form component and barrel export).
 
 ### Research Notes
 
@@ -313,15 +334,15 @@ None - Phase 5 Plan 1 COMPLETE. Ready for Plan 05-02 (Tabs and Tooltip component
 
 ## Session Continuity
 
-**Last session:** 2026-02-02T00:32:23Z
-**Stopped at:** Completed 05-01-PLAN.md (DropdownMenu component and Phase 5 dependencies)
+**Last session:** 2026-02-02T00:38:44Z
+**Stopped at:** Completed 05-02-PLAN.md (Tabs, Tooltip, Toast components)
 **Resume file:** None
 
 **What you were doing:**
-Completed Phase 5 Plan 1 - Installed all 7 Phase 5 dependencies and implemented DropdownMenu compound component with 15 parts including CheckboxItem, RadioItem, SubMenu, and keyboard shortcuts. Created 4 interactive Storybook stories demonstrating all item types and patterns.
+Completed Phase 5 Plan 2 - Implemented 3 compound components (Tabs, Tooltip, Toast) with Storybook stories and Figma Code Connect mappings. Tabs use underline-style active indicator, Tooltip renders in Portal with side-aware animations, Toast wraps Sonner with semantic tokens.
 
 **What's next:**
-Phase 5 Plan 1 COMPLETE. Ready to proceed to Plan 05-02 (Tabs and Tooltip components).
+Phase 5 Plan 2 COMPLETE. Ready to proceed to Plan 05-03 (Form component and barrel export updates).
 
 **Important context for next session:**
 
@@ -372,6 +393,15 @@ Phase 5 Plan 1 COMPLETE. Ready to proceed to Plan 05-02 (Tabs and Tooltip compon
 - `packages/ui/src/components/dropdown-menu.tsx` - DropdownMenu compound component with 15 parts (05-01)
 - `packages/ui/src/components/dropdown-menu.figma.tsx` - DropdownMenu Figma Code Connect mapping (05-01)
 - `apps/storybook/stories/DropdownMenu.stories.tsx` - DropdownMenu stories with checkbox, radio, and submenu examples (05-01)
+- `packages/ui/src/components/tabs.tsx` - Tabs compound component with 4 parts (05-02)
+- `packages/ui/src/components/tabs.figma.tsx` - Tabs Figma Code Connect mapping (05-02)
+- `apps/storybook/stories/Tabs.stories.tsx` - Tabs stories with disabled and full-width variants (05-02)
+- `packages/ui/src/components/tooltip.tsx` - Tooltip compound component with 5 parts (05-02)
+- `packages/ui/src/components/tooltip.figma.tsx` - Tooltip Figma Code Connect mapping (05-02)
+- `apps/storybook/stories/Tooltip.stories.tsx` - Tooltip stories with arrow and position variants (05-02)
+- `packages/ui/src/components/toast.tsx` - Toaster wrapper for Sonner (05-02)
+- `packages/ui/src/components/toast.figma.tsx` - Toast Figma Code Connect mapping (05-02)
+- `apps/storybook/stories/Toast.stories.tsx` - Toast stories with variants and actions (05-02)
 
 **Files to reference:**
 
@@ -389,8 +419,9 @@ Phase 5 Plan 1 COMPLETE. Ready to proceed to Plan 05-02 (Tabs and Tooltip compon
 - `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-01-SUMMARY.md` - Storybook foundation
 - `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-02-SUMMARY.md` - Component stories
 - `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-03-SUMMARY.md` - Figma Code Connect and root README
-- `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-01-SUMMARY.md` - DropdownMenu component and Phase 5 dependencies (latest)
+- `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-01-SUMMARY.md` - DropdownMenu component and Phase 5 dependencies
+- `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-02-SUMMARY.md` - Tabs, Tooltip, and Toast components (latest)
 
 ---
 
-_State updated: 2026-02-02 after Phase 5 Plan 1 completion (05-01)_
+_State updated: 2026-02-02 after Phase 5 Plan 2 completion (05-02)_
