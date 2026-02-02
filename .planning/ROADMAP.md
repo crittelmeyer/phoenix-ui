@@ -171,9 +171,17 @@ Plans:
 
 **Goal:** Developer can build complex UIs with overlays, navigation, notifications, and forms.
 
-**Status:** Pending
+**Status:** Planned (3 plans in 3 waves)
 
 **Dependencies:** Phase 4 (requires Storybook for visual validation)
+
+**Plans:** 3 plans
+
+Plans:
+
+- [ ] 05-01-PLAN.md — Install Phase 5 deps + DropdownMenu component + story + Figma Code Connect
+- [ ] 05-02-PLAN.md — Tabs + Tooltip + Toast components + stories + Figma Code Connect
+- [ ] 05-03-PLAN.md — Form wrapper (react-hook-form + Zod) + barrel exports + semantic token audit
 
 **Requirements:** COMP-09, COMP-10, COMP-11, COMP-12, COMP-13, COMP-14, COMP-15
 
@@ -194,8 +202,8 @@ Plans:
 - Form wrapper (react-hook-form integration with Zod)
 - Update barrel exports in packages/ui/src/index.ts
 - Enforce semantic tokens across all components (COMP-15)
-- Storybook stories for all 6 new components
-- Figma Code Connect mappings for all 6 new components
+- Storybook stories for all 5 new components
+- Figma Code Connect mappings for all 5 new components
 
 ---
 
