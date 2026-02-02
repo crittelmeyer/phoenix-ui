@@ -1,6 +1,6 @@
 # Phoenix Design System
 
-A production-ready monorepo starter for building design systems with React, TypeScript, and Tailwind CSS 4. Ships with 7 core components, a complete design token pipeline, and Storybook documentation.
+A production-ready monorepo starter for building design systems with React, TypeScript, and Tailwind CSS 4. Ships with 14 UI components, a complete design token pipeline, and Storybook documentation.
 
 Note: This README is optimized for AI agents (Claude Code and similar tools).
 
@@ -8,7 +8,7 @@ Note: This README is optimized for AI agents (Claude Code and similar tools).
 
 Phoenix is a clone-and-go design system starter that provides:
 
-- 7 core UI components: Button, Input, Textarea, Select, Checkbox, RadioGroup, Label, Dialog
+- 14 UI components: Button, Input, Textarea, Select, Checkbox, RadioGroup, Label, Dialog, DropdownMenu, Tabs, Tooltip, Toast, Form, Accordion
 - Complete design token system with Style Dictionary pipeline (OKLCH color format)
 - Tailwind CSS 4 integration with semantic token enforcement
 - Storybook 8.6 for component documentation
@@ -291,6 +291,12 @@ chore: upgrade dependencies
 - **RadioGroup**: Compound component with RadioGroup root and RadioGroupItem parts
 - **Label**: Accessible label component for form elements
 - **Dialog**: Modal dialog with Trigger, Content, Header, Title, Description, Footer parts
+- **DropdownMenu**: 15 compound parts with CheckboxItem, RadioItem, submenu support
+- **Tabs**: Compound component with underline-style active indicator
+- **Tooltip**: Portal-wrapped with side-aware animations
+- **Toast**: Sonner wrapper with semantic token styling
+- **Form**: react-hook-form integration with Zod validation support
+- **Accordion**: Collapsible sections with CSS keyframe animations
 
 All components support:
 
@@ -302,7 +308,7 @@ All components support:
 Import pattern:
 
 ```tsx
-import { Button, Input, Dialog } from '@phoenix/ui'
+import { Button, Dialog, Input } from '@phoenix/ui'
 ```
 
 For full documentation with interactive examples, run `pnpm dev` and visit http://localhost:6006

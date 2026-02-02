@@ -18,7 +18,7 @@ Build system: pnpm 10 + Turborepo 2.7
 
 **Current Status:**
 
-- 13 production-ready components built on Radix UI primitives
+- 14 production-ready components built on Radix UI primitives
 - Design token system (DTCG format + OKLCH colors)
 - Storybook 8.6 documentation with Figma Code Connect scaffolding
 - Semantic token enforcement (no hardcoded colors)
@@ -463,7 +463,7 @@ Complex UI exports multiple parts from single file for maximum composition flexi
 
 ---
 
-## 13 Components in @phoenix/ui
+## 14 Components in @phoenix/ui
 
 1. **Button** - CVA variants (default, destructive, outline, secondary, ghost, link) + sizes + asChild
 2. **Input** - forwardRef input with semantic token styling
@@ -478,6 +478,7 @@ Complex UI exports multiple parts from single file for maximum composition flexi
 11. **Tooltip** - 4 compound parts with side-aware animations + Provider
 12. **Toast/Toaster** - Sonner wrapper with semantic token styling
 13. **Form** - 8 exports for react-hook-form integration with dual React Context pattern
+14. **Accordion** - 4 compound parts (Root, Item, Trigger, Content) with CSS keyframe animations
 
 ---
 
