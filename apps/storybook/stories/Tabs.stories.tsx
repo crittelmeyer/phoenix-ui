@@ -4,14 +4,32 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@phoenix/ui'
 const meta = {
   title: 'Components/Tabs',
   component: Tabs,
-  subcomponents: {
-    TabsList,
-    TabsTrigger,
-    TabsContent,
-  },
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+  },
+  argTypes: {
+    defaultValue: { control: 'text', description: 'Default active tab value' },
+    value: { control: 'text', description: 'Controlled active tab value' },
+    onValueChange: {
+      action: 'onValueChange',
+      description: 'Callback when active tab changes',
+    },
+    orientation: {
+      control: 'radio',
+      options: ['horizontal', 'vertical'],
+      description: 'Orientation of the tabs',
+    },
+    activationMode: {
+      control: 'radio',
+      options: ['automatic', 'manual'],
+      description: 'Whether tabs activate on focus or click',
+    },
+    dir: {
+      control: 'radio',
+      options: ['ltr', 'rtl'],
+      description: 'Reading direction',
+    },
   },
 } satisfies Meta<typeof Tabs>
 

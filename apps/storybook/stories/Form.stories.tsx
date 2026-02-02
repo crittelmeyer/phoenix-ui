@@ -19,18 +19,23 @@ import {
 const meta = {
   title: 'Components/Form',
   component: Form,
-  subcomponents: {
-    FormField,
-    FormItem,
-    FormLabel,
-    FormControl,
-    FormDescription,
-    FormMessage,
-  },
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    mode: {
+      control: 'select',
+      options: ['onSubmit', 'onBlur', 'onChange', 'onTouched', 'all'],
+      description: 'Validation strategy (from react-hook-form)',
+    },
+    reValidateMode: {
+      control: 'select',
+      options: ['onSubmit', 'onBlur', 'onChange'],
+      description: 'When to re-validate after error',
+    },
+    disabled: { control: 'boolean', description: 'Disable all form fields' },
+  },
 } satisfies Meta<typeof Form>
 
 export default meta

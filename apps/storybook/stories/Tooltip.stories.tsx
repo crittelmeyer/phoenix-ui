@@ -10,14 +10,28 @@ import {
 const meta = {
   title: 'Components/Tooltip',
   component: Tooltip,
-  subcomponents: {
-    TooltipTrigger,
-    TooltipContent,
-    TooltipProvider,
-  },
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+  },
+  argTypes: {
+    open: { control: 'boolean', description: 'Controlled open state' },
+    defaultOpen: {
+      control: 'boolean',
+      description: 'Initial open state when uncontrolled',
+    },
+    onOpenChange: {
+      action: 'onOpenChange',
+      description: 'Callback when open state changes',
+    },
+    delayDuration: {
+      control: 'number',
+      description: 'Delay in ms before tooltip opens',
+    },
+    disableHoverableContent: {
+      control: 'boolean',
+      description: 'Prevent hovering over tooltip content from keeping it open',
+    },
   },
   decorators: [
     (Story) => (

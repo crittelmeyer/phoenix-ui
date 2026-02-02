@@ -9,14 +9,26 @@ import {
 const meta = {
   title: 'Components/Accordion',
   component: Accordion,
-  subcomponents: {
-    AccordionItem,
-    AccordionTrigger,
-    AccordionContent,
-  },
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+  },
+  argTypes: {
+    type: {
+      control: 'radio',
+      options: ['single', 'multiple'],
+      description: 'Whether one or multiple items can be open',
+    },
+    collapsible: {
+      control: 'boolean',
+      description: 'Allow all items to close (single type only)',
+    },
+    disabled: { control: 'boolean', description: 'Disable all items' },
+    dir: {
+      control: 'radio',
+      options: ['ltr', 'rtl'],
+      description: 'Reading direction',
+    },
   },
 } satisfies Meta<typeof Accordion>
 

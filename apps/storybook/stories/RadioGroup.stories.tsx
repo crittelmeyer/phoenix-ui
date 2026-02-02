@@ -4,7 +4,6 @@ import { Label, RadioGroup, RadioGroupItem } from '@phoenix/ui'
 const meta = {
   title: 'Components/RadioGroup',
   component: RadioGroup,
-  subcomponents: { RadioGroupItem },
   parameters: {
     layout: 'centered',
   },

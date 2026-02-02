@@ -9,6 +9,40 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    position: {
+      control: 'select',
+      options: [
+        'top-left',
+        'top-center',
+        'top-right',
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+      ],
+      description: 'Toast position on screen',
+    },
+    expand: {
+      control: 'boolean',
+      description: 'Whether toasts expand to fill width',
+    },
+    richColors: {
+      control: 'boolean',
+      description: 'Enable rich color styling for toast types',
+    },
+    closeButton: {
+      control: 'boolean',
+      description: 'Show close button on toasts',
+    },
+    duration: {
+      control: 'number',
+      description: 'Default duration in ms before auto-dismiss',
+    },
+    visibleToasts: {
+      control: 'number',
+      description: 'Maximum number of visible toasts',
+    },
+  },
 } satisfies Meta<typeof Toaster>
 
 export default meta

@@ -13,19 +13,41 @@ import {
 const meta = {
   title: 'Components/Select',
   component: Select,
-  subcomponents: {
-    SelectTrigger,
-    SelectContent,
-    SelectItem,
-    SelectValue,
-    SelectGroup,
-    SelectLabel,
-    SelectSeparator,
-  },
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    value: { control: 'text', description: 'Controlled selected value' },
+    defaultValue: {
+      control: 'text',
+      description: 'Default selected value when uncontrolled',
+    },
+    onValueChange: {
+      action: 'onValueChange',
+      description: 'Callback when selected value changes',
+    },
+    open: { control: 'boolean', description: 'Controlled open state' },
+    defaultOpen: {
+      control: 'boolean',
+      description: 'Initial open state when uncontrolled',
+    },
+    onOpenChange: {
+      action: 'onOpenChange',
+      description: 'Callback when open state changes',
+    },
+    disabled: { control: 'boolean', description: 'Disable the select' },
+    required: {
+      control: 'boolean',
+      description: 'Whether a value is required',
+    },
+    name: { control: 'text', description: 'Name for form submission' },
+    dir: {
+      control: 'radio',
+      options: ['ltr', 'rtl'],
+      description: 'Reading direction',
+    },
+  },
 } satisfies Meta<typeof Select>
 
 export default meta

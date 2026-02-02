@@ -17,20 +17,26 @@ import {
 const meta = {
   title: 'Components/Dialog',
   component: Dialog,
-  subcomponents: {
-    DialogTrigger,
-    DialogContent,
-    DialogHeader,
-    DialogFooter,
-    DialogTitle,
-    DialogDescription,
-    DialogClose,
-    DialogOverlay,
-  },
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    open: { control: 'boolean', description: 'Controlled open state' },
+    defaultOpen: {
+      control: 'boolean',
+      description: 'Initial open state when uncontrolled',
+    },
+    onOpenChange: {
+      action: 'onOpenChange',
+      description: 'Callback when open state changes',
+    },
+    modal: {
+      control: 'boolean',
+      description: 'Whether interaction outside is blocked',
+      table: { defaultValue: { summary: 'true' } },
+    },
+  },
 } satisfies Meta<typeof Dialog>
 
 export default meta

@@ -22,26 +22,31 @@ import {
 const meta = {
   title: 'Components/DropdownMenu',
   component: DropdownMenu,
-  subcomponents: {
-    DropdownMenuTrigger,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuCheckboxItem,
-    DropdownMenuRadioItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuShortcut,
-    DropdownMenuGroup,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
-    DropdownMenuRadioGroup,
-    DropdownMenuPortal,
-  },
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    open: { control: 'boolean', description: 'Controlled open state' },
+    defaultOpen: {
+      control: 'boolean',
+      description: 'Initial open state when uncontrolled',
+    },
+    onOpenChange: {
+      action: 'onOpenChange',
+      description: 'Callback when open state changes',
+    },
+    modal: {
+      control: 'boolean',
+      description: 'Whether interaction outside is blocked',
+      table: { defaultValue: { summary: 'true' } },
+    },
+    dir: {
+      control: 'radio',
+      options: ['ltr', 'rtl'],
+      description: 'Reading direction',
+    },
+  },
 } satisfies Meta<typeof DropdownMenu>
 
 export default meta
