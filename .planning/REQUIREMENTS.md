@@ -56,12 +56,12 @@
 
 ### AI Integration
 
-- [ ] **AIML-01**: CLAUDE.md at repo root with project overview and high-level conventions
-- [ ] **AIML-02**: .claude/rules/ with path-scoped rules for packages/ui (component authoring pattern)
-- [ ] **AIML-03**: .claude/rules/ with path-scoped rules for packages/tokens (token authoring constraints)
-- [ ] **AIML-04**: .claude/rules/ with path-scoped rules for apps/storybook (story authoring pattern)
-- [ ] **AIML-05**: AGENTS.md at repo root for cross-tool AI compatibility (references CLAUDE.md)
-- [ ] **AIML-06**: Claude can add a new component by following documented patterns without human guidance
+- [x] **AIML-01**: CLAUDE.md at repo root with project overview and high-level conventions
+- [x] **AIML-02**: .claude/rules/ with path-scoped rules for packages/ui (component authoring pattern)
+- [x] **AIML-03**: .claude/rules/ with path-scoped rules for packages/tokens (token authoring constraints)
+- [x] **AIML-04**: .claude/rules/ with path-scoped rules for apps/storybook (story authoring pattern)
+- [x] **AIML-05**: AGENTS.md at repo root for cross-tool AI compatibility (references CLAUDE.md)
+- [x] **AIML-06**: Claude can add a new component by following documented patterns without human guidance
 
 ## v2 Requirements
 
@@ -143,12 +143,12 @@
 | DOCS-03     | Phase 4 | Complete |
 | DOCS-04     | Phase 4 | Complete |
 | DOCS-05     | Phase 4 | Complete |
-| AIML-01     | Phase 6 | Pending  |
-| AIML-02     | Phase 6 | Pending  |
-| AIML-03     | Phase 6 | Pending  |
-| AIML-04     | Phase 6 | Pending  |
-| AIML-05     | Phase 6 | Pending  |
-| AIML-06     | Phase 6 | Pending  |
+| AIML-01     | Phase 6 | Complete |
+| AIML-02     | Phase 6 | Complete |
+| AIML-03     | Phase 6 | Complete |
+| AIML-04     | Phase 6 | Complete |
+| AIML-05     | Phase 6 | Complete |
+| AIML-06     | Phase 6 | Complete |
 
 **Coverage:**
 
@@ -168,4 +168,4 @@
 ---
 
 _Requirements defined: 2026-02-01_
-_Last updated: 2026-02-02 after phase 05 execution complete (COMP-09 through COMP-15 shipped)_
+_Last updated: 2026-02-02 after phase 06 execution complete (AIML-01 through AIML-06 shipped — all v1 requirements complete)_

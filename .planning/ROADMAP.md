@@ -211,7 +211,7 @@ Plans:
 
 **Goal:** Claude Code can add or modify components without human guidance.
 
-**Status:** Pending
+**Status:** Complete (3/3 plans complete)
 
 **Dependencies:** Phase 5 (requires complete component library to document patterns)
 
@@ -219,9 +219,9 @@ Plans:
 
 Plans:
 
-- [ ] 06-01-PLAN.md — CLAUDE.md + AGENTS.md at repo root (project reference + cross-tool AI docs)
-- [ ] 06-02-PLAN.md — Path-scoped .claude/rules/ (ui-components, token-authoring, storybook-stories)
-- [ ] 06-03-PLAN.md — Validation test: Accordion component added following documented patterns
+- [x] 06-01-PLAN.md — CLAUDE.md + AGENTS.md at repo root (project reference + cross-tool AI docs) (complete 2026-02-02, 3min)
+- [x] 06-02-PLAN.md — Path-scoped .claude/rules/ (ui-components, token-authoring, storybook-stories) (complete 2026-02-02, 5min)
+- [x] 06-03-PLAN.md — Validation test: Accordion component added following documented patterns (complete 2026-02-02, 3min)
 
 **Requirements:** AIML-01, AIML-02, AIML-03, AIML-04, AIML-05, AIML-06
 
@@ -253,9 +253,9 @@ Plans:
 | 3 - Core Components (Foundation) | Complete | 8            | 100% (8 req)  |
 | 4 - Documentation Infrastructure | Complete | 5            | 100% (5 req)  |
 | 5 - Core Components (Advanced)   | Complete | 7            | 100% (7 req)  |
-| 6 - AI Integration               | Pending  | 6            | 0%            |
+| 6 - AI Integration               | Complete | 6            | 100% (6 req)  |
 
-**Total:** 38 requirements mapped across 6 phases
+**Total:** 43 requirements mapped across 6 phases (38 original + 5 v2 component candidates)
 
 ---
 
@@ -307,4 +307,4 @@ Phase 6 (AI Integration) ← Requires complete component library
 
 ---
 
-_Last updated: 2026-02-02 after phase 05 execution complete (all 7 COMP-09..15 requirements shipped)_
+_Last updated: 2026-02-02 after phase 06 execution complete (all 6 AIML requirements shipped — milestone complete)_
