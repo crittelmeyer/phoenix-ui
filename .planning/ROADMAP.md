@@ -171,7 +171,7 @@ Plans:
 
 **Goal:** Developer can build complex UIs with overlays, navigation, notifications, and forms.
 
-**Status:** In Progress (2/3 plans complete)
+**Status:** Complete (3/3 plans complete)
 
 **Dependencies:** Phase 4 (requires Storybook for visual validation)
 
@@ -181,7 +181,7 @@ Plans:
 
 - [x] 05-01-PLAN.md — Install Phase 5 deps + DropdownMenu component + story + Figma Code Connect (complete 2026-02-02, 3min)
 - [x] 05-02-PLAN.md — Tabs + Tooltip + Toast components + stories + Figma Code Connect (complete 2026-02-02, 2min)
-- [ ] 05-03-PLAN.md — Form wrapper (react-hook-form + Zod) + barrel exports + semantic token audit
+- [x] 05-03-PLAN.md — Form wrapper (react-hook-form + Zod) + barrel exports + semantic token audit (complete 2026-02-02, 2min)
 
 **Requirements:** COMP-09, COMP-10, COMP-11, COMP-12, COMP-13, COMP-14, COMP-15
 
@@ -244,7 +244,7 @@ Plans:
 | 2 - Token System                 | Complete | 7            | 100% (7 req)  |
 | 3 - Core Components (Foundation) | Complete | 8            | 100% (8 req)  |
 | 4 - Documentation Infrastructure | Complete | 5            | 100% (5 req)  |
-| 5 - Core Components (Advanced)   | Pending  | 7            | 0%            |
+| 5 - Core Components (Advanced)   | Complete | 7            | 100% (7 req)  |
 | 6 - AI Integration               | Pending  | 6            | 0%            |
 
 **Total:** 38 requirements mapped across 6 phases
@@ -299,4 +299,4 @@ Phase 6 (AI Integration) ← Requires complete component library
 
 ---
 
-_Last updated: 2026-02-01 after phase 04 execution complete (all 5 DOCS requirements shipped)_
+_Last updated: 2026-02-02 after phase 05 execution complete (all 7 COMP-09..15 requirements shipped)_

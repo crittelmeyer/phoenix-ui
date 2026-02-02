@@ -38,13 +38,13 @@
 - [x] **COMP-06**: Checkbox component built on Radix Checkbox primitive
 - [x] **COMP-07**: Radio component built on Radix RadioGroup primitive
 - [x] **COMP-08**: Dialog component built on Radix Dialog primitive
-- [ ] **COMP-09**: DropdownMenu component built on Radix DropdownMenu primitive
-- [ ] **COMP-10**: Tabs component built on Radix Tabs primitive
-- [ ] **COMP-11**: Tooltip component built on Radix Tooltip primitive
-- [ ] **COMP-12**: Toast component using Sonner
-- [ ] **COMP-13**: Form wrapper integrating react-hook-form with component library
-- [ ] **COMP-14**: All components export from packages/ui/src/index.ts barrel file
-- [ ] **COMP-15**: Every component uses semantic token classes only (bg-surface, text-foreground, etc.)
+- [x] **COMP-09**: DropdownMenu component built on Radix DropdownMenu primitive
+- [x] **COMP-10**: Tabs component built on Radix Tabs primitive
+- [x] **COMP-11**: Tooltip component built on Radix Tooltip primitive
+- [x] **COMP-12**: Toast component using Sonner
+- [x] **COMP-13**: Form wrapper integrating react-hook-form with component library
+- [x] **COMP-14**: All components export from packages/ui/src/index.ts barrel file
+- [x] **COMP-15**: Every component uses semantic token classes only (bg-surface, text-foreground, etc.)
 
 ### Documentation
 
@@ -131,13 +131,13 @@
 | COMP-06     | Phase 3 | Complete |
 | COMP-07     | Phase 3 | Complete |
 | COMP-08     | Phase 3 | Complete |
-| COMP-09     | Phase 5 | Pending  |
-| COMP-10     | Phase 5 | Pending  |
-| COMP-11     | Phase 5 | Pending  |
-| COMP-12     | Phase 5 | Pending  |
-| COMP-13     | Phase 5 | Pending  |
-| COMP-14     | Phase 5 | Pending  |
-| COMP-15     | Phase 5 | Pending  |
+| COMP-09     | Phase 5 | Complete |
+| COMP-10     | Phase 5 | Complete |
+| COMP-11     | Phase 5 | Complete |
+| COMP-12     | Phase 5 | Complete |
+| COMP-13     | Phase 5 | Complete |
+| COMP-14     | Phase 5 | Complete |
+| COMP-15     | Phase 5 | Complete |
 | DOCS-01     | Phase 4 | Complete |
 | DOCS-02     | Phase 4 | Complete |
 | DOCS-03     | Phase 4 | Complete |
@@ -168,4 +168,4 @@
 ---
 
 _Requirements defined: 2026-02-01_
-_Last updated: 2026-02-01 after phase 04 execution complete (DOCS-01 through DOCS-05 shipped)_
+_Last updated: 2026-02-02 after phase 05 execution complete (COMP-09 through COMP-15 shipped)_
