@@ -179,7 +179,7 @@ Plans:
 
 Plans:
 
-- [ ] 05-01-PLAN.md — Install Phase 5 deps + DropdownMenu component + story + Figma Code Connect
+- [x] 05-01-PLAN.md — Install Phase 5 deps + DropdownMenu component + story + Figma Code Connect (COMPLETE)
 - [ ] 05-02-PLAN.md — Tabs + Tooltip + Toast components + stories + Figma Code Connect
 - [ ] 05-03-PLAN.md — Form wrapper (react-hook-form + Zod) + barrel exports + semantic token audit
 

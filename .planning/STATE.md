@@ -1,6 +1,6 @@
 # Phoenix State
 
-**Last updated:** 2026-02-01
+**Last updated:** 2026-02-02
 **Project:** Phoenix Design System Monorepo Starter
 
 ## Project Reference
@@ -9,27 +9,27 @@
 AI agents (Claude Code specifically) can add, modify, and extend components without human hand-holding — because the repo structure, naming, patterns, and rules are explicit and enforced.
 
 **Current Focus:**
-Phase 4 Documentation Infrastructure COMPLETE - Figma Code Connect and root README complete.
+Phase 5 Core Components Advanced - DropdownMenu component complete with all Phase 5 dependencies installed.
 
 ## Current Position
 
-**Phase:** 4 - Documentation Infrastructure (4 of 6) - COMPLETE
-**Plan:** 3 of 3 plans complete (04-03)
-**Status:** Phase Complete
-**Last activity:** 2026-02-01 - Completed 04-03-PLAN.md (Figma Code Connect and root README)
-**Progress:** ████████████████████████████ 35/38 requirements (92%)
+**Phase:** 5 - Core Components Advanced (5 of 6) - IN PROGRESS
+**Plan:** 1 of 3 plans complete (05-01)
+**Status:** In progress
+**Last activity:** 2026-02-02 - Completed 05-01-PLAN.md (DropdownMenu component and Phase 5 dependencies)
+**Progress:** ██████████████████████████████ 36/38 requirements (95%)
 
-**Next Milestone:** Begin Phase 5 (Advanced Components)
+**Next Milestone:** Complete Phase 5 (Tabs, Tooltip, Toast, Form components)
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                                                                                                                                                                    |
-| -------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Phases completed     | 4/6   | Foundation, Token System, Core Components, and Documentation Infrastructure complete                                                                                     |
-| Requirements shipped | 35/38 | Foundation (10), Token System (7), Core Components (11/15), Documentation (5/5)                                                                                          |
-| Plans executed       | 12    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min), 04-03 (4min) |
-| Blockers             | 0     | —                                                                                                                                                                        |
-| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                                           |
+| Metric               | Value | Notes                                                                                                                                                                                  |
+| -------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Phases completed     | 4/6   | Foundation, Token System, Core Components, and Documentation Infrastructure complete                                                                                                   |
+| Requirements shipped | 36/38 | Foundation (10), Token System (7), Core Components (12/15), Documentation (5/5), Advanced Components (1/4)                                                                             |
+| Plans executed       | 13    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min), 04-03 (4min), 05-01 (3min) |
+| Blockers             | 0     | —                                                                                                                                                                                      |
+| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                                                         |
 
 ## Accumulated Context
 
@@ -255,6 +255,27 @@ Phase 4 Documentation Infrastructure COMPLETE - Figma Code Connect and root READ
 - Covers scope renaming via script, token modification workflow, component addition steps
 - Rationale: AI agents need explicit context about patterns, constraints, and conventions to work autonomously
 
+**2026-02-02: Install all Phase 5 dependencies at once**
+
+- Installed 7 dependencies in Plan 05-01: @radix-ui/react-dropdown-menu, @radix-ui/react-tabs, @radix-ui/react-tooltip, sonner, react-hook-form, zod, @hookform/resolvers
+- More efficient than per-plan installation, avoids repeated package.json commits
+- Plans 05-02 and 05-03 won't need dependency installation tasks
+
+**2026-02-02: CheckboxItem and RadioItem indicator pattern**
+
+- CheckboxItem uses check path SVG matching Checkbox component for visual consistency
+- RadioItem uses filled circle SVG matching RadioGroup pattern
+- ItemIndicator primitive wraps SVG icon for automatic show/hide based on checked state
+- Absolute positioning with left-2 and pl-8 padding for consistent alignment
+
+**2026-02-02: DropdownMenu compound component pattern**
+
+- 15 exported parts: Root, Trigger, Content, Item, CheckboxItem, RadioItem, Label, Separator, Shortcut, Group, Portal, Sub, SubContent, SubTrigger, RadioGroup
+- Inset variant on MenuItem, SubTrigger, and Label for alignment with checkbox/radio items
+- SubTrigger includes right chevron icon for visual affordance
+- DropdownMenuShortcut as plain span (not forwardRef) for simplicity
+- Most complex compound component to date, establishes pattern for future multi-part components
+
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
@@ -269,12 +290,13 @@ Phase 4 Documentation Infrastructure COMPLETE - Figma Code Connect and root READ
 - [x] Storybook foundation with Vite builder and tokens page (04-01 complete)
 - [x] Component stories for all 7 core components (04-02 complete)
 - [x] Figma Code Connect scaffolding and root README (04-03 complete)
+- [x] DropdownMenu component with Phase 5 dependencies (05-01 complete)
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
 - [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
-None - Phase 4 COMPLETE. Ready for Phase 5 (Advanced Components).
+None - Phase 5 Plan 1 COMPLETE. Ready for Plan 05-02 (Tabs and Tooltip components).
 
 ### Research Notes
 
@@ -291,15 +313,15 @@ None - Phase 4 COMPLETE. Ready for Phase 5 (Advanced Components).
 
 ## Session Continuity
 
-**Last session:** 2026-02-01T22:44:34Z
-**Stopped at:** Completed 04-03-PLAN.md (Figma Code Connect and root README)
+**Last session:** 2026-02-02T00:32:23Z
+**Stopped at:** Completed 05-01-PLAN.md (DropdownMenu component and Phase 5 dependencies)
 **Resume file:** None
 
 **What you were doing:**
-Completed Phase 4 Plan 3 - Scaffolded Figma Code Connect infrastructure with 7 placeholder .figma.tsx files mapping component props to Figma properties, and verified comprehensive root README.md with 10 sections documenting architecture, conventions, and workflows for AI agent comprehension.
+Completed Phase 5 Plan 1 - Installed all 7 Phase 5 dependencies and implemented DropdownMenu compound component with 15 parts including CheckboxItem, RadioItem, SubMenu, and keyboard shortcuts. Created 4 interactive Storybook stories demonstrating all item types and patterns.
 
 **What's next:**
-Phase 4 COMPLETE. Ready to begin Phase 5 (Advanced Components) or finalize remaining Phase 3 requirements (testing, advanced docs).
+Phase 5 Plan 1 COMPLETE. Ready to proceed to Plan 05-02 (Tabs and Tooltip components).
 
 **Important context for next session:**
 
@@ -325,7 +347,8 @@ Phase 4 COMPLETE. Ready to begin Phase 5 (Advanced Components) or finalize remai
 - `packages/ui/src/components/radio-group.tsx` - RadioGroup compound (2 parts)
 - `packages/ui/src/components/label.tsx` - Label with Radix primitive
 - `packages/ui/src/components/dialog.tsx` - Dialog compound component (10 parts)
-- `packages/ui/src/index.ts` - Barrel export (30+ named exports)
+- `packages/ui/src/components/dropdown-menu.tsx` - DropdownMenu compound component (15 parts)
+- `packages/ui/src/index.ts` - Barrel export (45+ named exports)
 
 **Key files created in Phase 4:**
 
@@ -344,6 +367,12 @@ Phase 4 COMPLETE. Ready to begin Phase 5 (Advanced Components) or finalize remai
 - `packages/ui/src/components/*.figma.tsx` - 7 Figma Code Connect placeholder mappings (04-03)
 - `README.md` - Comprehensive root documentation optimized for AI agents (04-03)
 
+**Key files created in Phase 5:**
+
+- `packages/ui/src/components/dropdown-menu.tsx` - DropdownMenu compound component with 15 parts (05-01)
+- `packages/ui/src/components/dropdown-menu.figma.tsx` - DropdownMenu Figma Code Connect mapping (05-01)
+- `apps/storybook/stories/DropdownMenu.stories.tsx` - DropdownMenu stories with checkbox, radio, and submenu examples (05-01)
+
 **Files to reference:**
 
 - `/Users/chris/Repos/phoenix/.planning/PROJECT.md` - Core value and constraints
@@ -359,8 +388,9 @@ Phase 4 COMPLETE. Ready to begin Phase 5 (Advanced Components) or finalize remai
 - `/Users/chris/Repos/phoenix/.planning/phases/03-core-components/03-03-SUMMARY.md` - Dialog and barrel export
 - `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-01-SUMMARY.md` - Storybook foundation
 - `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-02-SUMMARY.md` - Component stories
-- `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-03-SUMMARY.md` - Figma Code Connect and root README (latest)
+- `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-03-SUMMARY.md` - Figma Code Connect and root README
+- `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-01-SUMMARY.md` - DropdownMenu component and Phase 5 dependencies (latest)
 
 ---
 
-_State updated: 2026-02-01 after Phase 4 Plan 3 completion (04-03)_
+_State updated: 2026-02-02 after Phase 5 Plan 1 completion (05-01)_
