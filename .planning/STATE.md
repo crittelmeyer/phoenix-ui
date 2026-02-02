@@ -9,27 +9,27 @@
 AI agents (Claude Code specifically) can add, modify, and extend components without human hand-holding — because the repo structure, naming, patterns, and rules are explicit and enforced.
 
 **Current Focus:**
-Phase 5 Core Components Advanced - COMPLETE. All 12 components built with stories and Figma mappings.
+Phase 6 AI Integration - IN PROGRESS. Creating AI agent documentation and workflow guides.
 
 ## Current Position
 
-**Phase:** 5 - Core Components Advanced (5 of 6) - COMPLETE
-**Plan:** 3 of 3 plans complete (05-01, 05-02, 05-03)
-**Status:** Phase complete
-**Last activity:** 2026-02-02 - Completed 05-03-PLAN.md (Form component and barrel exports)
-**Progress:** ████████████████████████████████ 38/38 requirements (100%)
+**Phase:** 6 - AI Integration (6 of 6) - IN PROGRESS
+**Plan:** 1 of 3 plans complete (06-01)
+**Status:** In progress
+**Last activity:** 2026-02-02 - Completed 06-01-PLAN.md (CLAUDE.md and AGENTS.md documentation)
+**Progress:** ████████████████████████████████░░ 40/42 requirements (95%)
 
-**Next Milestone:** Phase 6 - AI Agent Workflows
+**Next Milestone:** Complete Phase 6 (remaining 2 plans)
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                                                                                                                                                                                                              |
-| -------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Phases completed     | 5/6   | Foundation, Token System, Core Components, Documentation, Advanced Components complete                                                                                                                             |
-| Requirements shipped | 38/38 | Foundation (10), Token System (7), Core Components (15/15), Documentation (5/5), Advanced Components (4/4)                                                                                                         |
-| Plans executed       | 15    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min), 04-03 (4min), 05-01 (3min), 05-02 (2min), 05-03 (2min) |
-| Blockers             | 0     | —                                                                                                                                                                                                                  |
-| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                                                                                     |
+| Metric               | Value | Notes                                                                                                                                                                                                                            |
+| -------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Phases completed     | 5/6   | Foundation, Token System, Core Components, Documentation, Advanced Components complete. AI Integration in progress (1/3 plans).                                                                                                  |
+| Requirements shipped | 40/42 | Foundation (10), Token System (7), Core Components (15/15), Documentation (5/5), Advanced Components (4/4), AI Integration (2/3 in progress)                                                                                     |
+| Plans executed       | 16    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min), 04-03 (4min), 05-01 (3min), 05-02 (2min), 05-03 (2min), 06-01 (3min) |
+| Blockers             | 0     | —                                                                                                                                                                                                                                |
+| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                                                                                                   |
 
 ## Accumulated Context
 
@@ -311,6 +311,27 @@ Phase 5 Core Components Advanced - COMPLETE. All 12 components built with storie
 - Semantic token audit passed: zero hardcoded colors across library
 - Zero inline styles in any component file
 
+**2026-02-02: CLAUDE.md as comprehensive Claude Code reference**
+
+- 492 lines covering all aspects of Phoenix project
+- Loaded automatically when Claude Code starts session
+- Points to .claude/rules/ for detailed templates (progressive disclosure)
+- 12 critical pitfalls section prominent (React 18.3.0, no inline styles, semantic tokens only, etc.)
+
+**2026-02-02: AGENTS.md as standalone cross-tool reference**
+
+- 448 lines (comprehensive coverage, tool-agnostic)
+- Follows Linux Foundation standard adopted by 60,000+ repos
+- References CLAUDE.md 9 times for detailed patterns instead of duplicating content
+- Tool-specific configuration sections for Cursor, Copilot, Claude, and other AI tools
+
+**2026-02-02: Progressive disclosure documentation pattern**
+
+- AGENTS.md: Quick start for any AI tool (tech stack, patterns, constraints)
+- CLAUDE.md: Comprehensive reference for Claude Code (all details, pitfalls, decisions)
+- .claude/rules/: Path-scoped templates for component/token/story authoring (future plans)
+- Hierarchy enables AI agents to get oriented quickly and dive deeper as needed
+
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
@@ -328,12 +349,14 @@ Phase 5 Core Components Advanced - COMPLETE. All 12 components built with storie
 - [x] DropdownMenu component with Phase 5 dependencies (05-01 complete)
 - [x] Tabs, Tooltip, Toast components (05-02 complete)
 - [x] Form component and barrel exports (05-03 complete)
+- [x] CLAUDE.md and AGENTS.md AI agent documentation (06-01 complete)
+- [ ] .claude/rules/ directory with path-scoped templates
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
 - [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
-None - Phase 5 COMPLETE. Ready for Phase 6 (AI Agent Workflows).
+None - Phase 6 in progress. Plan 06-01 complete (CLAUDE.md and AGENTS.md created).
 
 ### Research Notes
 
@@ -350,15 +373,15 @@ None - Phase 5 COMPLETE. Ready for Phase 6 (AI Agent Workflows).
 
 ## Session Continuity
 
-**Last session:** 2026-02-02T00:44:23Z
-**Stopped at:** Completed 05-03-PLAN.md (Form component and barrel exports)
+**Last session:** 2026-02-02T02:08:15Z
+**Stopped at:** Completed 06-01-PLAN.md (CLAUDE.md and AGENTS.md documentation)
 **Resume file:** None
 
 **What you were doing:**
-Completed Phase 5 Plan 3 - Implemented Form component with react-hook-form context integration, updated barrel exports for all 12 components, and verified semantic token compliance across the entire library.
+Completed Phase 6 Plan 1 - Created CLAUDE.md (492 lines) comprehensive Claude Code reference and AGENTS.md (448 lines) cross-tool AI agent reference. Established progressive disclosure documentation pattern (AGENTS → CLAUDE → .claude/rules/).
 
 **What's next:**
-Phase 5 COMPLETE. Ready to proceed to Phase 6 (AI Agent Workflows).
+Continue Phase 6 with remaining plans (06-02 and 06-03) for .claude/rules/ creation and workflow documentation.
 
 **Important context for next session:**
 
@@ -367,11 +390,14 @@ Phase 5 COMPLETE. Ready to proceed to Phase 6 (AI Agent Workflows).
 - Phase 3 COMPLETE: All 15 COMP requirements shipped
 - Phase 4 COMPLETE: All 5 DOCS requirements shipped
 - Phase 5 COMPLETE: All 4 advanced component requirements shipped
-- All 12 components built with Storybook stories and Figma Code Connect mappings
+- Phase 6 IN PROGRESS: Plan 06-01 complete (2/3 AI Integration requirements shipped)
+- All 13 components built with Storybook stories and Figma Code Connect mappings
 - Barrel export: 60+ named exports from `@phoenix/ui`
 - Semantic token audit passed: zero hardcoded colors across all components
 - Component pattern proven: forwardRef + cn() + semantic tokens + CVA (when needed)
 - Story pattern proven: CSF 3.0 with tags: ['autodocs'] and subcomponents
+- AI documentation foundation: CLAUDE.md (492 lines) and AGENTS.md (448 lines) at repo root
+- Progressive disclosure pattern established: AGENTS → CLAUDE → .claude/rules/
 
 **Key files created in Phase 3:**
 
@@ -422,6 +448,11 @@ Phase 5 COMPLETE. Ready to proceed to Phase 6 (AI Agent Workflows).
 - `packages/ui/src/components/form.figma.tsx` - Form Figma Code Connect mapping (05-03)
 - `apps/storybook/stories/Form.stories.tsx` - Form stories with Zod validation (05-03)
 
+**Key files created in Phase 6:**
+
+- `CLAUDE.md` - Comprehensive Claude Code reference (492 lines) at repo root (06-01)
+- `AGENTS.md` - Cross-tool AI agent reference (448 lines) at repo root (06-01)
+
 **Files to reference:**
 
 - `/Users/chris/Repos/phoenix/.planning/PROJECT.md` - Core value and constraints
@@ -440,8 +471,9 @@ Phase 5 COMPLETE. Ready to proceed to Phase 6 (AI Agent Workflows).
 - `/Users/chris/Repos/phoenix/.planning/phases/04-documentation-infrastructure/04-03-SUMMARY.md` - Figma Code Connect and root README
 - `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-01-SUMMARY.md` - DropdownMenu component and Phase 5 dependencies
 - `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-02-SUMMARY.md` - Tabs, Tooltip, and Toast components
-- `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-03-SUMMARY.md` - Form component and barrel exports (latest)
+- `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-03-SUMMARY.md` - Form component and barrel exports
+- `/Users/chris/Repos/phoenix/.planning/phases/06-ai-integration/06-01-SUMMARY.md` - CLAUDE.md and AGENTS.md documentation (latest)
 
 ---
 
-_State updated: 2026-02-02 after Phase 5 Plan 3 completion (05-03) - Phase 5 COMPLETE_
+_State updated: 2026-02-02 after Phase 6 Plan 1 completion (06-01) - Phase 6 in progress (1/3 plans complete)_
