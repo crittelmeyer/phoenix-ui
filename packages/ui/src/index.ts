@@ -2,6 +2,13 @@
 export { cn } from './lib/utils'
 
 // Components
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from './components/accordion'
+
 export { Button, buttonVariants } from './components/button'
 export type { ButtonProps } from './components/button'
 
