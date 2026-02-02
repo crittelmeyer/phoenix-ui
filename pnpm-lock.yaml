@@ -48,6 +48,9 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ui
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.71.1(react@18.3.0))
       '@phoenix/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -81,6 +84,9 @@ importers:
       react-dom:
         specifier: 18.3.0
         version: 18.3.0(react@18.3.0)
+      react-hook-form:
+        specifier: ^7.71.1
+        version: 7.71.1(react@18.3.0)
       storybook:
         specifier: ^8.6.0
         version: 8.6.15(prettier@3.8.1)
@@ -93,6 +99,9 @@ importers:
       vite:
         specifier: ^7.0.0
         version: 7.3.1(@types/node@25.2.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2)
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
 
   apps/web:
     dependencies:
