@@ -215,6 +215,14 @@ Plans:
 
 **Dependencies:** Phase 5 (requires complete component library to document patterns)
 
+**Plans:** 3 plans
+
+Plans:
+
+- [ ] 06-01-PLAN.md — CLAUDE.md + AGENTS.md at repo root (project reference + cross-tool AI docs)
+- [ ] 06-02-PLAN.md — Path-scoped .claude/rules/ (ui-components, token-authoring, storybook-stories)
+- [ ] 06-03-PLAN.md — Validation test: Accordion component added following documented patterns
+
 **Requirements:** AIML-01, AIML-02, AIML-03, AIML-04, AIML-05, AIML-06
 
 **Success Criteria:**
