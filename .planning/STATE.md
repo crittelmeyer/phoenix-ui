@@ -14,22 +14,22 @@ Phase 6 AI Integration - IN PROGRESS. Creating AI agent documentation and workfl
 ## Current Position
 
 **Phase:** 6 - AI Integration (6 of 6) - IN PROGRESS
-**Plan:** 1 of 3 plans complete (06-01)
+**Plan:** 2 of 3 plans complete (06-01, 06-02)
 **Status:** In progress
-**Last activity:** 2026-02-02 - Completed 06-01-PLAN.md (CLAUDE.md and AGENTS.md documentation)
-**Progress:** ████████████████████████████████░░ 40/42 requirements (95%)
+**Last activity:** 2026-02-02 - Completed 06-02-PLAN.md (AI rule files)
+**Progress:** ████████████████████████████████░░░ 41/42 requirements (98%)
 
 **Next Milestone:** Complete Phase 6 (remaining 2 plans)
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                                                                                                                                                                                                                            |
-| -------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Phases completed     | 5/6   | Foundation, Token System, Core Components, Documentation, Advanced Components complete. AI Integration in progress (1/3 plans).                                                                                                  |
-| Requirements shipped | 40/42 | Foundation (10), Token System (7), Core Components (15/15), Documentation (5/5), Advanced Components (4/4), AI Integration (2/3 in progress)                                                                                     |
-| Plans executed       | 16    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min), 04-03 (4min), 05-01 (3min), 05-02 (2min), 05-03 (2min), 06-01 (3min) |
-| Blockers             | 0     | —                                                                                                                                                                                                                                |
-| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                                                                                                   |
+| Metric               | Value | Notes                                                                                                                                                                                                                                          |
+| -------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Phases completed     | 5/6   | Foundation, Token System, Core Components, Documentation, Advanced Components complete. AI Integration in progress (1/3 plans).                                                                                                                |
+| Requirements shipped | 41/42 | Foundation (10), Token System (7), Core Components (15/15), Documentation (5/5), Advanced Components (4/4), AI Integration (2/3 complete)                                                                                                      |
+| Plans executed       | 17    | 01-01 (2min), 01-02 (4min), 01-03 (3.5min), 02-01 (5min), 02-02 (3min), 02-03 (2min), 03-01 (3min), 03-02 (2min), 03-03 (2min), 04-01 (4min), 04-02 (2min), 04-03 (4min), 05-01 (3min), 05-02 (2min), 05-03 (2min), 06-01 (3min), 06-02 (5min) |
+| Blockers             | 0     | —                                                                                                                                                                                                                                              |
+| Research flags       | 0     | Research complete (SUMMARY.md)                                                                                                                                                                                                                 |
 
 ## Accumulated Context
 
@@ -332,6 +332,47 @@ Phase 6 AI Integration - IN PROGRESS. Creating AI agent documentation and workfl
 - .claude/rules/: Path-scoped templates for component/token/story authoring (future plans)
 - Hierarchy enables AI agents to get oriented quickly and dive deeper as needed
 
+**2026-02-02: Path-scoped rule files activate conditionally**
+
+- Three rule files with YAML frontmatter glob patterns
+- ui-components.md: packages/ui/src/components/\*\* and index.ts
+- token-authoring.md: packages/tokens/src/tokens/\*\* and build.mjs
+- storybook-stories.md: apps/storybook/stories/\*\*
+- Rules load only when editing files in their scope, preventing context pollution
+
+**2026-02-02: Component lifecycle checklist in ui-components.md**
+
+- 4-step checklist ensures complete component workflow
+- Step 1: Create component file in packages/ui/src/components/
+- Step 2: Create Figma mapping (.figma.tsx)
+- Step 3: Create story in apps/storybook/stories/
+- Step 4: Update barrel export in packages/ui/src/index.ts
+- Enables autonomous component addition without missing steps
+
+**2026-02-02: OKLCH color format enforced in token-authoring.md**
+
+- All color tokens MUST use OKLCH format: oklch(L C H)
+- L (Lightness): 0-1, C (Chroma): 0-0.4, H (Hue): 0-360
+- No hex, RGB, or HSL formats allowed
+- Provides perceptual uniformity, P3 wide gamut support, better accessibility
+- Anti-pattern section shows WRONG (hex) vs CORRECT (OKLCH) with explanations
+
+**2026-02-02: Anti-pattern documentation structure in all rule files**
+
+- All three rule files follow WRONG/CORRECT/WHY pattern
+- Shows incorrect approach, correct approach, and detailed explanation
+- ui-components.md: 7 anti-patterns (inline styles, arbitrary values, missing forwardRef/displayName/cn, color scales, hardcoded spacing)
+- token-authoring.md: 6 anti-patterns (hex colors, missing units, hardcoded component values, editing dist/, RGB/HSL, missing $type)
+- storybook-stories.md: 6 anti-patterns (Meta<any>, missing autodocs, hardcoded hex, default exports, missing subcomponents, inline functions)
+
+**2026-02-02: CSF 3.0 with satisfies Meta pattern in storybook-stories.md**
+
+- Enforces `satisfies Meta<typeof Component>` instead of `satisfies Meta<any>`
+- Provides type checking for argTypes and enables IntelliSense
+- `tags: ['autodocs']` required for automatic prop table generation
+- `subcomponents` property required for compound component stories
+- Story naming conventions: Default, AllVariants, WithDisabled, [SpecificFeature]
+
 ### Active TODOs
 
 - [x] Monorepo scaffold (01-01 complete)
@@ -350,13 +391,13 @@ Phase 6 AI Integration - IN PROGRESS. Creating AI agent documentation and workfl
 - [x] Tabs, Tooltip, Toast components (05-02 complete)
 - [x] Form component and barrel exports (05-03 complete)
 - [x] CLAUDE.md and AGENTS.md AI agent documentation (06-01 complete)
-- [ ] .claude/rules/ directory with path-scoped templates
+- [x] .claude/rules/ directory with path-scoped templates (06-02 complete)
 - [ ] Validate browser support requirements for Tailwind CSS 4 migration decision
 - [ ] Monitor eslint-plugin-tailwindcss for Tailwind CSS 4 support
 
 ### Blockers
 
-None - Phase 6 in progress. Plan 06-01 complete (CLAUDE.md and AGENTS.md created).
+None - Phase 6 in progress. Plans 06-01 and 06-02 complete.
 
 ### Research Notes
 
@@ -373,15 +414,15 @@ None - Phase 6 in progress. Plan 06-01 complete (CLAUDE.md and AGENTS.md created
 
 ## Session Continuity
 
-**Last session:** 2026-02-02T02:08:15Z
-**Stopped at:** Completed 06-01-PLAN.md (CLAUDE.md and AGENTS.md documentation)
+**Last session:** 2026-02-02T02:11:19Z
+**Stopped at:** Completed 06-02-PLAN.md (AI rule files)
 **Resume file:** None
 
 **What you were doing:**
-Completed Phase 6 Plan 1 - Created CLAUDE.md (492 lines) comprehensive Claude Code reference and AGENTS.md (448 lines) cross-tool AI agent reference. Established progressive disclosure documentation pattern (AGENTS → CLAUDE → .claude/rules/).
+Completed Phase 6 Plan 2 - Created three path-scoped rule files: ui-components.md (423 lines), token-authoring.md (426 lines), and storybook-stories.md (344 lines). All files include YAML frontmatter with glob patterns, exact templates for their domains, and comprehensive anti-pattern documentation.
 
 **What's next:**
-Continue Phase 6 with remaining plans (06-02 and 06-03) for .claude/rules/ creation and workflow documentation.
+Continue Phase 6 with final plan (06-03) for validation tooling and workflow automation.
 
 **Important context for next session:**
 
@@ -390,7 +431,7 @@ Continue Phase 6 with remaining plans (06-02 and 06-03) for .claude/rules/ creat
 - Phase 3 COMPLETE: All 15 COMP requirements shipped
 - Phase 4 COMPLETE: All 5 DOCS requirements shipped
 - Phase 5 COMPLETE: All 4 advanced component requirements shipped
-- Phase 6 IN PROGRESS: Plan 06-01 complete (2/3 AI Integration requirements shipped)
+- Phase 6 IN PROGRESS: Plans 06-01 and 06-02 complete (3/3 AI Integration requirements shipped)
 - All 13 components built with Storybook stories and Figma Code Connect mappings
 - Barrel export: 60+ named exports from `@phoenix/ui`
 - Semantic token audit passed: zero hardcoded colors across all components
@@ -398,6 +439,8 @@ Continue Phase 6 with remaining plans (06-02 and 06-03) for .claude/rules/ creat
 - Story pattern proven: CSF 3.0 with tags: ['autodocs'] and subcomponents
 - AI documentation foundation: CLAUDE.md (492 lines) and AGENTS.md (448 lines) at repo root
 - Progressive disclosure pattern established: AGENTS → CLAUDE → .claude/rules/
+- AI rule files: ui-components.md (423 lines), token-authoring.md (426 lines), storybook-stories.md (344 lines)
+- Path-scoped rules with YAML frontmatter for conditional activation
 
 **Key files created in Phase 3:**
 
@@ -452,6 +495,9 @@ Continue Phase 6 with remaining plans (06-02 and 06-03) for .claude/rules/ creat
 
 - `CLAUDE.md` - Comprehensive Claude Code reference (492 lines) at repo root (06-01)
 - `AGENTS.md` - Cross-tool AI agent reference (448 lines) at repo root (06-01)
+- `.claude/rules/ui-components.md` - Component authoring templates and checklist (423 lines) (06-02)
+- `.claude/rules/token-authoring.md` - DTCG token format and OKLCH color rules (426 lines) (06-02)
+- `.claude/rules/storybook-stories.md` - CSF 3.0 story templates and conventions (344 lines) (06-02)
 
 **Files to reference:**
 
@@ -472,8 +518,9 @@ Continue Phase 6 with remaining plans (06-02 and 06-03) for .claude/rules/ creat
 - `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-01-SUMMARY.md` - DropdownMenu component and Phase 5 dependencies
 - `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-02-SUMMARY.md` - Tabs, Tooltip, and Toast components
 - `/Users/chris/Repos/phoenix/.planning/phases/05-core-components-advanced/05-03-SUMMARY.md` - Form component and barrel exports
-- `/Users/chris/Repos/phoenix/.planning/phases/06-ai-integration/06-01-SUMMARY.md` - CLAUDE.md and AGENTS.md documentation (latest)
+- `/Users/chris/Repos/phoenix/.planning/phases/06-ai-integration/06-01-SUMMARY.md` - CLAUDE.md and AGENTS.md documentation
+- `/Users/chris/Repos/phoenix/.planning/phases/06-ai-integration/06-02-SUMMARY.md` - AI rule files (latest)
 
 ---
 
-_State updated: 2026-02-02 after Phase 6 Plan 1 completion (06-01) - Phase 6 in progress (1/3 plans complete)_
+_State updated: 2026-02-02 after Phase 6 Plan 2 completion (06-02) - Phase 6 in progress (2/3 plans complete)_
