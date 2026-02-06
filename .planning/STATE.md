@@ -8,34 +8,34 @@
 See: .planning/PROJECT.md (updated 2026-02-03)
 
 **Core value:** AI agents can add, modify, and extend components without human hand-holding
-**Current focus:** v2 Figma Integration — Phase 7: Token Pipeline Integration
+**Current focus:** v2 Figma Integration — Phase 8: Figma Library Setup
 
 ## Current Position
 
-**Phase:** 7 of 11 (Token Pipeline Integration)
-**Plan:** 2 of 3 (Configure build script with sd-transforms)
-**Status:** In progress
-**Last activity:** 2026-02-06 — Completed 07-02-PLAN.md
+**Phase:** 8 of 11 (Figma Library Setup)
+**Plan:** — (phase not yet planned)
+**Status:** Ready to plan
+**Last activity:** 2026-02-06 — Completed Phase 7
 
-Progress: [██░░░░░░░░] 20% (20/100 total plans)
+Progress: [██░░░░░░░░] 20% (1/5 v2 phases complete)
 
 ## Performance Metrics
 
-| Metric               | Value | Notes                     |
-| -------------------- | ----- | ------------------------- |
-| Phases completed     | 0/5   | v2 phases 7-11            |
-| Requirements shipped | 0/16  | 16 v2 requirements mapped |
+| Metric               | Value | Notes                  |
+| -------------------- | ----- | ---------------------- |
+| Phases completed     | 1/5   | v2 phases 7-11         |
+| Requirements shipped | 3/16  | INF-03, INF-04, TKN-01 |
 
 **v1 baseline:** 6 phases, 18 plans, 86 commits (shipped 2026-02-02)
 
 ## Session Continuity
 
 **Last session:** 2026-02-06
-**Stopped at:** Completed 07-02-PLAN.md
+**Stopped at:** Phase 7 complete, verified
 **Resume file:** None
 
 **What's next:**
-Continue with 07-03 (configure Figma Code Connect)
+Run `/gsd:discuss-phase 8` to gather context for Figma Library Setup
 
 ## Accumulated Context
 
@@ -43,29 +43,21 @@ Continue with 07-03 (configure Figma Code Connect)
 
 - Seed tokens + Figma upgrade path already documented
 - `.figma.tsx` scaffolding exists for all 14 components (placeholder URLs)
-- Style Dictionary 5.2.0 pipeline already works (add sd-transforms, don't replace)
 - `figma.config.json` exists at repo root (needs config fix per research)
 
 **From research:**
 
-- sd-transforms 2.x required for SD 5.x (version lock critical)
-- OKLCH-to-RGB conversion needed (Figma doesn't accept OKLCH)
 - documentUrlSubstitutions currently at wrong nesting level in config
 - Pietro Schirano shadcn/ui kit recommended as community starting point
 
-**From 07-01:**
+**From Phase 7:**
 
 - sd-transforms 2.0.3 installed as devDependency
-- Three custom Style Dictionary formats created (tokens-studio, token-mapping, color-comparison)
-- Formats follow ESM pattern, ready for registration in build.mjs
-
-**From 07-02:**
-
-- Custom OKLCH-to-hex transform created using colorjs.io
-- Build pipeline outputs both CSS (OKLCH) and Figma (hex) tokens
+- Custom OKLCH-to-hex transform using colorjs.io
+- Build outputs: 2 CSS (OKLCH) + 3 JSON (hex) + 1 HTML
 - Token set names: phoenix-light and phoenix-dark
-- excludeParentKeys: false required to preserve token references
-- Dollar-value fallback pattern ($value ?? value) required for DTCG format
+- Token mapping documentation in dist/figma/token-mapping.json
+- Color comparison HTML for visual verification
 
 ## Decisions
 
@@ -81,4 +73,4 @@ Continue with 07-03 (configure Figma Code Connect)
 
 ---
 
-_State updated: 2026-02-06 after completing 07-02_
+_State updated: 2026-02-06 after Phase 7 complete_

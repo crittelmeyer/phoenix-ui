@@ -11,7 +11,7 @@ This roadmap establishes bidirectional Figma integration for the Phoenix Design 
 
 ## Phases
 
-- [ ] **Phase 7: Token Pipeline Integration** - Add sd-transforms and OKLCH-to-RGB conversion
+- [x] **Phase 7: Token Pipeline Integration** - Add sd-transforms and OKLCH-to-RGB conversion
 - [ ] **Phase 8: Figma Library Setup** - Configure community kit with Tokens Studio and Variables
 - [ ] **Phase 9: Code Connect Setup** - Validate authentication and config with single component test
 - [ ] **Phase 10: Component Mapping** - Update all 14 .figma.tsx files with real node-IDs
@@ -28,8 +28,8 @@ This roadmap establishes bidirectional Figma integration for the Phoenix Design 
 
 Plans:
 
-- [ ] 07-01-PLAN.md - Install sd-transforms and create custom formats
-- [ ] 07-02-PLAN.md - Extend build script and generate Figma outputs
+- [x] 07-01-PLAN.md - Install sd-transforms and create custom formats
+- [x] 07-02-PLAN.md - Extend build script and generate Figma outputs
 
 ### Phase 8: Figma Library Setup
 
@@ -106,13 +106,13 @@ Plans:
 
 ## Progress
 
-| Phase                         | Plans Complete | Status      | Completed |
-| ----------------------------- | -------------- | ----------- | --------- |
-| 7. Token Pipeline Integration | 0/2            | Planned     | -         |
-| 8. Figma Library Setup        | 0/?            | Not started | -         |
-| 9. Code Connect Setup         | 0/?            | Not started | -         |
-| 10. Component Mapping         | 0/?            | Not started | -         |
-| 11. Workflow Documentation    | 0/?            | Not started | -         |
+| Phase                         | Plans Complete | Status      | Completed  |
+| ----------------------------- | -------------- | ----------- | ---------- |
+| 7. Token Pipeline Integration | 2/2            | Complete    | 2026-02-06 |
+| 8. Figma Library Setup        | 0/?            | Not started | -          |
+| 9. Code Connect Setup         | 0/?            | Not started | -          |
+| 10. Component Mapping         | 0/?            | Not started | -          |
+| 11. Workflow Documentation    | 0/?            | Not started | -          |
 
 ---
 

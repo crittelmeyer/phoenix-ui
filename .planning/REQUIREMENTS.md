@@ -17,7 +17,7 @@ Requirements for Figma integration milestone. Each maps to roadmap phases.
 
 ### Token Alignment
 
-- [ ] **TKN-01**: Token naming conventions documented — clear mapping between Figma Variables and Phoenix semantic tokens
+- [x] **TKN-01**: Token naming conventions documented — clear mapping between Figma Variables and Phoenix semantic tokens
 - [ ] **TKN-02**: Figma Variables created matching Phoenix token structure (colors, spacing, typography, radius)
 - [ ] **TKN-03**: Light and dark modes configured in Figma Variables mapping to Phoenix theme files
 - [ ] **TKN-04**: Tokens Studio plugin configured with GitHub sync for bi-directional token workflow
@@ -26,8 +26,8 @@ Requirements for Figma integration milestone. Each maps to roadmap phases.
 
 - [ ] **INF-01**: Community Figma kit duplicated and configured as starting point
 - [ ] **INF-02**: Figma access token created with Code Connect Write scope
-- [ ] **INF-03**: @tokens-studio/sd-transforms integrated into Style Dictionary build
-- [ ] **INF-04**: OKLCH-to-RGB color conversion added for Figma compatibility
+- [x] **INF-03**: @tokens-studio/sd-transforms integrated into Style Dictionary build
+- [x] **INF-04**: OKLCH-to-RGB color conversion added for Figma compatibility
 
 ### Documentation
 
@@ -67,24 +67,24 @@ Explicitly excluded. Documented to prevent scope creep.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase | Status  |
-| ----------- | ----- | ------- |
-| CC-01       | 10    | Pending |
-| CC-02       | 10    | Pending |
-| CC-03       | 10    | Pending |
-| CC-04       | 9     | Pending |
-| CC-05       | 10    | Pending |
-| TKN-01      | 7     | Pending |
-| TKN-02      | 8     | Pending |
-| TKN-03      | 8     | Pending |
-| TKN-04      | 8     | Pending |
-| INF-01      | 8     | Pending |
-| INF-02      | 9     | Pending |
-| INF-03      | 7     | Pending |
-| INF-04      | 7     | Pending |
-| DOC-01      | 11    | Pending |
-| DOC-02      | 11    | Pending |
-| DOC-03      | 11    | Pending |
+| Requirement | Phase | Status   |
+| ----------- | ----- | -------- |
+| CC-01       | 10    | Pending  |
+| CC-02       | 10    | Pending  |
+| CC-03       | 10    | Pending  |
+| CC-04       | 9     | Pending  |
+| CC-05       | 10    | Pending  |
+| TKN-01      | 7     | Complete |
+| TKN-02      | 8     | Pending  |
+| TKN-03      | 8     | Pending  |
+| TKN-04      | 8     | Pending  |
+| INF-01      | 8     | Pending  |
+| INF-02      | 9     | Pending  |
+| INF-03      | 7     | Complete |
+| INF-04      | 7     | Complete |
+| DOC-01      | 11    | Pending  |
+| DOC-02      | 11    | Pending  |
+| DOC-03      | 11    | Pending  |
 
 **Coverage:**
 
@@ -95,4 +95,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 ---
 
 _Requirements defined: 2026-02-03_
-_Last updated: 2026-02-06 after roadmap creation_
+_Last updated: 2026-02-06 after Phase 7 complete (3/16 shipped)_
