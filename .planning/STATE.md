@@ -13,11 +13,11 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 ## Current Position
 
 **Phase:** 7 of 11 (Token Pipeline Integration)
-**Plan:** 1 of 3 (Install sd-transforms and create custom formats)
+**Plan:** 2 of 3 (Configure build script with sd-transforms)
 **Status:** In progress
-**Last activity:** 2026-02-06 — Completed 07-01-PLAN.md
+**Last activity:** 2026-02-06 — Completed 07-02-PLAN.md
 
-Progress: [██░░░░░░░░] 19% (19/100 total plans)
+Progress: [██░░░░░░░░] 20% (20/100 total plans)
 
 ## Performance Metrics
 
@@ -31,11 +31,11 @@ Progress: [██░░░░░░░░] 19% (19/100 total plans)
 ## Session Continuity
 
 **Last session:** 2026-02-06
-**Stopped at:** Completed 07-01-PLAN.md
+**Stopped at:** Completed 07-02-PLAN.md
 **Resume file:** None
 
 **What's next:**
-Continue with 07-02 (configure build script with sd-transforms)
+Continue with 07-03 (configure Figma Code Connect)
 
 ## Accumulated Context
 
@@ -59,6 +59,14 @@ Continue with 07-02 (configure build script with sd-transforms)
 - Three custom Style Dictionary formats created (tokens-studio, token-mapping, color-comparison)
 - Formats follow ESM pattern, ready for registration in build.mjs
 
+**From 07-02:**
+
+- Custom OKLCH-to-hex transform created using colorjs.io
+- Build pipeline outputs both CSS (OKLCH) and Figma (hex) tokens
+- Token set names: phoenix-light and phoenix-dark
+- excludeParentKeys: false required to preserve token references
+- Dollar-value fallback pattern ($value ?? value) required for DTCG format
+
 ## Decisions
 
 | ID         | Decision                         | Phase | Impact                                 |
@@ -66,7 +74,11 @@ Continue with 07-02 (configure build script with sd-transforms)
 | D-07-01-01 | Use sd-transforms 2.x            | 07-01 | Enables OKLCH-to-RGB conversion        |
 | D-07-01-02 | ESM format modules (.mjs)        | 07-01 | Consistent with build.mjs architecture |
 | D-07-01-03 | Named token sets (phoenix-light) | 07-01 | Enables light/dark mode in Figma       |
+| D-07-02-01 | Custom OKLCH-to-hex transform    | 07-02 | Phoenix maintains OKLCH, outputs hex   |
+| D-07-02-02 | excludeParentKeys: false         | 07-02 | Token references resolve correctly     |
+| D-07-02-03 | Install colorjs.io direct dep    | 07-02 | Reliable color conversion              |
+| D-07-02-04 | Use tokens-studio preprocessor   | 07-02 | DTCG format tokens parsed correctly    |
 
 ---
 
-_State updated: 2026-02-06 after completing 07-01_
+_State updated: 2026-02-06 after completing 07-02_
