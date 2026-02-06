@@ -1,7 +1,7 @@
 # Requirements: Phoenix v2 Figma Integration
 
 **Defined:** 2026-02-03
-**Core Value:** Complete Figma ↔ code workflow where tokens flow from Figma and Code Connect surfaces real React components in Dev Mode
+**Core Value:** Complete Figma <-> code workflow where tokens flow from Figma and Code Connect surfaces real React components in Dev Mode
 
 ## v2 Requirements
 
@@ -31,7 +31,7 @@ Requirements for Figma integration milestone. Each maps to roadmap phases.
 
 ### Documentation
 
-- [ ] **DOC-01**: Token sync workflow documented (designer export → code import → build → verify)
+- [ ] **DOC-01**: Token sync workflow documented (designer export -> code import -> build -> verify)
 - [ ] **DOC-02**: Code Connect publish workflow documented
 - [ ] **DOC-03**: Figma library setup guide for future maintainers
 
@@ -69,30 +69,30 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status  |
 | ----------- | ----- | ------- |
-| CC-01       | TBD   | Pending |
-| CC-02       | TBD   | Pending |
-| CC-03       | TBD   | Pending |
-| CC-04       | TBD   | Pending |
-| CC-05       | TBD   | Pending |
-| TKN-01      | TBD   | Pending |
-| TKN-02      | TBD   | Pending |
-| TKN-03      | TBD   | Pending |
-| TKN-04      | TBD   | Pending |
-| INF-01      | TBD   | Pending |
-| INF-02      | TBD   | Pending |
-| INF-03      | TBD   | Pending |
-| INF-04      | TBD   | Pending |
-| DOC-01      | TBD   | Pending |
-| DOC-02      | TBD   | Pending |
-| DOC-03      | TBD   | Pending |
+| CC-01       | 10    | Pending |
+| CC-02       | 10    | Pending |
+| CC-03       | 10    | Pending |
+| CC-04       | 9     | Pending |
+| CC-05       | 10    | Pending |
+| TKN-01      | 7     | Pending |
+| TKN-02      | 8     | Pending |
+| TKN-03      | 8     | Pending |
+| TKN-04      | 8     | Pending |
+| INF-01      | 8     | Pending |
+| INF-02      | 9     | Pending |
+| INF-03      | 7     | Pending |
+| INF-04      | 7     | Pending |
+| DOC-01      | 11    | Pending |
+| DOC-02      | 11    | Pending |
+| DOC-03      | 11    | Pending |
 
 **Coverage:**
 
 - v2 requirements: 16 total
-- Mapped to phases: 0
-- Unmapped: 16 (pending roadmap)
+- Mapped to phases: 16
+- Unmapped: 0
 
 ---
 
 _Requirements defined: 2026-02-03_
-_Last updated: 2026-02-03 after initial definition_
+_Last updated: 2026-02-06 after roadmap creation_
