@@ -3,6 +3,7 @@
 **Domain:** React design system with Tailwind CSS, Radix UI, Style Dictionary, Turborepo
 **Stack:** pnpm + Turborepo, Vite + React Router, React 19, Tailwind CSS 4, Radix UI, CVA, Style Dictionary, Storybook
 **Researched:** 2026-02-01
+**Updated:** 2026-02-06 (Figma Integration section added)
 
 ---
 
@@ -1014,6 +1015,611 @@ Mistakes that cause annoyance but are easily fixable.
 
 ---
 
+## Figma Integration Pitfalls
+
+Specific pitfalls when adding Figma Variables/Tokens Studio and Code Connect to an existing Style Dictionary pipeline.
+
+**Added:** 2026-02-06
+**Context:** Phoenix has working DTCG token pipeline with OKLCH colors, adding Figma as variable source.
+
+### Figma Pitfall 1: OKLCH to RGB Conversion at Figma Boundary
+
+**Severity:** Critical
+**Phase:** Token Pipeline Integration
+
+**What happens:**
+Figma's Variables API only accepts RGB/Hex colors. Phoenix tokens use OKLCH values (`oklch(0.647 0.186 264.54)`). Direct export fails or produces incorrect colors.
+
+**Warning signs:**
+
+- Colors look wrong or washed out in Figma
+- P3 gamut colors clip to sRGB incorrectly
+- Export scripts fail with "invalid color format" errors
+
+**Why it's specific to Phoenix:**
+Your `colors.json` has 77 color tokens, all in OKLCH. The semantic references (`{color.primary.600}`) resolve to OKLCH values. This is a strength for CSS (wider gamut) but creates a boundary problem with Figma.
+
+**Prevention:**
+
+1. Add OKLCH-to-RGB conversion transform in Style Dictionary build
+2. Use `culori` or `colorjs.io` for accurate color space conversion
+3. Verify P3 colors convert correctly (Figma has known bugs with P3 profile interpretation)
+4. Consider outputting both: OKLCH for CSS, RGB for Figma exports
+
+**Detection:**
+
+```javascript
+// In token build script, verify no oklch values leak to Figma export
+tokens.forEach((t) => {
+  if (t.$value?.includes('oklch')) {
+    throw new Error(`OKLCH found in Figma export: ${t.name}`)
+  }
+})
+```
+
+**Sources:**
+
+- [Figma Forum: Support OKLab and OKLCH](https://forum.figma.com/suggest-a-feature-11/support-oklab-and-oklch-8257)
+- [Figmalion: Syncing variables to tokens](https://figmalion.com/issue/137)
+
+---
+
+### Figma Pitfall 2: sd-transforms Version Lock with Style Dictionary
+
+**Severity:** Critical
+**Phase:** Token Pipeline Integration
+
+**What happens:**
+`@tokens-studio/sd-transforms` has strict version requirements:
+
+- sd-transforms 1.0.0+ requires Style Dictionary 4.0.0+
+- sd-transforms for SD5 is NOT compatible with SD4
+
+Phoenix uses Style Dictionary 5 (per your `build.mjs`). Using wrong sd-transforms version causes:
+
+- Silent preprocessing failures
+- Token type mismatches
+- Build completes but output is wrong
+
+**Warning signs:**
+
+- Token values not transforming (px units missing, opacity as 50% instead of 0.5)
+- `originalType` extension missing from output
+- Build succeeds but CSS has raw JSON values
+
+**Prevention:**
+
+```bash
+# Verify compatible versions
+npm ls style-dictionary @tokens-studio/sd-transforms
+
+# Required pairing:
+# Style Dictionary 5.x -> sd-transforms 1.x (latest)
+# Style Dictionary 4.x -> sd-transforms 0.x
+```
+
+Add to `build.mjs`:
+
+```javascript
+import { register } from '@tokens-studio/sd-transforms'
+
+// Register preprocessors and transforms
+register(StyleDictionary)
+
+const sd = new StyleDictionary({
+  preprocessors: ['tokens-studio'],
+  // ... rest of config
+})
+```
+
+**Detection:**
+
+- Check that dimension tokens have `px` units in output
+- Verify opacity transforms (50% -> 0.5)
+- Confirm `$extensions['studio.tokens'].originalType` exists for transformed tokens
+
+**Sources:**
+
+- [sd-transforms GitHub: Version compatibility](https://github.com/tokens-studio/sd-transforms)
+- [Tokens Studio Blog: Style Dictionary v4 plan](https://tokens.studio/blog/style-dictionary-v4-plan)
+
+---
+
+### Figma Pitfall 3: Code Connect Node-ID Staleness (Silent Failures)
+
+**Severity:** Critical
+**Phase:** Code Connect Publishing
+
+**What happens:**
+Your `.figma.tsx` files have placeholder URLs:
+
+```tsx
+'https://www.figma.com/design/FIGMA_FILE_KEY?node-id=NODE_ID'
+```
+
+When these are replaced with real node-IDs:
+
+- If component moves/deletes in Figma, Code Connect publishes succeed silently
+- Dev Mode shows "Failed to load Code Connect example"
+- No CLI warning or error indicates the mismatch
+
+**Warning signs:**
+
+- `npx figma connect publish` succeeds but Dev Mode shows errors
+- Designers report Code Connect not working for specific components
+- Component in Figma was recently restructured or renamed
+
+**Prevention:**
+
+1. Add validation step before publish:
+
+```bash
+# Validate node-IDs exist before publishing
+npx figma connect parse --dry-run 2>&1 | grep -i error
+```
+
+2. Create a node-ID manifest and check periodically:
+
+```json
+// figma-manifest.json
+{
+  "Button": "123:456",
+  "Input": "123:789",
+  "_lastValidated": "2026-02-06"
+}
+```
+
+3. When updating Figma components, update `.figma.tsx` files in same PR
+
+**Phase recommendation:** Add "Validate Code Connect" step to CI after Code Connect is published
+
+**Sources:**
+
+- [GitHub Issue: Validation for non-existent node-id](https://github.com/figma/code-connect/issues/337)
+- [GitHub Issue: Monitoring for prop changes](https://github.com/figma/code-connect/issues/291)
+
+---
+
+### Figma Pitfall 4: Tokens Studio Export Format Mismatch
+
+**Severity:** High
+**Phase:** Token Pipeline Integration
+
+**What happens:**
+Tokens Studio can export in legacy or W3C DTCG format. Phoenix already uses DTCG (`$value`, `$type`). If Tokens Studio is set to legacy format:
+
+- Property names differ (`value` vs `$value`)
+- Type names differ (`color` vs `color` is same, but `boxShadow` vs `shadow`)
+- Style Dictionary preprocessing fails
+
+**Warning signs:**
+
+- Build errors about missing `$value` property
+- Token references not resolving
+- Composite tokens (shadow, typography) not expanding
+
+**Prevention:**
+
+1. In Tokens Studio settings, verify "Token Format" is set to "W3C DTCG"
+2. Add format validation to build script:
+
+```javascript
+// Validate DTCG format
+if (token.value && !token.$value) {
+  throw new Error(
+    `Legacy format detected for ${token.name}. Enable W3C DTCG in Tokens Studio.`,
+  )
+}
+```
+
+3. Document Tokens Studio settings in team wiki
+
+**Sources:**
+
+- [Tokens Studio: Token Format - W3C DTCG vs Legacy](https://docs.tokens.studio/manage-settings/token-format)
+- [Style Dictionary: DTCG support](https://styledictionary.com/info/dtcg/)
+
+---
+
+### Figma Pitfall 5: Figma Variables Collection/Mode Limits
+
+**Severity:** High
+**Phase:** Tokens Studio Setup
+
+**What happens:**
+Figma has hard limits:
+
+- 5000 variables per collection (hard limit)
+- Mode limits vary by plan:
+  - Starter: 1 mode
+  - Professional: 4 modes
+  - Organization: 4 modes
+  - Enterprise: 40 modes
+
+Phoenix Professional plan = 4 modes max. If you need light/dark + brand variations, you may hit mode limits.
+
+**Warning signs:**
+
+- "Variables skipped" warning during export
+- Only partial token sets appear in Figma
+- Mode dropdown missing expected options
+
+**Prevention:**
+
+1. Audit token count before export: Phoenix has ~77 color tokens + spacing/typography. Should be well under 5000.
+2. Plan mode structure early:
+   - Mode 1: Light
+   - Mode 2: Dark
+   - Mode 3-4: Reserved for brand theming
+3. For 4+ brands, use separate collections or consider Organization plan
+
+**Detection:**
+
+```bash
+# Count tokens in Phoenix (rough estimate)
+grep -r '"$type"' packages/tokens/src/tokens/*.json | wc -l
+# Phoenix current: ~100 tokens (well under 5000)
+```
+
+**Sources:**
+
+- [Tokens Studio: Variables Skipped on Export](https://docs.tokens.studio/figma/export/variables-skipped)
+- [Tokens Studio: Variables Overview](https://docs.tokens.studio/figma/variables-overview)
+
+---
+
+### Figma Pitfall 6: Code Connect Authentication Scope
+
+**Severity:** High
+**Phase:** Code Connect Setup
+
+**What happens:**
+Personal Access Token (PAT) requires specific scopes:
+
+- **Code Connect: Write** (to publish)
+- **File content: Read** (to access components)
+
+Missing scopes cause 403 Forbidden errors. Token only displays once at creation - if you miss copying it, you must regenerate.
+
+**Warning signs:**
+
+- 403 errors on `npx figma connect publish`
+- "Couldn't find a Figma access token" error
+- Authentication works for some operations but not Code Connect
+
+**Prevention:**
+
+1. When creating PAT, explicitly enable:
+   - Code Connect scope: Write
+   - File content scope: Read
+2. Store in `.env` or environment variable:
+
+```bash
+export FIGMA_ACCESS_TOKEN=figd_xxxxx
+```
+
+3. Add to CI secrets for automated publishing
+
+**Detection:**
+
+```bash
+# Test token validity
+curl -H "X-Figma-Token: $FIGMA_ACCESS_TOKEN" \
+  "https://api.figma.com/v1/me"
+```
+
+**Sources:**
+
+- [Figma: Manage personal access tokens](https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens)
+- [Code Connect: Getting started](https://www.figma.com/code-connect-docs/quickstart-guide/)
+
+---
+
+### Figma Pitfall 7: Variant Prop Naming Mismatch
+
+**Severity:** High
+**Phase:** Code Connect Mapping
+
+**What happens:**
+Your `.figma.tsx` files map Figma variant names to code props:
+
+```tsx
+variant: figma.enum('Variant', {
+  Default: 'default',
+  Destructive: 'destructive',
+  // ...
+})
+```
+
+If Figma component uses different variant names (e.g., "Style" instead of "Variant", or "Primary" instead of "Default"), mapping silently fails.
+
+**Warning signs:**
+
+- Props not populated in generated code snippets
+- Wrong variant values appearing
+- "undefined" in Code Connect preview
+
+**Prevention:**
+
+1. Before writing mappings, document exact Figma variant names:
+
+```
+Component: Button
+Variant property name: "Type" (not "Variant")
+Options: "Primary", "Secondary", "Danger" (not "Default", "Destructive")
+```
+
+2. Use `npx figma connect create` to scaffold from actual Figma component
+3. When designer renames variant, update `.figma.tsx` in same sprint
+
+**Detection:** Compare Figma Inspector panel variant names with `.figma.tsx` `figma.enum()` first parameter
+
+**Sources:**
+
+- [GitHub Issue: Figma Props mapping based on condition](https://github.com/figma/code-connect/issues/40)
+- [Figma Docs: Connecting Web components](https://developers.figma.com/docs/code-connect/html/)
+
+---
+
+### Figma Pitfall 8: Composite Token Expansion Issues
+
+**Severity:** Medium
+**Phase:** Token Pipeline Integration
+
+**What happens:**
+Typography and shadow tokens in Tokens Studio are composite (object values). Style Dictionary needs to either:
+
+- Expand them into separate tokens (`typography.heading.fontSize`, `typography.heading.lineHeight`)
+- Or transform them to CSS shorthand
+
+Tokens Studio uses slightly different property names than DTCG (`boxShadow` vs `shadow`, `x`/`y` vs `offsetX`/`offsetY`).
+
+**Warning signs:**
+
+- Typography or shadow tokens output as `[object Object]`
+- CSS shorthand missing font properties
+- Shadow tokens missing spread/blur values
+
+**Prevention:**
+
+```javascript
+// In Style Dictionary config with sd-transforms
+import { expandTypesMap } from '@tokens-studio/sd-transforms'
+
+const sd = new StyleDictionary({
+  expand: {
+    typesMap: expandTypesMap, // Handles TS-specific names
+  },
+})
+```
+
+**Sources:**
+
+- [GitHub Issue: DTCG typography composition token issues](https://github.com/style-dictionary/style-dictionary/issues/1494)
+- [sd-transforms: expandTypesMap usage](https://github.com/tokens-studio/sd-transforms)
+
+---
+
+### Figma Pitfall 9: Token Naming Convention Conflicts
+
+**Severity:** Medium
+**Phase:** Tokens Studio Setup
+
+**What happens:**
+Tokens Studio uses `.` for grouping, Figma uses `/`:
+
+- Token: `color.primary.500`
+- Figma Variable: `color/primary/500`
+
+Phoenix uses kebab-case in semantic names (`card-foreground`). Some restrictions:
+
+- Forward slashes (`/`) create unintentional groups
+- `$` prefix not allowed
+- Emojis/special characters break code generation
+
+**Warning signs:**
+
+- Variables appear in wrong groups in Figma
+- Token names include unexpected prefixes
+- Style Dictionary references don't resolve
+
+**Prevention:**
+
+1. Audit existing token names for Figma compatibility
+2. Avoid forward slashes in token names (let Tokens Studio convert `.` to `/`)
+3. Document naming convention for team
+
+**Phoenix audit:**
+
+```bash
+# Check for problematic characters
+grep -r '\$value' packages/tokens/src/tokens/*.json | grep -E '[$/]' | head -5
+# Phoenix uses valid names: color.semantic.primary-foreground (safe)
+```
+
+**Sources:**
+
+- [Tokens Studio: Token Name Technical Specs](https://docs.tokens.studio/manage-tokens/token-names/technical-specs)
+- [Tokens Studio: Naming Design Tokens guide](https://docs.tokens.studio/guides/naming-design-tokens)
+
+---
+
+### Figma Pitfall 10: API Rate Limiting on Batch Operations
+
+**Severity:** Medium
+**Phase:** Token Pipeline Integration (if using Variables API directly)
+
+**What happens:**
+Figma API has rate limits (tiered by plan):
+
+- Professional plan: 50/min for Tier 2, 100/min for Tier 3
+- Variables import with 600+ tokens can trigger 429 errors
+
+**Warning signs:**
+
+- 429 Too Many Requests during token sync
+- Partial variable imports
+- Retry-After headers in API responses
+
+**Prevention:**
+
+1. Use Tokens Studio plugin (handles batching internally) rather than direct API calls
+2. If using API directly, implement exponential backoff:
+
+```javascript
+async function syncWithRetry(fn, maxRetries = 3) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      return await fn()
+    } catch (e) {
+      if (e.status === 429) {
+        const retryAfter = e.headers.get('Retry-After') || 60
+        await sleep(retryAfter * 1000)
+      } else throw e
+    }
+  }
+}
+```
+
+3. Batch variable updates rather than individual calls
+
+**Sources:**
+
+- [Figma: Rate Limits](https://developers.figma.com/docs/rest-api/rate-limits/)
+- [GitHub Issue: 429 rate limit errors](https://github.com/GLips/Figma-Context-MCP/issues/258)
+
+---
+
+### Figma Pitfall 11: Code Connect 413 Upload Size Limit
+
+**Severity:** Medium
+**Phase:** Code Connect Publishing
+
+**What happens:**
+Large Code Connect payloads (many components) can exceed upload limits, causing 413 errors.
+
+**Warning signs:**
+
+- `npx figma connect publish` fails with 413 error
+- Publish works for some components but fails for batch
+
+**Prevention:**
+
+```bash
+# Use --batch-size for large component libraries
+npx figma connect publish --batch-size 50
+
+# If still failing, reduce further
+npx figma connect publish --batch-size 25
+```
+
+**Detection:** Phoenix has 14 components - should be well under limits. Only applies if library grows significantly.
+
+**Sources:**
+
+- [Code Connect: Common Issues](https://developers.figma.com/docs/code-connect/common-issues/)
+
+---
+
+### Figma Pitfall 12: figma.config.json Structure Errors
+
+**Severity:** Medium
+**Phase:** Code Connect Setup
+
+**What happens:**
+Your current `figma.config.json`:
+
+```json
+{
+  "codeConnect": {
+    "include": ["packages/ui/src/components/**/*.figma.tsx"],
+    "parser": "react",
+    "label": "React"
+  },
+  "documentUrlSubstitutions": {} // <-- Wrong nesting!
+}
+```
+
+`documentUrlSubstitutions` must be inside `codeConnect` object, not at root level.
+
+**Warning signs:**
+
+- URL substitutions not working
+- "documentUrlSubstitutions is not nested" error
+- Configuration parsing warnings
+
+**Prevention:**
+Correct structure:
+
+```json
+{
+  "codeConnect": {
+    "include": ["packages/ui/src/components/**/*.figma.tsx"],
+    "parser": "react",
+    "label": "React",
+    "documentUrlSubstitutions": {}
+  }
+}
+```
+
+**Sources:**
+
+- [Figma Forum: documentUrlSubstitutions config](https://forum.figma.com/ask-the-community-7/question-around-documenturlsubstitutions-for-code-connect-config-36102)
+- [Figma Docs: Configuring your project](https://developers.figma.com/docs/code-connect/api/config-file/)
+
+---
+
+### Figma Pitfall 13: Drafts Folder Variables Limitation
+
+**Severity:** Low
+**Phase:** Tokens Studio Setup
+
+**What happens:**
+Files in Figma's Drafts folder cannot use variable modes. Tokens export as single-mode collections.
+
+**Prevention:** Ensure Figma file is in a Project, not Drafts.
+
+---
+
+### Figma Pitfall 14: ESM-Only sd-transforms Package
+
+**Severity:** Low
+**Phase:** Token Pipeline Integration
+
+**What happens:**
+`@tokens-studio/sd-transforms` is ESM-only. CommonJS imports fail.
+
+**Prevention:** Phoenix already uses `.mjs` for build script (correct). Ensure no CJS imports.
+
+---
+
+### Figma Pitfall 15: Network/Proxy Blocking api.figma.com
+
+**Severity:** Low
+**Phase:** Code Connect Setup
+
+**What happens:**
+Corporate proxies or security software block Code Connect CLI.
+
+**Prevention:** Allow `https://api.figma.com/` in network configuration.
+
+---
+
+## Figma-Specific Gotchas
+
+Quick tips that don't warrant full sections:
+
+- **Figma file must be saved** before Code Connect can read component node-IDs
+- **Component instances** don't work for Code Connect - must select the main component
+- **Token type "OTHER"** not exportable as Figma Variables (only color, number, string, boolean)
+- **AUTO line-height** skipped during variable export (Figma requires numeric values)
+- **Percentage values** in number tokens skipped (Figma Variables must be unitless)
+- **Box shadow "spread" property** - Tokens Studio uses different name than DTCG spec
+- **Theme groups** required for multi-mode collections (token sets create single-mode collections)
+- **Color tokens** cannot export to both Variables and Styles simultaneously
+
+---
+
 ## Phase-Specific Warnings
 
 | Phase                      | Topic              | Likely Pitfall                                 | Mitigation                                                 |
@@ -1032,6 +1638,17 @@ Mistakes that cause annoyance but are easily fixable.
 | **Phase 4: Documentation** | Build order        | Storybook builds before components             | Configure dependsOn: ["^build", "build"]                   |
 | **Phase 4: Documentation** | Type generation    | React Router types missing on fresh clone      | Add postinstall script to generate types                   |
 | **Phase 5+: Publishing**   | Versioning         | Incompatible package combinations              | Use fixed versioning or pinned dependencies                |
+
+### Figma Integration Phase Warnings
+
+| Phase                      | Key Pitfalls to Address                                                                                                   |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Token Pipeline Integration | OKLCH conversion (Figma #1), sd-transforms version (Figma #2), Format mismatch (Figma #4), Composite expansion (Figma #8) |
+| Tokens Studio Setup        | Collection/mode limits (Figma #5), Naming conflicts (Figma #9), Drafts limitation (Figma #13)                             |
+| Code Connect Setup         | Authentication (Figma #6), Config structure (Figma #12), Network (Figma #15)                                              |
+| Code Connect Mapping       | Node-ID staleness (Figma #3), Variant naming (Figma #7)                                                                   |
+| Code Connect Publishing    | Upload size (Figma #11)                                                                                                   |
+| Ongoing Maintenance        | Node-ID validation, Prop change monitoring                                                                                |
 
 ---
 
@@ -1062,6 +1679,18 @@ Areas requiring phase-specific investigation before implementation:
 - **Provenance attestation:** npm publish with --provenance flag
 - **Package exports mapping:** Conditional exports for ESM/CJS consumers
 - **Peer dependency ranges:** Acceptable React 18/19 version constraints
+
+---
+
+## Confidence Assessment (Figma Integration)
+
+| Pitfall Category            | Confidence | Basis                                                              |
+| --------------------------- | ---------- | ------------------------------------------------------------------ |
+| OKLCH compatibility         | HIGH       | Verified via Figma Forum feature requests and plugin documentation |
+| sd-transforms versioning    | HIGH       | Official GitHub releases and npm documentation                     |
+| Code Connect node-ID issues | HIGH       | GitHub issues from real users (#337, #291)                         |
+| Tokens Studio export        | MEDIUM     | Documentation cross-referenced with GitHub issues                  |
+| Rate limiting               | MEDIUM     | Official Figma docs, but specific Variable API tier unclear        |
 
 ---
 
@@ -1120,3 +1749,31 @@ Areas requiring phase-specific investigation before implementation:
 
 - [Official guide](https://blog.logrocket.com/react-router-v7-guide/)
 - [React Router v7 announcement](https://remix.run/blog/react-router-v7)
+
+### Figma Integration Sources
+
+**Official Documentation:**
+
+- [Figma: Code Connect Common Issues](https://developers.figma.com/docs/code-connect/common-issues/)
+- [Figma: Rate Limits](https://developers.figma.com/docs/rest-api/rate-limits/)
+- [Figma: Personal Access Tokens](https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens)
+- [Tokens Studio: Token Format](https://docs.tokens.studio/manage-settings/token-format)
+- [Tokens Studio: Variables Overview](https://docs.tokens.studio/figma/variables-overview)
+- [Tokens Studio: Variables Skipped](https://docs.tokens.studio/figma/export/variables-skipped)
+- [Tokens Studio: Export Options](https://docs.tokens.studio/figma/export/options)
+- [Tokens Studio: Token Names Technical Specs](https://docs.tokens.studio/manage-tokens/token-names/technical-specs)
+- [Style Dictionary: DTCG](https://styledictionary.com/info/dtcg/)
+
+**GitHub Issues and Repositories:**
+
+- [sd-transforms: GitHub](https://github.com/tokens-studio/sd-transforms)
+- [Code Connect: Node-ID validation issue #337](https://github.com/figma/code-connect/issues/337)
+- [Code Connect: Prop change monitoring #291](https://github.com/figma/code-connect/issues/291)
+- [Code Connect: Prop mapping issue #40](https://github.com/figma/code-connect/issues/40)
+- [Style Dictionary: Typography composite issue #1494](https://github.com/style-dictionary/style-dictionary/issues/1494)
+
+**Community Resources:**
+
+- [Figma Forum: OKLCH support request](https://forum.figma.com/suggest-a-feature-11/support-oklab-and-oklch-8257)
+- [Figma Forum: documentUrlSubstitutions config](https://forum.figma.com/ask-the-community-7/question-around-documenturlsubstitutions-for-code-connect-config-36102)
+- [Figmalion: Syncing variables to tokens](https://figmalion.com/issue/137)

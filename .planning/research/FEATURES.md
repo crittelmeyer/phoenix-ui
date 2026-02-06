@@ -1,249 +1,295 @@
-# Feature Landscape
+# Features Research: Figma Integration
 
-**Domain:** React Design System Monorepo Starter
-**Researched:** 2026-02-01
-**Confidence:** MEDIUM (WebSearch findings cross-referenced across multiple sources)
+**Domain:** Design system Figma-to-code integration
+**Researched:** 2026-02-06
+**Overall confidence:** HIGH (verified via official Figma documentation)
 
-## Table Stakes
+## Executive Summary
 
-Features users expect. Missing = product feels incomplete.
+A complete Figma integration for Phoenix consists of two distinct workflows that solve different problems:
 
-| Feature                                | Why Expected                                                                          | Complexity | Notes                                                             |
-| -------------------------------------- | ------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------- |
-| **Core Component Set**                 | shadcn/ui has 50+ components; starters need essential building blocks                 | Medium     | Phoenix plans 12 core components - this is minimum viable set     |
-| **Type-Safe Component Variants (CVA)** | CVA is the standard pattern for shadcn-style systems; 62% type-safe workflows in 2026 | Low        | Using `cva()` for variant management is now expected pattern      |
-| **Accessible Primitives (Radix UI)**   | Radix provides WAI-ARIA compliant foundations; accessibility is non-negotiable        | Low        | Radix handles ARIA, focus, keyboard nav - table stakes foundation |
-| **Tailwind Integration**               | Tailwind + shadcn is 2026 standard for modern starters; emerged as frontrunner        | Low        | Utility-first CSS is expected; competitors all use Tailwind       |
-| **Dark Mode Support**                  | 70%+ users expect dark mode in 2026; system preference detection mandatory            | Medium     | CSS variables + `prefers-color-scheme` + theme switcher           |
-| **TypeScript Throughout**              | 100% of modern starters are TypeScript-first; type safety is baseline expectation     | Low        | No JS-only option; TS is table stakes for credibility             |
-| **Monorepo Structure**                 | Design systems are distributed packages; monorepo tooling is expected                 | Medium     | Turborepo/pnpm workspaces standard for 2026 starters              |
-| **Component Documentation**            | Users need to know how to use components; undocumented = unusable                     | Medium     | Storybook or equivalent interactive docs required                 |
-| **Design Tokens**                      | Semantic tokens for colors, spacing, typography; consistency foundation               | Medium     | CSS variables via Tailwind theme or @theme directive              |
-| **Form Validation Integration**        | react-hook-form + Zod is 2026 validation standard; forms need first-class support     | Medium     | Form wrapper component must handle validation, error display      |
-| **Basic Testing Setup**                | Vitest + RTL is 2026 testing baseline; untested components = low trust                | Medium     | Test infrastructure + example tests for core components           |
-| **Package Exports**                    | Components must be importable as npm packages; monorepo sharing required              | Low        | Proper package.json exports, build outputs, tree-shakeable        |
+1. **Code Connect** - Shows real Phoenix component code in Figma Dev Mode instead of auto-generated snippets. Developers inspecting designs see actual import statements and props they can copy.
 
-## Differentiators
+2. **Token synchronization** - Keeps design tokens aligned between Figma Variables and the code token system. Without this, designers use one set of colors while developers use another, causing drift.
 
-Features that set product apart. Not expected, but valued.
+Phoenix already has the scaffolding for Code Connect (14 `.figma.tsx` files with placeholder URLs) and a DTCG token system. The integration work is connecting these to real Figma files, not building from scratch.
 
-| Feature                            | Value Proposition                                                             | Complexity | Notes                                                                     |
-| ---------------------------------- | ----------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------- |
-| **AI/Claude-First Architecture**   | "shadcn revolutionized UI with copy-paste; AI needs predictable patterns"     | Low        | Phoenix's unique angle - documented patterns for LLM code generation      |
-| **Compound Component Patterns**    | Factory functions + useContext for composable APIs; superior DX vs prop-heavy | Medium     | Type-safe compound components (2026 pattern) vs boolean prop hell         |
-| **Design Token Migration Path**    | Tailwind 4 @theme support; CSS variables bridge to token platforms            | Medium     | Future-proof token architecture; most starters stuck on v3 patterns       |
-| **Zero-Config Monorepo**           | "Clone and go" vs multi-step setup; Turborepo caching pre-configured          | Medium     | Competitor starters require manual configuration; Phoenix is turnkey      |
-| **Living Documentation**           | Storybook + MDX with design guidelines, not just prop tables                  | High       | Most starters have basic docs; Phoenix includes usage patterns, rationale |
-| **Component Composition Examples** | Real-world patterns: forms, dashboards, data tables using core primitives     | Medium     | Starters give primitives; Phoenix shows how to compose them               |
-| **Consistent Error Boundaries**    | react-hook-form error display patterns; Toast integration for async errors    | Medium     | Most systems handle errors inconsistently; Phoenix has patterns           |
-| **Workspace-Aware Tooling**        | ESLint, Prettier, TypeScript configs shared as internal packages              | Low        | Reduces config drift across monorepo apps                                 |
-| **Changesets Integration**         | Automated versioning and changelogs for component packages                    | Medium     | Professional publishing workflow; competitors use manual versioning       |
-| **Visual Regression Testing**      | Chromatic or Playwright component screenshots; prevent UI regressions         | High       | Few starters include; high value for maintaining consistency              |
-| **Performance Budgets**            | Bundle size tracking, tree-shaking verification per component                 | Medium     | Most starters don't measure; Phoenix could enforce standards              |
+**Key constraint:** Phoenix user has Figma Professional plan, which does NOT include the Variables REST API. Token sync requires either upgrading to Enterprise or using Tokens Studio plugin as an intermediary.
 
-## Anti-Features
+---
 
-Features to explicitly NOT build. Common mistakes in this domain.
+## Table Stakes (Must Have)
 
-| Anti-Feature                         | Why Avoid                                                                             | What to Do Instead                                                                        |
-| ------------------------------------ | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| **Premature Abstraction**            | "Kill more patterns than you create" - over-abstracting early creates complexity debt | Wait for patterns to emerge from real usage; document decisions, don't enforce frameworks |
-| **Custom Build System**              | Turborepo/Vite/tsup are battle-tested; custom builds = maintenance burden             | Use standard tooling; differentiate on architecture, not build config                     |
-| **Proprietary Token Format**         | CSS variables and Tailwind theme work everywhere; custom formats lock users in        | Use web standards (CSS vars) + Tailwind conventions                                       |
-| **Complete Component Library**       | shadcn has 50+ components; starters that try to compete end up half-finished          | Focus on 12-15 essential components done excellently vs 50+ mediocre                      |
-| **Framework Lock-in**                | Vue, Angular, Svelte support sounds good but dilutes focus; unstyled means React-only | Embrace React focus; Radix is React-only, so is shadcn pattern                            |
-| **Custom CSS-in-JS**                 | "CSS-in-TS isn't for everyone" - CVA exists because styled-components lost            | Tailwind + CVA is the winning pattern; don't build alternatives                           |
-| **Dedicated Design System Team**     | "Don't hire a DS team before PMF" - starters are for small teams                      | Design for 1-3 devs maintaining; avoid enterprise-scale processes                         |
-| **Figma-First Workflow**             | Design drift happens when design and code aren't synced; Figma creates false starts   | Code-first with Storybook as living docs; Figma as communication layer                    |
-| **Over-Engineered State Management** | Components should be uncontrolled by default (Radix principle)                        | Use Radix defaults; only add state when needed; avoid Redux/Zustand in primitives         |
-| **Custom Accessibility Layer**       | Radix handles ARIA/keyboard/focus; reinventing this is bug-prone                      | Trust Radix primitives; document usage, don't reimplement a11y                            |
-| **Breaking shadcn/ui Patterns**      | shadcn is the reference implementation; deviating confuses users                      | Follow shadcn conventions; innovate on composition, not base patterns                     |
-| **Git-Based Component Distribution** | CLI copy-paste (shadcn style) sounds cool but complicates versioning                  | Use npm packages; monorepo workspace imports for internal sharing                         |
+These features are required for the Figma integration to feel "working." Without them, developers and designers will perceive the integration as broken or incomplete.
+
+### Code Connect: Component Mapping
+
+- **Real code snippets in Dev Mode** - When developers inspect a Button in Figma, they see `import { Button } from '@phoenix/ui'` instead of generic CSS
+  - Complexity: Low (scaffolding exists)
+  - Dependencies: Figma file with published library, Organization/Enterprise plan
+  - User story: Developer opens Dev Mode, clicks component, copies working import statement
+
+- **Property mapping to variants** - Figma variant selections map to actual prop values. "Size: Large" shows `size="lg"`, "Variant: Destructive" shows `variant="destructive"`
+  - Complexity: Medium (requires matching Figma variant names to code props)
+  - Dependencies: Figma library with properly named variants
+  - User story: Developer changes variant in Figma, code snippet updates to match
+
+- **All 14 components connected** - Every Phoenix component has a working Code Connect mapping to a real Figma node
+  - Complexity: Medium (14 components, each needs URL + property mapping)
+  - Dependencies: Figma library file with all components
+  - User story: Any component in the design file shows correct code
+
+### Code Connect: Publishing Workflow
+
+- **CLI publish command works** - `npx figma connect publish` successfully uploads mappings
+  - Complexity: Low (existing CLI tool)
+  - Dependencies: Figma access token with Code Connect Write scope
+  - User story: Developer runs publish, sees components in Dev Mode
+
+- **figma.config.json configured** - Config file has correct file key, include paths, and parser settings
+  - Complexity: Low (file exists, needs real URLs)
+  - Dependencies: Figma file URL
+  - User story: CLI finds all .figma.tsx files and publishes them
+
+### Token Alignment
+
+- **Token names match between Figma and code** - When a designer uses `color/primary/500` in Figma, the developer sees `--color-primary-500` in code
+  - Complexity: Medium (naming convention alignment)
+  - Dependencies: Figma Variables using consistent naming
+  - User story: Designer says "use primary-500", developer knows exactly which token
+
+- **Semantic tokens documented** - Clear mapping between Figma semantic variables and code semantic classes
+  - Complexity: Low (documentation)
+  - Dependencies: Phoenix token system (exists)
+  - User story: Both roles understand `bg-primary` = Figma's `primary` color variable
+
+---
+
+## Differentiators (Competitive Edge)
+
+Features that make Phoenix's Figma integration smoother than typical design system handoffs. Not required, but significantly improve the workflow.
+
+### Enhanced Code Connect
+
+- **Compound component snippets** - Dialog shows full usage pattern including DialogTrigger, DialogContent, DialogHeader, etc.
+  - Complexity: High (requires figma.children() for nested instances)
+  - Dependencies: Figma file structured with nested components
+  - User story: Developer copies complete Dialog pattern, not just one part
+
+- **Icon instance mapping** - Icon components in Figma map to actual icon imports in code
+  - Complexity: Medium (figma.instance() with icon library)
+  - Dependencies: Icon library in both Figma and code
+  - User story: Icon selection in Figma shows correct icon import
+
+- **Dark mode variant handling** - Same component shows correct code for light/dark themes
+  - Complexity: Low (semantic tokens handle this automatically)
+  - Dependencies: Phoenix semantic token system (exists)
+  - User story: Theme toggle in Figma, code snippets stay the same (semantic tokens)
+
+### Token Synchronization
+
+- **Bi-directional token sync** - Changes in either Figma or code can propagate to the other
+  - Complexity: High (requires Tokens Studio + GitHub workflow)
+  - Dependencies: Tokens Studio Pro license, GitHub Actions
+  - User story: Designer updates spacing, PR appears with code changes
+
+- **Token changelog visibility** - When tokens change, both roles see what changed and why
+  - Complexity: Medium (git history + documentation)
+  - Dependencies: Structured commit messages
+  - User story: "Why did this color change?" answered by git log
+
+- **Mode support (light/dark)** - Figma variable modes map to code theme files
+  - Complexity: Medium (already have light/dark CSS, need Figma modes)
+  - Dependencies: Phoenix tokens.css and tokens.dark.css (exist)
+  - User story: Designer toggles mode, sees correct values applied
+
+### Developer Experience
+
+- **Storybook links in Figma** - Dev Mode shows link to component's Storybook page
+  - Complexity: Low (custom links in Code Connect)
+  - Dependencies: Deployed Storybook
+  - User story: Developer clicks link, sees interactive documentation
+
+- **Copy-paste ready code** - Snippets include realistic example values, not just placeholders
+  - Complexity: Low (better example() functions)
+  - Dependencies: None
+  - User story: Copied code runs without modification
+
+---
+
+## Anti-Features (Don't Build)
+
+Features to explicitly NOT build in this milestone. Either out of scope, counterproductive, or requiring resources beyond the current project.
+
+### Token System Rewrites
+
+- **Replace Style Dictionary with Tokens Studio as source of truth** - Current Phoenix setup uses DTCG JSON as source. Tokens Studio would be an additional layer, not a replacement.
+  - Why not: Phoenix already has a working token pipeline. Adding Tokens Studio adds complexity for marginal gain on Professional plan.
+  - Alternative: Keep DTCG JSON as source, optionally import into Tokens Studio for designer visibility.
+
+- **Figma Variables REST API integration** - REST API for variables requires Enterprise plan ($75/editor/month).
+  - Why not: User has Professional plan. Cost is prohibitive for learning workflow.
+  - Alternative: Manual token export/import or Tokens Studio plugin (works on all plans).
+
+- **Automated CI/CD token sync** - GitHub Actions that auto-sync on every Figma save.
+  - Why not: Over-engineering for a learning project. Manual sync teaches the workflow better.
+  - Alternative: Document manual sync process, consider automation in future.
+
+### Figma Build Automation
+
+- **Generate Figma components from code** - Tools that create Figma components from React components.
+  - Why not: User is starting from community kit, not building Figma from scratch.
+  - Alternative: Map existing community kit components to Phoenix code.
+
+- **Figma plugin development** - Custom plugins for Phoenix-specific workflows.
+  - Why not: Maintenance burden, learning curve, and existing plugins cover most needs.
+  - Alternative: Use existing plugins (Tokens Studio, Export Import Variables).
+
+### Full Design System Platform
+
+- **Supernova/Zeroheight integration** - Third-party design system documentation platforms.
+  - Why not: Scope creep. Storybook already provides documentation.
+  - Alternative: Enhance Storybook with Figma embeds if needed.
+
+- **Multi-brand theming in Figma** - Supporting multiple brand themes in a single Figma file.
+  - Why not: Phoenix is single-brand. Multi-brand adds significant complexity.
+  - Alternative: Document how to fork for additional brands if needed later.
+
+---
+
+## Expected Workflow
+
+How designers and developers use Phoenix Figma integration after it's set up.
+
+### Designer Workflow
+
+1. **Design with library** - Designer uses Phoenix Figma library (community kit, customized with Phoenix tokens)
+2. **Apply variables** - Uses semantic variables for colors, spacing, typography
+3. **Mark ready for dev** - Uses Figma's "Ready for dev" status on frames
+4. **Review code snippets** - Verifies Dev Mode shows correct Phoenix components
+
+### Developer Workflow
+
+1. **Open Dev Mode** - Inspects designs marked ready for development
+2. **Copy code snippets** - Gets real Phoenix imports and props from Code Connect
+3. **Verify tokens** - Confirms color/spacing values match semantic tokens
+4. **Build feature** - Uses copied snippets as starting point
+5. **Update if needed** - If component doesn't exist, creates and publishes new Code Connect mapping
+
+### Token Update Workflow (Manual)
+
+1. **Designer proposes change** - Updates token value in Figma Variables
+2. **Export tokens** - Uses plugin to export Variables as JSON
+3. **Developer imports** - Updates DTCG JSON files in code
+4. **Rebuild tokens** - Runs `pnpm build` in tokens package
+5. **Verify sync** - Both check that values match
+
+### Publish Workflow
+
+1. **Developer updates .figma.tsx** - Modifies property mappings or examples
+2. **Run publish** - `npx figma connect publish`
+3. **Verify in Figma** - Open Dev Mode, confirm snippets updated
+4. **Commit changes** - Push .figma.tsx changes to repository
+
+---
 
 ## Feature Dependencies
 
 ```
-Foundation Layer:
-  Monorepo Setup (Turborepo + pnpm)
-    ↓
-  TypeScript + Tailwind Config
-    ↓
-  Design Tokens (CSS Variables)
-    ↓
-Component Layer:
-  Radix Primitives
-    ↓
-  CVA Variant System
-    ↓
-  Core Components (Button, Input, etc)
-    ↓
-Composition Layer:
-  Compound Components
-    ↓
-  Form Patterns (react-hook-form + Zod)
-    ↓
-  Composite Examples (forms, dashboards)
-    ↓
-Quality Layer:
-  Storybook Documentation
-    ↓
-  Testing Setup (Vitest + RTL)
-    ↓
-  Visual Regression
-    ↓
-Distribution Layer:
-  Package Exports
-    ↓
-  Changesets
+Code Connect Workflow:
+  figma.config.json (exists)
+    |
+    v
+  .figma.tsx files (exist, need real URLs)
+    |
+    v
+  npx figma connect publish (requires Figma token)
+    |
+    v
+  Dev Mode shows snippets
+
+Token Alignment Workflow:
+  DTCG JSON tokens (exist)
+    |
+    v
+  Style Dictionary build (exists)
+    |
+    v
+  CSS Variables (exist)
+    |
+    v
+  Figma Variables (need to create/import)
+    |
+    v
+  Designer visibility
+
+Compound Component Snippets:
+  figma.connect() with props (exists)
+    |
+    v
+  figma.children() for nested instances (new)
+    |
+    v
+  Figma file with nested component structure (need)
 ```
 
-**Critical Path:**
-Monorepo → TypeScript/Tailwind → Design Tokens → Radix + CVA → Core Components
-
-**Parallel Tracks:**
-
-- Documentation (Storybook) can develop alongside components
-- Testing can start once 2-3 components exist
-- AI patterns are architectural (no dependencies)
+---
 
 ## MVP Recommendation
 
-For MVP, prioritize:
+For MVP Figma integration, prioritize:
 
-### Phase 1: Foundation (Week 1)
-
-1. **Monorepo Structure** - Turborepo + pnpm workspaces
-2. **TypeScript + Tailwind** - Base configuration + shared configs
-3. **Design Tokens** - Color scales, spacing, typography CSS variables
-4. **Dark Mode** - Theme switcher with system preference
-
-### Phase 2: Core Components (Week 2-3)
-
-5. **Radix Integration** - Install primitives, document patterns
-6. **CVA Setup** - Variant patterns, type-safe factories
-7. **First 6 Components** - Button, Input, Textarea, Select, Checkbox, Radio
-   - These have no dependencies on each other
-   - Cover form primitives (most common use case)
-
-### Phase 3: Composition (Week 3-4)
-
-8. **Form Pattern** - react-hook-form wrapper, Zod integration
-9. **Next 6 Components** - Dialog, DropdownMenu, Tabs, Tooltip, Toast, Form
-   - Dialog/DropdownMenu/Tooltip depend on overlay patterns
-   - Toast for error handling
-   - Form wrapper demonstrates composition
-
-### Phase 4: Documentation (Week 4-5)
-
-10. **Storybook** - Interactive docs for all 12 components
-11. **Compound Component Examples** - Show composition patterns
-12. **AI Pattern Guide** - Document predictable structures for LLMs
+1. **Code Connect for all 14 components** - Table stakes. Users expect this to work.
+2. **Property mapping for variants** - Makes Code Connect actually useful.
+3. **Token naming alignment documentation** - Enables handoff without automation.
+4. **Publish workflow documented** - Developers can maintain the integration.
 
 Defer to post-MVP:
 
-- **Visual Regression Testing**: High value but can validate manually early on
-- **Performance Budgets**: Important for scale, not for initial validation
-- **Changesets**: Manual versioning acceptable until external users
-- **Advanced Compositions**: Dashboard/data table examples nice-to-have
-- **Design Token Migration**: Tailwind 4 @theme can wait for v4 stable release
+- Bi-directional token sync: Requires Tokens Studio Pro or Enterprise plan
+- Compound component nested snippets: High complexity, not blocking
+- Storybook links in Code Connect: Nice-to-have
 
-## Feature Complexity Matrix
-
-| Feature Category | Table Stakes Count    | Differentiator Count                 | Risk Level                       |
-| ---------------- | --------------------- | ------------------------------------ | -------------------------------- |
-| Core Components  | 12 components         | 0                                    | Low (Radix handles complexity)   |
-| Type System      | 3 (TS, CVA, exports)  | 2 (compound, factories)              | Medium (TS patterns well-known)  |
-| Theming          | 2 (tokens, dark mode) | 1 (migration path)                   | Medium (CSS vars + Tailwind)     |
-| Testing          | 1 (Vitest setup)      | 1 (visual regression)                | Low (standard patterns)          |
-| Documentation    | 1 (Storybook)         | 1 (living docs)                      | Medium (content creation effort) |
-| Tooling          | 2 (monorepo, configs) | 3 (zero-config, changesets, budgets) | Medium (integration complexity)  |
-| Forms            | 1 (react-hook-form)   | 1 (error patterns)                   | Medium (validation edge cases)   |
-
-**Highest Complexity:** Living Documentation (content creation), Visual Regression (tooling setup)
-**Lowest Complexity:** TypeScript, Tailwind, CVA (established patterns with good docs)
-**Highest Risk:** Over-engineering composition patterns before validating primitives
-**Lowest Risk:** Using Radix primitives as-is with minimal wrapping
-
-## AI/Claude-First Considerations
-
-Phoenix's unique differentiator requires these patterns:
-
-1. **Predictable File Structure**
-   - Components in `packages/ui/src/components/[name]/`
-   - Each component: `index.tsx`, `[name].stories.tsx`, `[name].test.tsx`
-   - Consistent exports: named export for component, type exports
-
-2. **Documented Variant Patterns**
-   - CVA variant objects use consistent naming: `variant`, `size`, `state`
-   - Default variants always specified
-   - Compound variants documented with examples
-
-3. **Composition Contracts**
-   - Compound components use factory pattern with clear parent-child relationships
-   - Context types exported for extension
-   - Props interfaces extend HTML element props predictably
-
-4. **Error Handling Patterns**
-   - Form errors: react-hook-form conventions
-   - Async errors: Toast integration
-   - Runtime errors: Error boundaries with fallback UI
-
-5. **Testing Patterns**
-   - RTL queries prioritize accessibility (getByRole, getByLabelText)
-   - User interaction patterns (userEvent, not fireEvent)
-   - Snapshot tests avoided (brittle for AI generation)
-
-**Why This Matters:**
-LLMs excel at mimicry. Show 2-3 examples of a pattern, they continue it. Phoenix's value is providing those reference implementations so Claude Code can extend the system autonomously without breaking conventions.
+---
 
 ## Sources
 
-**Design System Landscape:**
+### Figma Official Documentation
 
-- [shadcn/ui Introduction](https://ui.shadcn.com/docs)
-- [Untitled UI — React Component Library](https://www.untitledui.com/blog/react-component-libraries)
-- [Choosing the Right UI Framework in 2026](https://lalatenduswain.medium.com/choosing-the-right-ui-framework-in-2026-tailwind-css-vs-bootstrap-vs-material-ui-vs-shadcn-ui-c5842f4c7e91)
+- [Code Connect Help Center](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
+- [Code Connect CLI Quickstart](https://developers.figma.com/docs/code-connect/quickstart-guide/)
+- [Connecting React Components](https://developers.figma.com/docs/code-connect/react/)
+- [Guide to Variables in Figma](https://help.figma.com/hc/en-us/articles/15339657135383-Guide-to-variables-in-Figma)
+- [Guide to Developer Handoff](https://www.figma.com/best-practices/guide-to-developer-handoff/)
 
-**Monorepo Architecture:**
+### Code Connect Repository
 
-- [Monorepo Architecture: The Ultimate Guide for 2025](https://feature-sliced.design/blog/frontend-monorepo-explained)
-- [Scaling Your Frontend: A Monorepo and Design System Playbook](https://medium.com/@satnammca/scaling-your-frontend-a-monorepo-and-design-system-playbook-957e38c8c9e4)
-- [Turborepo Design System](https://vercel.com/templates/react/turborepo-design-system)
+- [figma/code-connect GitHub](https://github.com/figma/code-connect)
 
-**Component Patterns:**
+### Tokens Studio
 
-- [Radix Primitives Documentation](https://www.radix-ui.com/primitives/docs/overview/introduction)
-- [CVA (Class Variance Authority) Docs](https://cva.style/docs)
-- [The Anatomy of shadcn/ui Components](https://vercel.com/academy/shadcn-ui/extending-shadcn-ui-with-custom-components)
-- [Building Type-Safe Compound Components](https://tkdodo.eu/blog/building-type-safe-compound-components)
+- [GitHub Sync Provider](https://docs.tokens.studio/token-storage/remote/sync-git-github)
+- [W3C DTCG Token Format](https://docs.tokens.studio/manage-settings/token-format)
+- [Variables and Tokens Studio Overview](https://docs.tokens.studio/figma/variables-overview)
 
-**Theming & Tokens:**
+### Industry Analysis
 
-- [Tailwind CSS Best Practices 2025-2026](https://www.frontendtools.tech/blog/tailwind-css-best-practices-design-system-patterns)
-- [Dark Mode Design Best Practices in 2026](https://www.tech-rz.com/blog/dark-mode-design-best-practices-in-2026/)
-- [Color tokens: guide to light and dark modes](https://medium.com/design-bootcamp/color-tokens-guide-to-light-and-dark-modes-in-design-systems-146ab33023ac)
+- [Figma Variables vs Tokens Studio: Why Both Matter](https://dev.to/quintonjason/figma-variables-vs-tokens-studio-why-both-matter-2md7) - DEV Community
+- [Understanding Figma Variables vs Design Tokens](https://www.supernova.io/blog/understanding-the-differences-between-figma-variables-and-design-tokens) - Supernova
+- [The Gap Between Figma and Production](https://dev.to/lewisnewman24/the-gap-between-figma-and-production-why-handoff-fails-and-how-design-systems-fix-it-4ma9) - DEV Community
 
-**Forms & Validation:**
+### Plan Requirements
 
-- [React Hook Form with Zod: Complete Guide for 2026](https://dev.to/marufrahmanlive/react-hook-form-with-zod-complete-guide-for-2026-1em1)
-- [Building Type-Safe Forms with React Hook Form](https://medium.com/@Yasirgaji/building-type-safe-forms-with-react-hook-form-a-pattern-based-approach-6a1ec37cf8f4)
+- [Variables API Enterprise Plan Discussion](https://forum.figma.com/suggest-a-feature-11/why-s-the-variables-api-only-available-on-enterprise-plans-36426) - Figma Forum
 
-**Testing:**
+---
 
-- [How to Unit Test React Components with Vitest](https://oneuptime.com/blog/post/2026-01-15-unit-test-react-vitest-testing-library/view)
-- [Testing in 2026: Jest, React Testing Library, and Full Stack Testing Strategies](https://www.nucamp.co/blog/testing-in-2026-jest-react-testing-library-and-full-stack-testing-strategies)
+## Confidence Assessment
 
-**Documentation:**
-
-- [4 ways to document your design system with Storybook](https://storybook.js.org/blog/4-ways-to-document-your-design-system-with-storybook/)
-- [MDX | Storybook docs](https://storybook.js.org/docs/writing-docs/mdx)
-
-**Anti-Patterns:**
-
-- [How I'd build a design system if I started over in 2026](https://learn.thedesignsystem.guide/p/how-id-build-a-design-system-if-i)
-- [Design Systems in 2026: Predictions, Pitfalls, and Power Moves](https://rydarashid.medium.com/design-systems-in-2026-predictions-pitfalls-and-power-moves-f401317f7563)
-
-**AI/LLM Patterns:**
-
-- [My LLM coding workflow going into 2026](https://addyosmani.com/blog/ai-coding-workflow/)
-- [Agentic AI Design Patterns (2026 Edition)](https://medium.com/@dewasheesh.rana/agentic-ai-design-patterns-2026-ed-e3a5125162c5)
+| Area                  | Confidence | Rationale                                                                                |
+| --------------------- | ---------- | ---------------------------------------------------------------------------------------- |
+| Code Connect features | HIGH       | Verified via official Figma documentation and React API reference                        |
+| Token sync options    | HIGH       | Cross-verified Figma docs, Tokens Studio docs, and community discussions                 |
+| Plan limitations      | HIGH       | Confirmed via Figma Forum and developer docs that Variables REST API requires Enterprise |
+| Complexity estimates  | MEDIUM     | Based on existing Phoenix codebase analysis + documentation, but implementation may vary |
+| Workflow patterns     | MEDIUM     | Synthesized from multiple sources, but real-world friction may differ                    |
