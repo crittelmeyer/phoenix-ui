@@ -417,6 +417,13 @@
         "$type": "color",
         "$description": "Focus ring color"
       }
+    },
+    "test": {
+      "sync-verification": {
+        "$value": "oklch(0.7 0.15 150)",
+        "$type": "color",
+        "$description": "Temporary token to verify Figma sync - delete after verification"
+      }
     }
   }
 }
