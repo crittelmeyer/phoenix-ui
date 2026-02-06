@@ -13,11 +13,11 @@ See: .planning/PROJECT.md (updated 2026-02-03)
 ## Current Position
 
 **Phase:** 8 of 11 (Figma Library Setup)
-**Plan:** — (phase not yet planned)
-**Status:** Ready to plan
-**Last activity:** 2026-02-06 — Completed Phase 7
+**Plan:** 01 of 3 complete (Tokens Studio Metadata)
+**Status:** In progress
+**Last activity:** 2026-02-06 — Completed 08-01-PLAN.md
 
-Progress: [██░░░░░░░░] 20% (1/5 v2 phases complete)
+Progress: [██░░░░░░░░] 20% (1/5 v2 phases complete, 1/3 plans in phase 8)
 
 ## Performance Metrics
 
@@ -31,11 +31,11 @@ Progress: [██░░░░░░░░] 20% (1/5 v2 phases complete)
 ## Session Continuity
 
 **Last session:** 2026-02-06
-**Stopped at:** Phase 7 complete, verified
+**Stopped at:** Completed 08-01-PLAN.md
 **Resume file:** None
 
 **What's next:**
-Run `/gsd:discuss-phase 8` to gather context for Figma Library Setup
+Plan and execute 08-02 (Tokens Studio GitHub sync configuration)
 
 ## Accumulated Context
 
@@ -59,6 +59,13 @@ Run `/gsd:discuss-phase 8` to gather context for Figma Library Setup
 - Token mapping documentation in dist/figma/token-mapping.json
 - Color comparison HTML for visual verification
 
+**From Phase 8 Plan 01:**
+
+- Tokens Studio metadata files created ($metadata.json, $themes.json)
+- Token set order: colors, colors.dark, spacing, typography, radii
+- Theme definitions: phoenix-light (enabled all) and phoenix-dark (colors source + colors.dark enabled)
+- GitHub Actions workflow validates token builds on push/PR
+
 ## Decisions
 
 | ID         | Decision                         | Phase | Impact                                 |
@@ -70,7 +77,10 @@ Run `/gsd:discuss-phase 8` to gather context for Figma Library Setup
 | D-07-02-02 | excludeParentKeys: false         | 07-02 | Token references resolve correctly     |
 | D-07-02-03 | Install colorjs.io direct dep    | 07-02 | Reliable color conversion              |
 | D-07-02-04 | Use tokens-studio preprocessor   | 07-02 | DTCG format tokens parsed correctly    |
+| D-08-01-01 | Tokens Studio Legacy format      | 08-01 | Metadata files use Legacy not DTCG     |
+| D-08-01-02 | Dark theme inheritance strategy  | 08-01 | colors source + colors.dark enabled    |
+| D-08-01-03 | CI workflow scoped to tokens     | 08-01 | Triggers only on token file changes    |
 
 ---
 
-_State updated: 2026-02-06 after Phase 7 complete_
+_State updated: 2026-02-06 after Phase 8 Plan 01 complete_
