@@ -1,0 +1,29 @@
+[
+  {
+    "id": "phoenix-light",
+    "name": "Phoenix Light",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "colors": "enabled",
+      "spacing": "enabled",
+      "typography": "enabled",
+      "radii": "enabled"
+    },
+    "$figmaCollectionId": "",
+    "$figmaModeId": ""
+  },
+  {
+    "id": "phoenix-dark",
+    "name": "Phoenix Dark",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "colors": "source",
+      "colors.dark": "enabled",
+      "spacing": "enabled",
+      "typography": "enabled",
+      "radii": "enabled"
+    },
+    "$figmaCollectionId": "",
+    "$figmaModeId": ""
+  }
+]
