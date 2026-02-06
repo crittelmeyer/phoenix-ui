@@ -19,6 +19,7 @@
     "@phoenix/eslint-config": "workspace:*",
     "@phoenix/typescript-config": "workspace:*",
     "@tokens-studio/sd-transforms": "^2.0.0",
+    "colorjs.io": "^0.6.1",
     "eslint": "^9.0.0",
     "style-dictionary": "^5.2.0",
     "typescript": "^5.0.0"

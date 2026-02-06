@@ -26,8 +26,8 @@ export const colorComparisonFormat = ({ dictionary }) => {
       <td><code>${token.path.join('.')}</code></td>
       <td><code>${token.original.$value}</code></td>
       <td style="background: ${token.original.$value}; width: 60px; height: 30px;"></td>
-      <td><code>${token.value}</code></td>
-      <td style="background: ${token.value}; width: 60px; height: 30px;"></td>
+      <td><code>${token.$value ?? token.value}</code></td>
+      <td style="background: ${token.$value ?? token.value}; width: 60px; height: 30px;"></td>
     </tr>
   `,
     )

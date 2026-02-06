@@ -23,7 +23,7 @@ export const tokensStudioFormat = ({ dictionary, options, file }) => {
     const tokenPath = token.path.join('/')
 
     tokenSet[tokenPath] = {
-      value: token.value, // Already transformed to hex by sd-transforms
+      value: token.$value ?? token.value, // Already transformed to hex by sd-transforms
       type: token.$type,
       ...(token.$description && { description: token.$description }),
     }

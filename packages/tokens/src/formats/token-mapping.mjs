@@ -26,7 +26,7 @@ export const tokenMappingFormat = ({ dictionary }) => {
     mapping[phoenixName] = {
       figmaPath,
       type: token.$type,
-      value: token.value, // Final hex value after transformation
+      value: token.$value ?? token.value, // Final hex value after transformation
     }
   })
 

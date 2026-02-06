@@ -3,18 +3,29 @@ import { register } from '@tokens-studio/sd-transforms'
 import { tokensStudioFormat } from './formats/tokens-studio.mjs'
 import { tokenMappingFormat } from './formats/token-mapping.mjs'
 import { colorComparisonFormat } from './formats/color-comparison.mjs'
+import { oklchToHex } from './transforms/oklch-to-hex.mjs'
 
 // Register sd-transforms globally before creating StyleDictionary instances
 await register(StyleDictionary, {
+  platform: 'css', // Use CSS platform transforms (includes hex color conversion)
   expand: {
     typography: false, // Phoenix doesn't use composite typography
     border: false,
     shadow: false,
   },
-  excludeParentKeys: true,
+  excludeParentKeys: false,
   'ts/color/modifiers': {
     format: 'hex', // Output hex for Figma compatibility
   },
+})
+
+// Register custom transform for OKLCH to hex conversion
+StyleDictionary.registerTransform({
+  name: 'phoenix/oklch-to-hex',
+  type: 'value',
+  transitive: true,
+  filter: (token) => (token.$type ?? token.type) === 'color',
+  transform: oklchToHex,
 })
 
 // Register custom formats
@@ -37,6 +48,7 @@ try {
   // Build light mode tokens (exclude .dark.json files)
   const sdLight = new StyleDictionary({
     source: ['src/tokens/**/!(*.dark).json'],
+    preprocessors: ['tokens-studio'],
     platforms: {
       css: {
         transformGroup: 'css',
@@ -52,7 +64,7 @@ try {
         ],
       },
       figma: {
-        transformGroup: 'tokens-studio',
+        transforms: ['phoenix/oklch-to-hex'],
         buildPath: 'dist/figma/',
         files: [
           {
@@ -82,6 +94,7 @@ try {
   // Build dark mode tokens (only .dark.json files)
   const sdDark = new StyleDictionary({
     source: ['src/tokens/**/*.dark.json'],
+    preprocessors: ['tokens-studio'],
     platforms: {
       css: {
         transformGroup: 'css',
@@ -98,7 +111,7 @@ try {
         ],
       },
       figma: {
-        transformGroup: 'tokens-studio',
+        transforms: ['phoenix/oklch-to-hex'],
         buildPath: 'dist/figma/',
         files: [
           {
