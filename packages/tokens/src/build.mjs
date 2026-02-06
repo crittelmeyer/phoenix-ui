@@ -45,9 +45,9 @@ StyleDictionary.registerFormat({
 })
 
 try {
-  // Build light mode tokens (exclude .dark.json files)
+  // Build light mode tokens (exclude .dark.json files and Tokens Studio metadata files)
   const sdLight = new StyleDictionary({
-    source: ['src/tokens/**/!(*.dark).json'],
+    source: ['src/tokens/**/!(*.dark|$*).json'],
     preprocessors: ['tokens-studio'],
     platforms: {
       css: {
@@ -91,9 +91,9 @@ try {
     },
   })
 
-  // Build dark mode tokens (only .dark.json files)
+  // Build dark mode tokens (only .dark.json files, exclude metadata)
   const sdDark = new StyleDictionary({
-    source: ['src/tokens/**/*.dark.json'],
+    source: ['src/tokens/**/!($ *)*.dark.json'],
     preprocessors: ['tokens-studio'],
     platforms: {
       css: {
