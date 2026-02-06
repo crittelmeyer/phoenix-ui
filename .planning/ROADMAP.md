@@ -36,19 +36,13 @@ Plans:
 **Goal**: Figma library file exists with Phoenix tokens applied via Tokens Studio
 **Depends on**: Phase 7 (token naming conventions must be documented first)
 **Requirements**: INF-01, TKN-02, TKN-03, TKN-04
-**Success Criteria** (what must be TRUE):
-
-1. Community kit is duplicated to team account and customized with Phoenix branding
-2. Figma Variables exist matching Phoenix token structure (colors, spacing, typography, radius)
-3. Light and dark mode variables are configured and switchable in Figma
-4. Tokens Studio plugin is connected to GitHub repo (packages/tokens/src/tokens)
-5. Changes exported from Tokens Studio import successfully into Style Dictionary build
-   **Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
 
-- [ ] 08-01: TBD
-- [ ] 08-02: TBD
+- [ ] 08-01-PLAN.md - Prepare codebase for Tokens Studio sync
+- [ ] 08-02-PLAN.md - Configure Figma library with Tokens Studio
+- [ ] 08-03-PLAN.md - Verify bidirectional token sync
 
 ### Phase 9: Code Connect Setup
 
@@ -109,7 +103,7 @@ Plans:
 | Phase                         | Plans Complete | Status      | Completed  |
 | ----------------------------- | -------------- | ----------- | ---------- |
 | 7. Token Pipeline Integration | 2/2            | Complete    | 2026-02-06 |
-| 8. Figma Library Setup        | 0/?            | Not started | -          |
+| 8. Figma Library Setup        | 0/3            | Not started | -          |
 | 9. Code Connect Setup         | 0/?            | Not started | -          |
 | 10. Component Mapping         | 0/?            | Not started | -          |
 | 11. Workflow Documentation    | 0/?            | Not started | -          |
