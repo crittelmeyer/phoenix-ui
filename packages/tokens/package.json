@@ -8,7 +8,10 @@
   "exports": {
     ".": "./src/index.ts",
     "./dist/tokens.css": "./dist/tokens.css",
-    "./dist/tokens.dark.css": "./dist/tokens.dark.css"
+    "./dist/tokens.dark.css": "./dist/tokens.dark.css",
+    "./dist/figma/light.json": "./dist/figma/light.json",
+    "./dist/figma/dark.json": "./dist/figma/dark.json",
+    "./dist/figma/token-mapping.json": "./dist/figma/token-mapping.json"
   },
   "scripts": {
     "lint": "eslint .",
