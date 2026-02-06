@@ -31,16 +31,27 @@ AI agents (Claude Code specifically) can add, modify, and extend components with
 
 ### Active
 
-(None yet — define with next milestone)
+(Defined by v2 milestone — see below)
+
+## Current Milestone: v2 Figma Integration
+
+**Goal:** Establish a complete Figma ↔ code workflow where tokens flow from Figma Variables into the codebase and Code Connect surfaces real React components in Figma dev mode.
+
+**Target features:**
+
+- Figma Variables → Tokens Studio export → Style Dictionary pipeline → CSS vars in Storybook
+- Code Connect publishing real component snippets in Figma dev mode
+- Community kit as starting point (shadcn/Radix-style with Variables already structured)
+- Documentation for the complete round-trip workflow
 
 ### Out of Scope
 
-- Figma MCP server setup — depends on user's Figma account and evolving tooling
+- Figma MCP server setup — can explore later, not needed for core workflow
 - OAuth / auth system — this is a UI starter, not an app template
 - Database / API layer — same reason
 - Mobile / React Native — web-first starter
 - CI/CD pipeline config — too environment-specific for a starter
-- Figma file creation — users bring their own or start from seed tokens
+- Building Figma library from scratch — using community kit as starting point for v2
 
 ## Context
 
@@ -79,4 +90,4 @@ AI agents (Claude Code specifically) can add, modify, and extend components with
 
 ---
 
-_Last updated: 2026-02-02 after v1 milestone_
+_Last updated: 2026-02-03 after v2 milestone start_
