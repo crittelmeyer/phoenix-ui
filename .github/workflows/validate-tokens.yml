@@ -1,0 +1,40 @@
+name: Validate Tokens
+
+on:
+  push:
+    paths:
+      - 'packages/tokens/src/tokens/**'
+  pull_request:
+    paths:
+      - 'packages/tokens/src/tokens/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build tokens
+        run: pnpm --filter @phoenix/tokens build
+
+      - name: Verify outputs exist
+        run: |
+          test -f packages/tokens/dist/tokens.css
+          test -f packages/tokens/dist/tokens.dark.css
+          test -f packages/tokens/dist/figma/light.json
+          test -f packages/tokens/dist/figma/dark.json
+          echo "All token outputs generated successfully"
