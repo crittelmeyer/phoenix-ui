@@ -24,18 +24,12 @@ This roadmap establishes bidirectional Figma integration for the Phoenix Design 
 **Goal**: Style Dictionary build outputs Figma-compatible tokens alongside existing OKLCH CSS
 **Depends on**: Nothing (first v2 phase, builds on v1 infrastructure)
 **Requirements**: INF-03, INF-04, TKN-01
-**Success Criteria** (what must be TRUE):
-
-1. Running `pnpm build` in packages/tokens outputs RGB-converted tokens for Figma import
-2. @tokens-studio/sd-transforms is installed and integrated with Style Dictionary 5.x
-3. Token naming conventions are documented with clear Figma Variables to Phoenix semantic token mapping
-4. OKLCH colors convert to RGB/Hex without visible color drift
-   **Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
 
-- [ ] 07-01: TBD
-- [ ] 07-02: TBD
+- [ ] 07-01-PLAN.md - Install sd-transforms and create custom formats
+- [ ] 07-02-PLAN.md - Extend build script and generate Figma outputs
 
 ### Phase 8: Figma Library Setup
 
@@ -114,7 +108,7 @@ Plans:
 
 | Phase                         | Plans Complete | Status      | Completed |
 | ----------------------------- | -------------- | ----------- | --------- |
-| 7. Token Pipeline Integration | 0/?            | Not started | -         |
+| 7. Token Pipeline Integration | 0/2            | Planned     | -         |
 | 8. Figma Library Setup        | 0/?            | Not started | -         |
 | 9. Code Connect Setup         | 0/?            | Not started | -         |
 | 10. Component Mapping         | 0/?            | Not started | -         |
