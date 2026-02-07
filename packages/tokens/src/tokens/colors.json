@@ -417,13 +417,6 @@
         "$value": "{color.primary.600}",
         "$description": "Focus ring color"
       }
-    },
-    "test": {
-      "sync-verification": {
-        "$type": "color",
-        "$value": "#ff6b6b",
-        "$description": "Temporary token to verify Figma sync - delete after verification"
-      }
     }
   }
 }
